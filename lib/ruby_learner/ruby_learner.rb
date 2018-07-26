@@ -13,39 +13,40 @@ module RubyLearner
     def initialize(*args)
       super
       # rl is RubyLearner
-      @prac_dir = "#{ENV['HOME']}/ruby_learner/workshop" # practice directory
+      @workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop" # workshop_directory
       @gem_location = Open3.capture3('gem environment gemdir')
       app_vers = Open3.capture3('gem list ruby_learner')
-      @rl_ver = app_vers[0].chomp.tr(' ', '-').delete('()')
-      @rl_origin_dir = File.join(@gem_location[0].chomp, "/gems/#{@rl_ver}")
-      init_mk_files(origin_dir: @rl_origin_dir, prac_dir: @prac_dir)
+      rl_ver = app_vers[0].chomp.tr(' ', '-').delete('()')
+      @rl_origin_dir = File.join(@gem_location[0].chomp, "/gems/#{rl_ver}")
+      init_mk_files(origin_dir: @rl_origin_dir, prac_dir: @workshop_dir)
     end
 
     desc 'delete [number~number]', 'choose number to delete ruby_files'
     def delete(head_num, end_num)
       range = head_num..end_num
       range.each do |num|
-        if File.exist?("#{@prac_dir}/ruby_#{num}") == true
-          system "rm -rf #{@prac_dir}/ruby_#{num}"
+        if File.exist?("#{@workshop_dir}/ruby_#{num}") == true
+          system "rm -rf #{@workshop_dir}/ruby_#{num}"
         end
       end
     end
 
     desc 'sequential_check [dir_num:1~6] [file_num:1~3] ', 'typing and editing practice.'
     def sequential_check(*_argv, dir_num, file_num)
-      origin_seq_dir = "#{@rl_origin_dir}/lib/sequential_check_question"
+      origin_seq_dir = "#{@rl_origin_dir}/questions/sequential_check_question"
       origin_file_path = "#{origin_seq_dir}/ruby_#{dir_num}/#{file_num}.rb"
-      typing_prac_class = TypingPractice.new(prac_dir: @prac_dir, origin_dir: @rl_origin_dir)
+      typing_prac_class = TypingPractice.new(prac_dir: @workshop_dir, origin_dir: @rl_origin_dir)
       typing_prac_class.prac_sequence(origin_file: origin_file_path)
     end
 
     desc 'random_check', 'typing and editing practice.'
     def random_check(*_argv)
-      origin_rand_dir = "#{@rl_origin_dir}/lib/random_check_question"
-      rand_num = rand(1..15)
+      origin_rand_dir = "#{@rl_origin_dir}/quetions/random_check_question"
+      # rand_num = rand(1..15)
+      rand_num = 1
       origin_rand_file = "#{origin_rand_dir}/#{rand_num}.rb"
-      FileUtils.cp('/dev/null', "#{@prac_dir}/answer.rb")
-      typing_prac_class = TypingPractice.new(prac_dir: @prac_dir, origin_dir: @rl_origin_dir)
+      FileUtils.cp('/dev/null', "#{@workshop_dir}/answer.rb")
+      typing_prac_class = TypingPractice.new(prac_dir: @workshop_dir, origin_dir: @rl_origin_dir)
       typing_prac_class.prac_sequence(origin_file: origin_rand_file)
     end
   end
