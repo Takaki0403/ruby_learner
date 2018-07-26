@@ -4,7 +4,7 @@ require 'thor'
 require 'ruby_learner/version.rb'
 require 'diff-lcs'
 require 'open3'
-require 'ruby_learner/el_methods.rb'
+require 'ruby_learner/methods.rb'
 require 'ruby_learner/typing_practice.rb'
 
 module RubyLearner
@@ -12,40 +12,40 @@ module RubyLearner
   class CLI < Thor
     def initialize(*args)
       super
-      # el is editor_learner
-      @el_prac_dir = "#{ENV['HOME']}/ruby_learner/workshop"
-      @gem_locations = Open3.capture3('gem environment gemdir')
+      # rl is RubyLearner
+      @prac_dir = "#{ENV['HOME']}/ruby_learner/workshop" # practice directory
+      @gem_location = Open3.capture3('gem environment gemdir')
       app_vers = Open3.capture3('gem list ruby_learner')
-      @el_ver = app_vers[0].chomp.tr(' ', '-').delete('()')
-      @el_origin_dir = File.join(@gem_locations[0].chomp, "/gems/#{@el_ver}")
-      init_mk_files(origin_dir: @el_origin_dir, prac_dir: @el_prac_dir)
+      @rl_ver = app_vers[0].chomp.tr(' ', '-').delete('()')
+      @rl_origin_dir = File.join(@gem_location[0].chomp, "/gems/#{@rl_ver}")
+      init_mk_files(origin_dir: @rl_origin_dir, prac_dir: @prac_dir)
     end
 
     desc 'delete [number~number]', 'choose number to delete ruby_files'
     def delete(head_num, end_num)
       range = head_num..end_num
       range.each do |num|
-        if File.exist?("#{@el_prac_dir}/ruby_#{num}") == true
-          system "rm -rf #{@el_prac_dir}/ruby_#{num}"
+        if File.exist?("#{@prac_dir}/ruby_#{num}") == true
+          system "rm -rf #{@prac_dir}/ruby_#{num}"
         end
       end
     end
 
     desc 'sequential_check [dir_num:1~6] [file_num:1~3] ', 'typing and editing practice.'
     def sequential_check(*_argv, dir_num, file_num)
-      origin_seq_dir = "#{@el_origin_dir}/lib/sequential_check_question"
+      origin_seq_dir = "#{@rl_origin_dir}/lib/sequential_check_question"
       origin_file_path = "#{origin_seq_dir}/ruby_#{dir_num}/#{file_num}.rb"
-      typing_prac_class = TypingPractice.new(prac_dir: @el_prac_dir, origin_dir: @el_origin_dir)
+      typing_prac_class = TypingPractice.new(prac_dir: @prac_dir, origin_dir: @rl_origin_dir)
       typing_prac_class.prac_sequence(origin_file: origin_file_path)
     end
 
     desc 'random_check', 'typing and editing practice.'
     def random_check(*_argv)
-      origin_rand_dir = "#{@el_origin_dir}/lib/random_check_question"
+      origin_rand_dir = "#{@rl_origin_dir}/lib/random_check_question"
       rand_num = rand(1..15)
       origin_rand_file = "#{origin_rand_dir}/#{rand_num}.rb"
-      FileUtils.cp('/dev/null', "#{@el_prac_dir}/answer.rb")
-      typing_prac_class = TypingPractice.new(prac_dir: @el_prac_dir, origin_dir: @el_origin_dir)
+      FileUtils.cp('/dev/null', "#{@prac_dir}/answer.rb")
+      typing_prac_class = TypingPractice.new(prac_dir: @prac_dir, origin_dir: @rl_origin_dir)
       typing_prac_class.prac_sequence(origin_file: origin_rand_file)
     end
   end
