@@ -17,14 +17,20 @@ end
 
 def typing_discriminant(answer_path: String, question_path: String)
   loop do
-    puts "If you complete typing, press return-key"
-    input = STDIN.gets
     if FileUtils.compare_file("#{answer_path}", "#{question_path}") == true then
       puts "It have been finished!"
       break
     else
       puts "There are some differences"
       spell_diff_check(file1: "#{answer_path}", file2: "#{question_path}")
+      puts "If you continue this mode, press return-key"
+      puts "When you want to finish this mode, input 'exit' and press return-key"
+      input_continue = STDIN.gets.chomp
+      if input_continue == 'exit'
+        break
+      else
+        system "cd #{@prac_dir} && emacs question.rb answer.rb"
+      end
     end
   end
 end
