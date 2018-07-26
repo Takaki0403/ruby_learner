@@ -1,11 +1,11 @@
 require 'fileutils'
 require 'colorize'
 require 'thor'
-require 'version'
+require 'ruby_learner/version.rb'
 require 'diff-lcs'
 require 'open3'
-require 'el_methods.rb'
-require 'el_sub_class.rb'
+require 'ruby_learner/el_methods.rb'
+require 'ruby_learner/el_sub_class.rb'
 
 module RubyLearner
   # editor_learner CLI main class

@@ -1,5 +1,5 @@
 require 'fileutils'
-require 'el_methods.rb'
+require 'ruby_learner/el_methods.rb'
 
 class TypingPractice
 

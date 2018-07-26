@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require "ruby_learner"
+require "ruby_learner/ruby_learner.rb"
 
 RubyLearner::CLI.start(ARGV)
