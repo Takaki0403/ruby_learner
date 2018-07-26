@@ -1,6 +1,6 @@
-def open_terminal(init_dir: String)
-  system "osascript -e 'tell application \"Terminal\" to do script \"cd #{init_dir} \" '"
-end
+# def open_terminal(init_dir: String)
+#   system "osascript -e 'tell application \"Terminal\" to do script \"cd #{init_dir} \" '"
+# end
 
 def spell_diff_check(file1: String, file2: String)
   stdin, stdout, stderr = Open3.popen3("diff -c #{file1} #{file2}")
