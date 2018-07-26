@@ -7,11 +7,11 @@ Gem::Specification.new do |spec|
   spec.name          = "ruby_learner"
   spec.version       = RubyLearner::VERSION
   spec.authors       = ["Takaki Otsu"]
-  spec.email         = ["mosaotsutakaki@gmail.com"]
+  spec.email         = [""]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{This helps to learn Ruby}
+  spec.description   = %q{This gem can give you knowledge about Ruby}
+  spec.homepage      = ""
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
