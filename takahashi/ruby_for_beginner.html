@@ -1,0 +1,2642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="jp" xml:lang="jp">
+<head>
+<title>はじめてのRuby</title>
+<!-- 2018-07-25 水 13:04 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Shun Takahashi" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">はじめてのRuby</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. はじめてのRuby</a>
+<ul>
+<li><a href="#sec-1-1">1.1. イントロダクション</a></li>
+<li><a href="#sec-1-2">1.2. Rubyの実行方法</a>
+<ul>
+<li><a href="#sec-1-2-1">イントロダクション</a></li>
+<li><a href="#sec-1-2-2">rubyコマンドを使う方法</a></li>
+<li><a href="#sec-1-2-3">1.1.2. irbコマンドを使う方法</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3. プログラムの解説</a>
+<ul>
+<li><a href="#sec-1-3-1">イントロダクション</a></li>
+<li><a href="#sec-1-3-2">1.2.1. オブジェクト</a></li>
+<li><a href="#sec-1-3-3">1.2.2. メソッド</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">1.4. 文字列</a>
+<ul>
+<li><a href="#sec-1-4-1">イントロダクション</a></li>
+<li><a href="#sec-1-4-2">1.3.1. 改行文字と「\」</a></li>
+<li><a href="#sec-1-4-3">1.3.2. 「''」と「""」</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-5">1.5. メソッドの呼び出し</a></li>
+<li><a href="#sec-1-6">1.6. putsメソッド</a></li>
+<li><a href="#sec-1-7">1.7. pメソッド</a></li>
+<li><a href="#sec-1-8">1.8. 日本語の表示</a>
+<ul>
+<li><a href="#sec-1-8-1">コラム「日本語を扱う場合の注意」</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-9">1.9. 数値の表示と計算</a>
+<ul>
+<li><a href="#sec-1-9-1">イントロダクション</a></li>
+<li><a href="#sec-1-9-2">1.8.1. 数値の表示</a></li>
+<li><a href="#sec-1-9-3">1.8.2. 四則演算</a></li>
+<li><a href="#sec-1-9-4">1.8.3. 数学的な関数</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-10">1.10. 変数</a>
+<ul>
+<li><a href="#sec-1-10-1">1.9.1. printメソッドと変数</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-11">1.11. コメントを書く</a></li>
+<li><a href="#sec-1-12">1.12. 制御構造</a>
+<ul>
+<li><a href="#sec-1-12-1">イントロダクション</a></li>
+<li><a href="#sec-1-12-2">1.11.1. 制御構造の分類</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-13">1.13. 条件判断:if ~ then ~ end</a></li>
+<li><a href="#sec-1-14">1.14. 繰り返し</a>
+<ul>
+<li><a href="#sec-1-14-1">イントロダクション</a></li>
+<li><a href="#sec-1-14-2">while文</a></li>
+<li><a href="#sec-1-14-3">timesメソッド</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2">2. 便利なオブジェクト</a>
+<ul>
+<li><a href="#sec-2-1">2.1. イントロダクション</a></li>
+<li><a href="#sec-2-2">2.2. 配列（array）</a>
+<ul>
+<li><a href="#sec-2-2-1">イントロダクション</a></li>
+<li><a href="#sec-2-2-2">2.1.1. 配列を作る</a></li>
+<li><a href="#sec-2-2-3">2.1.2. 配列オブジェクト</a></li>
+<li><a href="#sec-2-2-4">2.1.3.  配列からオブジェクトを取り出す</a></li>
+<li><a href="#sec-2-2-5">2.1.4. 配列にオブジェクトを格納する</a></li>
+<li><a href="#sec-2-2-6">2.1.5. 配列の中身</a></li>
+<li><a href="#sec-2-2-7">2.1.6. 配列と大きさ</a></li>
+<li><a href="#sec-2-2-8">2.1.7. 配列と繰り返し</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-3">2.3. ハッシュ（Hash）</a>
+<ul>
+<li><a href="#sec-2-3-1">2.2.1. シンボルとは</a></li>
+<li><a href="#sec-2-3-2">2.2.2. ハッシュを作る</a></li>
+<li><a href="#sec-2-3-3">2.2.3. ハッシュの操作</a></li>
+<li><a href="#sec-2-3-4">2.2.4. ハッシュの繰り返し</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-4">2.4. 正規表現</a>
+<ul>
+<li><a href="#sec-2-4-1">2.3.1. パターンとマッチング</a></li>
+<li><a href="#sec-2-4-2">コラム「nilとは？」</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">3. コマンドを作ろう</a>
+<ul>
+<li><a href="#sec-3-1">3.1. イントロダクション</a></li>
+<li><a href="#sec-3-2">3.2. コマンドラインからのデータの入力</a></li>
+<li><a href="#sec-3-3">3.3. ファイルからの読み込み</a>
+<ul>
+<li><a href="#sec-3-3-1">イントロダクション</a></li>
+<li><a href="#sec-3-3-2">3.2.1. ファイルからテキストデータを読み込んで表示する</a></li>
+<li><a href="#sec-3-3-3">3.2.2. ファイルからテキストデータを1行ずつ読み込んで表示する</a></li>
+<li><a href="#sec-3-3-4">3.2.3. ファイルの中から特定のパターンの行のみを選んで出力する</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-4">3.4. メソッドの作成</a></li>
+<li><a href="#sec-3-5">3.5. 別のファイルを取り込む</a>
+<ul>
+<li><a href="#sec-3-5-1">コラム「ppメソッド」</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<ul class="org-ul">
+<li>各実行方法(irb, file起動)の違いについて言及している，レジメ(report)にする．自分の独自のまとめをかく．．．．
+</li>
+<li>formatを調整する．c-c c-e hoでhtmlに打ち出す．
+</li>
+</ul>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> はじめてのRuby</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> イントロダクション</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+　それではRubyを使ってみましょう。
+　この章では次の内容について紹介します。Rubyを使ったプログラミングの概要をつかんでください。
+</p>
+
+<ul class="org-ul">
+<li>Rubyを使う- Rubyを使って、プログラムを実行してみます。
+</li>
+<li>文字や数値を使う- 文字や数値を出力したり、計算を行ったり、変数に代入したりします。
+</li>
+<li>条件判断や繰り返しを行う- 数値や文字列を比較して条件判断や、処理の繰り返しを行います。
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Rubyの実行方法</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1">イントロダクション</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+　まずは、画面に文字を表示するプログラムを作り、実行してみましょう。
+</p>
+
+<p>
+　Rubyで書かれたプログラムを実行する方法はいくつかあります。いちばん一般的なのは、rubyというコマンドを使って実行する方法です。次によく使うのが、irbというコマンドを使って対話的に実行する方法です。小さいRubyプログラムの時は、irbコマンドを使う方が簡単に実行できます。
+</p>
+
+<p>
+ここではまずrubyコマンドを使う方法を紹介して、その後でirbコマンドを使う方法も紹介します。
+</p>
+
+
+
+<p>
+　なお、Rubyそのものをインストールしていない人は、「付録A Ruby実行環境の準備」を見て、あらかじめインストールしておいてください。
+</p>
+
+<ul class="org-ul">
+<li>付録Aについては割愛
+</li>
+
+<li>注　本書で使用するRubyのバージョンは、Ruby2.3です。Mac OS XやLinuxを使用している場合、標準でインストールされているRubyのバージョンが古いことがあります。その場合、新しいRubyをインストールしてください。
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2">rubyコマンドを使う方法</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+　では、はじめて実行するプログラムList1.1を見てみましょう。
+</p>
+
+<p>
+List1.1 helloruby.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">print('Hello, Ruby.\n')
+</pre>
+</div>
+
+<p>
+＊注　「\」（バックスラッシュ）は、Windowsでは「¥」（円記号）と表示されます。本書の中では、原則として「\」に統一します。
+</p>
+
+<p>
+……ちょっと拍子抜けしたでしょうか？「プログラム」と聞いて、何かすごく長い暗号めいたものを想像されたかもしれませんが、このプログラムはたったの1行です。文字数にしても20字ちょっとしかありません。でも、これも立派なプログラムですし、実行すればちゃんと目的を果たします。
+　このプログラムをエディタで入力し、ファイル名を「helloruby.rb」にして、ファイルとして保存してください。ファイル名の「.rb」は、Rubyのプログラムであることを表しています。
+</p>
+
+<p>
+＊メモ　プログラムを入力するには、「エディタ」または「IDE」というソフトウェアを使います。エディタやIDEについては、「A.5 エディタとIDE」をご覧ください
+</p>
+<p>
+　それでは、このプログラムを実行してみましょう。コンソールを起動します。
+</p>
+
+<p>
+＊メモ コンソールの起動方法については、「付録A Ruby実行環境の準備」でOS別に説明しています。
+</p>
+
+<p>
+　コンソールを起動したら、ファイルhelloruby.rbを置いたフォルダに、cdコマンドで移動します。たとえばWindowsを使っていて、Cドライブのsrcフォルダ（c:\src）にファイルを置いたのであれば、次のように入力します。
+</p>
+
+<p>
+&gt; cd c:\src
+</p>
+
+<p>
+　そこで、
+</p>
+
+<p>
+&gt; ruby helloruby.rb
+</p>
+
+<p>
+　と入力します。すると、例1.1のように、「Hello, Ruby.」と表示されます。
+</p>
+
+<p>
+例1.1 rubyの起動
+</p>
+
+<p>
+shun@MAC-no-MacBook-Air ~/g/m/t/r/sample_prog&gt; ruby helloruby.rb 
+Hello, Ruby.
+shun@MAC-no-MacBook-Air ~/g/m/t/r/sample_prog&gt;
+</p>
+
+
+<p>
+＊メモ もしエラーが出てしまうようなら、第10章のコラム「エラーメッセージ」および「付録A Ruby実行環境の準備」を確認してください。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3">1.1.2. irbコマンドを使う方法</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+　irbコマンドを使う方法も紹介します。
+　irbコマンドは、rubyコマンドと同様にコンソールから実行します。ただし、プログラムを書いたファイルは指定しません。
+　irbコマンドを実行すると、次のように入力プロンプトが表示されます
+</p>
+
+<p>
+shun@MAC-no-MacBook-Air ~/g/m/t/r/sample_prog&gt; irb
+irb(main):001:0&gt; 
+</p>
+
+<p>
+　ここで、先ほどのプログラムList1.1をそのまま入力し、[Enter]キーを押すと、その場で実行されます。
+</p>
+
+<p>
+irb(main):001:0&gt; print("Hello, Ruby.\n")
+Hello, Ruby.  
+=&gt; nil
+irb(main):002:0&gt; 
+</p>
+
+<p>
+＊メモ ３行目に表示される「=&gt;nil」というのが、print文自体の戻り値です。詳しくは「7.3.1 メソッドの戻り値」で説明します。
+</p>
+
+<p>
+　このように、入力したプログラムをその場で実行できるので、簡単なテストにはとても便利です。ただし、大きなプログラムを試すのには不向きなので、そのような場合にはrubyコマンドを使いましょう。
+　irbコマンドを終了するに「exit」と入力して[Enter]キーを押すか、[Control]([Ctrl])キーを押しながら[d]キーを押します。
+</p>
+
+<p>
+＊注　Mac OS XやWindowsを使っている場合、irbコマンドでは日本語が正しく入力できないことがあります。その場合、irbコマンドに&#x2013;noreadlineオプションをつけて「irb &#x2013;noreadline」と実行してください。これでreadline機能がオフになり、日本語を正しく入力できるようになります。ただし、readline機能をオフにすると、入力済みの文字の編集機能やヒストリ入力支援機能などが使えなくなってしまうので注意してください。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> プログラムの解説</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1">イントロダクション</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+　それでは、ほんの１行だけではありますが、List1.1のプログラムを解説しましょう。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2">1.2.1. オブジェクト</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<div class="org-src-container">
+
+<pre class="src src-ruby">print("Hello, Ruby.\n")
+</pre>
+</div>
+
+<p>
+　まず、「"Hello, Ruby.\n"」という部分に注目します。
+</p>
+
+<p>
+　これをStringオブジェクト、または文字列オブジェクト、あるいは単に文字列と呼びます。「Hello,Ruby.」という文字列を意味するオブジェクト、というわけです。
+</p>
+
+<p>
+　Rubyでは、文字列、数値、時刻など様々なデータがオブジェクトになります。
+</p>
+
+<p>
+＊メモ 文字列の終わりの「\n」は改行を表す文字です。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3">1.2.2. メソッド</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<div class="org-src-container">
+
+<pre class="src src-ruby">print("Hello, Ruby.\n")
+</pre>
+</div>
+
+<p>
+　今度はprintという部分に注目しましょう。
+</p>
+
+<p>
+　「print」は、メソッドです。メソッドとは、オブジェクトを扱うための手続きのことです。「数値」を使って足し算や掛け算をしたり、「文字列」同士をつなげたり、「ある時刻」の１時間後や１日後を求めたりといったことは、すべてメソッドを起動することによって行われます。
+　printメソッドは、「（）」のなかの内容をコンソールに出力するメソッドです。ですから、helloruby.rbでは、「Hello, Ruby.」という文字列オブジェクトが表示されています。
+　メソッドに渡す情報のことを引数といいます。例えば、printメソッドの機能を説明する場合には「printメソッドは引数として与えられた文字列をコンソールに出力します」といった使い方をします。
+　printメソッドの引数を書き換えて、別の文字列を表示するプログラムにしてみましょう。
+</p>
+
+<p>
+helloruby_2.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">print("Hello, RUBY!.\n")
+</pre>
+</div>
+
+<p>
+　今度は大文字で「Hello,RUBY!」と表示するようになります。ちょっと元気の良いあいさつになりましたか？
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> 文字列</h3>
+<div class="outline-text-3" id="text-1-4">
+</div><div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1">イントロダクション</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+　文字列について、もう少し詳しくもう少し見ていくことにしましょう。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2">1.3.1. 改行文字と「\」</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+　先ほど、文字列の「\n」は改行を表すと説明しました。普通の文字を使って改行を書けるおかげで、たとえば
+</p>
+
+<p>
+Hello,
+Ruby
+!
+</p>
+
+<p>
+　と表示させるには、
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">print("Hello, \nRuby\n!\n")
+</pre>
+</div>
+
+<p>
+　と書くことができます。もっとも、
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">print("Hello, 
+Ruby
+!
+")
+</pre>
+</div>
+
+<p>
+　などと書いても、同じように表示されます。しかし、この書き方だとプログラムが読みにくくなってしまうので、あまり良い書き方ではありません。せっかく改行を表す書き方があるのですから、それを使う方が良いでしょう。
+　「\n」以外にも、文字列の中で特殊な文字を埋め込みたいときに「\」を使います。たとえば、「"」は文字列の始まりと終わりを表す文字ですが、これを文字列の中に含める場合には「\"」とします。
+</p>
+
+
+<p>
+helloruby_3.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">print("Hello, \"Ruby\".\n")
+</pre>
+</div>
+
+<p>
+　上記のプログラムは、
+</p>
+
+<p>
+Hello, "Ruby".
+</p>
+
+<p>
+　と表示されます。
+　このように、文字列中の「\」はそれに続く文字に特別な意味を与える文字になっています。そのため、「\」そのものを文字列中に含めたい時には、「\\」とかく必要があります。たとえば
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">print("Hello \\ Ruby!\n")
+</pre>
+</div>
+
+<p>
+　上記のプログラムは、
+</p>
+
+<p>
+Hello \ Ruby!
+</p>
+
+<p>
+　と表示されます。２つあった「\」が１つになっていることに注意してください。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-4-3" class="outline-4">
+<h4 id="sec-1-4-3">1.3.2. 「''」と「""」</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<p>
+　文字列オブジェクトを作るための区切り文字には、「" "」（ダブルクォート）ではなく、「' '」（シングルクォート）を使うこともできます。先ほどのプログラムを
+</p>
+
+<p>
+helloruby_4.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">print('Hello,\nRuby\n!\n')
+</pre>
+</div>
+
+<p>
+　とシングルクォートに書き換えて実行してみましょう。すると今度は
+</p>
+
+<p>
+Hello,\nRuby\n!\n
+</p>
+
+<p>
+　というように、「' '」の中の文字がそのまま表示されます。
+　このように「' '」で囲った文字列は、「\n」などの特殊文字の解釈を行わず、そのまま表示します。ただし例外として、「\」と「'」を、文字列中に文字そのものとして含めたいときのみ、その文字の前に「\」をつけます。こんな感じです。
+</p>
+
+<p>
+helloruby_5.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">print('Hello, \\ \'Ruby\'.')
+</pre>
+</div>
+
+<p>
+　実行すると次のように表示されます。
+</p>
+
+<p>
+Hello, \ 'Ruby'.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> メソッドの呼び出し</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+　メソッドについてもう少し説明しましょう。
+　Rubyのメソッドでは「（）」を省略することができます。そのため、先ほどのプログラム（List1.1）でのprintメソッドは、
+</p>
+
+<p>
+helloruby_6.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">print "Hello, Ruby.\n"
+</pre>
+</div>
+
+<p>
+　と書くこともできます。
+　また、いくつかの文字列を続けて表示したい時には、「,」で区切れば、並べた順に表示できます。ですから
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">print "Hello, ", "Ruby", ".", \n"
+</pre>
+</div>
+
+<p>
+　なんて書き方もできるわけですね。これは、表示したいものがいくつもある時に使うと便利です。とはいえ、要素が複雑に込み入ってくると、「（）」をつけたほうがわかりやすくなります。慣れるまではこまめに「（）」を書いておきましょう。本書では、単純な場合には「（）」を書いて表記しています。
+　さらに、メソッドを順に並べて書くと、その順にメソッドを実行します。例えば
+</p>
+
+<p>
+helloruby_7.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">print "Hello, "
+print "Ruby"
+print "."
+print "\n"
+</pre>
+</div>
+
+<p>
+　などと書いても、同じように「Hello,Ruby.」と表示するプログラムになります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> putsメソッド</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+　printメソッド以外にも文字列を表示するメソッドがあります。putsメソッドは、printメソッドとは異なり、表示する文字列の最後で必ず改行します。これを使えば、List1.1は
+</p>
+
+
+<p>
+helloruby_8.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">puts "Hello, Ruby."
+</pre>
+</div>
+
+<p>
+　と書けるようになります。ただし、
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">puts "Hello, ", "Ruby!"
+</pre>
+</div>
+
+<p>
+　のように２つの文字列を渡した場合には、
+</p>
+
+<p>
+Hello, 
+Ruby!
+</p>
+
+<p>
+　と、それぞれの文字列の末尾に改行が追加されます。printメソッドとは少し使い勝手が違いますね。この２つのメソッドは、場面に応じて使い分けてください。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> pメソッド</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+　さらにもう１つ、表示のためのメソッドを紹介しましょう。オブジェクトの内容を表示する時に便利な「p」というメソッドです。
+　たとえば、数値の100と文字列の”"100"を、printメソッドやputsメソッドで表示させると、どちらも単に「100」と表示されてしまいます。これでは本当はどちらのオブジェクトなのか、表示結果から確認できません。そんな時には、pメソッドを使うのが便利です。pメソッドなら、文字列と数値を違った形で表示してくれるのです。さっそく試してみましょう。
+</p>
+
+<p>
+puts "100" #=&gt; 100
+puts 100   #=&gt; 100
+p "100"    #=&gt; "100"
+p 100      #=&gt; 100
+</p>
+
+<p>
+＊メモ 本書では、プログラム中で出力した内容を表すために、出力用のメソッドの横に「#=&gt;」という文字を置き、その右側に出力された文字を並べて書くという表記を用いています。この例では、「puts "100"」や「puts 100」、「p 100」というメソッドでは、「100」という文字列が出力され、「p "100"」というメソッドでは「"100"」という文字列が出力される、という意味になります。
+</p>
+
+<p>
+　このように、文字列を出力する場合、「" "」で囲んで表示してくれるわけです。これなら一目瞭然ですね。さらに、文字列の中に含まれる改行やタブなどの特殊な文字も、「\n」や「\t」のように表示されます（List1.2)。
+</p>
+
+<p>
+List1.2 puts_and_p.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">puts "Hello,\n\tRuby."
+p "Hello,\n\tRuby."
+</pre>
+</div>
+
+<p>
+　実行例は以下のようになります。
+</p>
+
+<p>
+&gt; ruby puts_and_p.rb
+Hello,
+        Ruby.
+"Hello,\n\tRuby."
+</p>
+
+<p>
+　printメソッドは実行結果やメッセージなどを普通に表示したい時、pメソッドは実行中のプログラムの様子を確認したい時、と使い分ければ良いでしょう。原則として、pメソッドはプログラムを書いている人のためのメソッドなのです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> 日本語の表示</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+　ここまで、文字列にはアルファベット（英字）を使ってきました。
+　今度は日本語を表示してみましょう。日本語の表示も難しい事は何もありません。単にアルファベットの代わりに日本語を「" "」の中に書くだけです。こんな感じになります。
+</p>
+
+<p>
+List1.3 kiritsubo.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">print "いづれの御時にか女御更衣あまたさぶらいたまいけるなかに\n"
+print "いとなむごとなき際にはあらぬがすぐれて時めきたまふありけり\n"
+</pre>
+</div>
+
+<p>
+　ただし、文字コードの設定によっては、エラーが出たり、正しく表示されない場合があります。その場合、コラム「日本語を扱う場合の注意」を参照してください。
+</p>
+</div>
+
+<div id="outline-container-sec-1-8-1" class="outline-4">
+<h4 id="sec-1-8-1">コラム「日本語を扱う場合の注意」</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<p>
+　環境によっては、日本語を含むスクリプトを実行すると次のようなエラーになります。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; ruby kiritsubo.rb
+kiritsubo.rb:1: invalid multibyte char (UTF-8)
+kiritsubo.rb:1: invalid multibyte char (UTF-8)
+</p>
+
+<p>
+　これはソースコードの文字コード（エンコーディング）が指定されていないからです。Rubyでは「# encoding: 文字コード」というコメントを１行目に記述することによってソースコードの文字コードを指定します（文字コードを決めるルールのことをエンコーディングと言います）。このコメントをマジックコメントと言います。
+　Windowsで一般的に使われているエンコーディングShift_JISでソースコードを記述した場合は、次のようにマジックコメントを書きます。
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-ruby"># encoding: Shift_JIS
+print "いづれの御時にか女御更衣あまたさぶらいたまいけるなかに\n"
+print "いとなむごとなき際にはあらぬがすぐれて時めきたまふありけり\n"
+</pre>
+</div>
+
+<p>
+　このようにコメントで文字コードを指定することによって、Rubyがソースコード中の日本語を正しく認識できるようになります。次の表にプラットフォームごとによく使われる文字コードをまとめています。複数の文字コード名が挙げられている場合は、環境に合わせて適切なものを選んでください。
+</p>
+
+
+
+
+
+<p>
+　なお、マジックコメントがないソースコードの文字コードはUTF-8と仮定されます。そのため、UTF-8のソースコードを使う場合はマジックコメントは不要です。
+　これ以外でも、前述のpメソッドで日本語の文字列を出力すると、いわゆる「文字化け」をしたような出力になる場合があります。そのような場合が、出力用の文字コードを指定するために「-E 文字コード」の形式でコマンドラインオプションを指定してください。コンソールがUTF-8を受け付ける場合は次のようにします。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; ruby -E UTF-8 スクリプトファイル名
+&gt; irb -E UTF-8
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> 数値の表示と計算</h3>
+<div class="outline-text-3" id="text-1-9">
+</div><div id="outline-container-sec-1-9-1" class="outline-4">
+<h4 id="sec-1-9-1">イントロダクション</h4>
+<div class="outline-text-4" id="text-1-9-1">
+<p>
+　文字列に続いて、今度は「数値」を扱ってみましょう。Rubyのプログラムでは、整数や少数（浮動小数点数）を、自然な形で扱うことができます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9-2" class="outline-4">
+<h4 id="sec-1-9-2">1.8.1. 数値の表示</h4>
+<div class="outline-text-4" id="text-1-9-2">
+<p>
+　まずは文字列の代わりに数値を表示するところから始めてみます。「1.2 プログラムの解説」で、「Rubyでは文字列は文字列オブジェクトという形になっている」と説明しました。同じように、数値も「数値オブジェクト」として扱われます。
+　Rubyで整数オブジェクトを表現するのは簡単です。そのまま数字を書けば良いだけです。たとえば
+</p>
+
+<p>
+1
+</p>
+
+<p>
+　と書けば「1」の値の整数（Fixnum）オブジェクトになります。また、
+</p>
+
+<p>
+100
+</p>
+
+<p>
+　と書けば、「100」の値の整数オブジェクトになります。
+　さらに、
+</p>
+
+<p>
+3.1415
+</p>
+
+<p>
+　などと書けば、「3.1415」の値の浮動小数点数（Float）オブジェクトになります。
+</p>
+
+<p>
+＊メモ 「Fixnum」や「Float」というのは、それぞれのオブジェクトが所属する「クラス」の名前です。クラスについては、第4章と第8章で説明します。
+</p>
+
+<p>
+　数値を表示するには、文字列と同様にprintメソッドやputsメソッドを使います。
+</p>
+
+<p>
+puts(10)
+</p>
+
+<p>
+　というメソッドを実行すると、
+</p>
+
+<p>
+10
+</p>
+
+<p>
+　と画面に表示されます。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-9-3" class="outline-4">
+<h4 id="sec-1-9-3">1.8.2. 四則演算</h4>
+<div class="outline-text-4" id="text-1-9-3">
+<p>
+　数の計算を行ったり、その結果を表示したりすることもできます。四則演算をやってみましょう。
+　ここではirbコマンドを使ってみます。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt 
+&gt;&gt; 1 + 1
+=&gt; 2
+&gt;&gt; 2 - 3
+=&gt; -1
+&gt;&gt; 5 * 10
+=&gt; 50
+&gt;&gt; 100 / 4
+=&gt; 25
+</p>
+
+<p>
+＊メモ irbコマンドの後の&#x2013;simple-promptは、irbのプロンプト表示を簡易にするためのオプションです。
+</p>
+
+<p>
+　プログラミング言語の世界では、掛け算の記号に「*」（アスタリスク）を、割り算の記号に「/」（スラッシュ）を使うのが一般的です。Rubyもこの習慣にならっています。
+　もう少し四則演算をやってみましょう。普通の計算では、「足し算・引き算」と「掛け算・割り算」には計算の順序が決められていますが、Rubyでも同じです。つまり、
+</p>
+
+<p>
+20 + 8 / 2
+</p>
+
+<p>
+　とすれば答えは「24」になります。「20 + 8」を2で割りたいときは、「（）」で囲って、
+</p>
+
+<p>
+(20 + 8) / 2
+</p>
+
+<p>
+　とします。答えは「14」になります。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-9-4" class="outline-4">
+<h4 id="sec-1-9-4">1.8.3. 数学的な関数</h4>
+<div class="outline-text-4" id="text-1-9-4">
+<p>
+　四則演算以外にも、平方根や、三角関数の「sin」「cos」、指数関数などの数学的な関数が利用できます。ただし、その場合、関数の前に「Math.」という文字列をつける必要があります。
+</p>
+
+<p>
+＊メモ 「Math.」をつけずに「sin」「cos」などの関数を使うには、「include Math」という文が必要です。これについては「8.7.2 名前空間の提供」で説明します。
+</p>
+
+<p>
+　sinはsinメソッド、平方根はsqrtメソッドで求めます。メソッドを実行すると、計算した結果を得ることができます。このことを「メソッドが値を返す」といい、得られる値のことを戻り値といいます。
+</p>
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt 
+&gt;&gt; Math.sin(3.1415)
+=&gt; 9.265358966049024e-05
+&gt;&gt; Math.sqrt(10000)
+=&gt; 100.0
+</p>
+
+<p>
+＊注　Rubyのバージョンや実行する環境により、結果の桁数などが異なる場合があります。
+</p>
+
+<p>
+　１番目のsinの答えである「9.265358966049024e-05」ですが、これは、極端に大きい数や、極端に小さい数を表す時に使われる表記方法です。「（小数）0（整数）」と表示された時は、「（小数）*（10の（整数）乗）」の値、と解釈してください。この例の場合、「9.265358966049024×10の−5」ということになるの、つまりは0.00009265358966049024という値を表しています。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10" class="outline-3">
+<h3 id="sec-1-10"><span class="section-number-3">1.10</span> 変数</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+　プログラミングに欠かせない要素として変数があります。変数とは、「もの」につける名札のようなものです。
+　オブジェクトに名札をつけるには、
+</p>
+
+<p>
+変数名　= オブジェクト
+</p>
+
+<p>
+　と書きます。このことを「変数にオブジェクトを代入するといいます。
+</p>
+
+<p>
+例
+</p>
+
+<p>
+alphabet = "abcdefg"
+num = 10
+age = 18
+name = "TAKAHASHI"
+</p>
+
+<p>
+　変数の利用例として、直方体の表面積と体積を求めるプログラム（List1.4）を見てみましょう。
+</p>
+
+<p>
+List1.4 area_volume.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">x = 10
+y = 20
+z = 30
+area = (x*y + y*z + z*x) * 2
+volume = x * y * z
+print "表面積=", area, "\n"
+print "体積=", volume, "\n"
+</pre>
+</div>
+
+<p>
+　変数をまったく使わなければ、
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">print "表面積=", (10+20 + 20*30 + 30*10) * 2, "\n"
+print "体積=", 10*20*30, "\n"
+</pre>
+</div>
+
+<p>
+　といったプログラムになってしまいます。これでは値を1つ変更するために何箇所も修正しなければいけません。この例はたったの２行なので大したことはありませんが、ちょっと大きなプログラムになると、そのような変更をきちんと行うのは大変な手間となります。また、変数には、あたいが何をしているのかを明確にするという意味もあります。したがって、わかりやすい名前をつけることが大切です。例えば、
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">hoge = (foo*bar + bar*baz + baz*foo) * 2
+huni = foo * bar * baz
+</pre>
+</div>
+
+<p>
+　という調子では、何をやっているのかさっぱりわからないプログラムになってしまいます。変数名には、「area」や「volume」など、そのままで意味のわかる単語などを使うように、普段から心がけましょう。
+</p>
+</div>
+
+<div id="outline-container-sec-1-10-1" class="outline-4">
+<h4 id="sec-1-10-1">1.9.1. printメソッドと変数</h4>
+<div class="outline-text-4" id="text-1-10-1">
+<p>
+　printメソッドの動きをもう少し見てみましょう。
+</p>
+
+<p>
+print "表面積=", area, "\n"
+</p>
+
+<p>
+　このprintメソッドの呼び出しには「"表面積="」「area」「"\n"」の3つの引数を指定しています。printメソッドはこれらの引数の値を順番に出力します。
+　「"表面積="」は「表面=」という値を持った文字列なので、それがそのまま出力されます。「area」はareaという変数に関連づけられたオブジェクトになります。この例では2200という整数になっているので、printメソッドはその値を出力します。
+　最後の「"\n"」は改行を表す文字列なので、そのまま出力します。
+　これらの3つの値をprintメソッドで処理した結果として「表面積=2200」と改行が画面に表示されるというわけです。
+　printメソッドに渡す文字列は次のように書くこともできます。
+</p>
+
+<p>
+print "表面積=#{area}\n"
+</p>
+
+<p>
+　「"表面積=#{area}\n"」が全体で1つの文字列になっています。「#{area}」は文字列の中に変数areaの値を埋め込むという書き方です。文字列の中に「#{変数名}」と書くと、文字列にデータを埋め込むことができます。計算結果の変数名を埋め込む代わりに、「"表面積=#{(x*y + y*z + z*x) * 2}\n"」のように計算式を直接描いても同じ結果を得られます。
+　画面に結果を出力する場合は改行も出力することが多いため、putsメソッドを使って次のように書けば、「\n」も必要なくなり、プログラムがスッキリします。
+</p>
+
+<p>
+puts "表面積=#{area}"
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-11" class="outline-3">
+<h3 id="sec-1-11"><span class="section-number-3">1.11</span> コメントを書く</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+　プログラムの中には、コメントを書くことができます。コメントは、プログラム中に書かれていても、直接プログラムとしては扱われません。つまり、プログラムの実行には何の関係もないもの、ということです。「どうしてプログラムの中に、実行とは関係のない余計なものを書くのだろう？」と思われるかもしれません。確かに一度書いて実行すればそれっきり、というプログラムであれば、コメントは特に必要ないでしょう。しかし、一度書いたプログラムを何度も使いまわすことも少なくありません。そのような時に、
+</p>
+
+<p>
+・プログラムの名前や作者、配布条件などの情報
+・プログラムの説明
+</p>
+
+<p>
+　などを書いておくために、コメントが使われます。
+　コメントを表す記号は「#」です。行頭に「#」があれば、１行まるまるコメントになります。行の途中に「#」があれば、「#」の部分から行末までがすべてコメントになります。また、行頭から始まる「=begin」と「=end」で囲まれた部分もコメントになります。これは、プログラムの先頭や最後で、長い説明を記しておくのに重宝します。
+List1.5は、先ほどのList1.4にコメントを追加したプログラムです。
+</p>
+
+<p>
+List1.5 comment_sample.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">=begin
+「たのしいRuby 第５版」サンプル
+コメントの使い方の例
+2006/06/16 作成
+2006/07/01 一部コメントを追加
+2015/10/01 第5版に更新
+=end
+x = 10 # 横
+y = 20 # 縦
+z = 30 # 高さ
+# 表面積と体積を計算する
+area = (x*y + y*z + z*x) * 2
+volume = x * y * z
+# 出力する
+print "表面積=", area, "\n"
+print "体積=", volume, "\n"
+</pre>
+</div>
+
+<p>
+　なお、コメントは、先ほど挙げた目的以外にも、「この行の処理を一時的に実行させないようにする」といったことにも使います。
+　C言語のコメントのように、行の途中だけをコメントにするような書き方はありません。行末まで必ずコメントになります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-12" class="outline-3">
+<h3 id="sec-1-12"><span class="section-number-3">1.12</span> 制御構造</h3>
+<div class="outline-text-3" id="text-1-12">
+</div><div id="outline-container-sec-1-12-1" class="outline-4">
+<h4 id="sec-1-12-1">イントロダクション</h4>
+<div class="outline-text-4" id="text-1-12-1">
+<p>
+　プログラミング言語には、制御構造というものがあります。
+　これは、何かの条件によって、プログラムの実行順序を変えたり、プログラムの一部を実行させなかったりするための仕掛けです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-12-2" class="outline-4">
+<h4 id="sec-1-12-2">1.11.1. 制御構造の分類</h4>
+<div class="outline-text-4" id="text-1-12-2">
+<p>
+　制御構造を大雑把に分類すると次のようになります。
+</p>
+
+<p>
+・逐次処理：プログラムを書かれた通りに、先頭から順に実行する。
+・条件判断：ある条件が成り立つ場合は〇〇を、そうでない場合は××を実行する
+・繰り返し：ある条件が成り立つ間、〇〇を繰り返し実行する
+・例外処理：何か例外が発生した場合には、〇〇を実行する
+</p>
+
+<p>
+　逐次処理というのは、通常の処理のことです。特に何も指定していない場合、プログラムは書かれた順に実行されます。
+　条件判断は、条件に応じて処理が分岐します。条件が満たされない場合、書かれた処理の一部を飛ばして、実行が行われます。Rubyでは、if文やunless文、case文などが条件判断文になります。
+　繰り返しは、条件に応じて、ある処理を何度も繰り返して実行することです。この場合、書かれた順序に逆らって、すでに一度実行されているところに戻って、再度実行が行われます。
+　例外処理はやや特殊です。想定していない問題が発生した時、それまで実行していた部分を抜け出して、別の場所から実行を再開する処理です。場合によっては、そこでプログラムが終了してしまうこともあります。
+　ここでは「条件判断」と「繰り返し」を取り上げます。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-13" class="outline-3">
+<h3 id="sec-1-13"><span class="section-number-3">1.13</span> 条件判断:if ~ then ~ end</h3>
+<div class="outline-text-3" id="text-1-13">
+<p>
+　ある条件によって挙動が変わるプログラムを作るには、if文を使います。if文の構文は、次のようになります。
+</p>
+
+<p>
+if 条件 then
+  条件が成り立った時に実行したい処理
+end
+</p>
+
+<p>
+　条件には、値がtrueまたはfalseとなる式を書くのが一般的です。2つの値を比較して、一致すればtrue、一致しなければfalse、などが条件にあたります。
+　数値の場合、例えば大小関係の比較には、等号や不等号を使います。Rubyでは、「=」は代入のための記号として使われるので、一致するかどうか調べるには「=」を2つ並べた記号「==」を使います。また、「≦」と「≧」には、「&lt;=」と「&gt;=」を使います。
+　このような比較の結果はtrueまたはfalseとなります。もちろん、trueはその条件が成り立っている場合、falseは成り立っていない場合です。
+</p>
+
+<p>
+p (2 <code>= 2)  #=&gt; true
+p (1 =</code> 2)  #=&gt; false
+p (3 &gt; 1)   #=&gt; true
+p (3 &gt; 3)   #=&gt; false
+p (3 &gt;= 3)  #=&gt; true
+p (3 &lt; 1)   #=&gt; false
+p (3 &lt; 3)   #=&gt; false
+p (3 &lt;= 3)  #=&gt; true
+</p>
+
+<p>
+　文字列の比較もできます。この場合も「==」を使います。同じ文字列ならtrue、異なる文字列ならfalseを返します。
+</p>
+
+<p>
+p ("Ruby" <code>= "Ruby")    #=&gt;true
+p ("Ruby" =</code> "Rubens")  #=&gt;false
+</p>
+
+<p>
+　値が異なっていることを判断するには、「!=」を使います。これは「≠」の意味ですね。
+</p>
+
+<p>
+p ("Ruby" != "Rubens")  #=&gt; true
+p (1 != 1)              #=&gt; false
+</p>
+
+<p>
+　では、これらを使って、条件判断文を書いてみましょう。変数aの値が10以上の場合は「greater」、９以下の場合は「smaller」と表示するプログラムはList1.6のようになります。
+</p>
+
+<p>
+List1.6 greater_smaller.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">a = 20
+if a &gt;= 10 then
+  print "greater\n"
+end
+if a &lt;= 9 then
+  print "smaller\n"
+end
+</pre>
+</div>
+
+<p>
+　thenは省略することもできます。その場合、if文は次のようになります。
+</p>
+
+<p>
+if a &gt;= 10
+  print "greater\n"
+end
+</p>
+
+<p>
+　また、条件に一致するときとしないときで違う動作をさせたい場合は、else文を使います。次のような構文になります。
+</p>
+
+<p>
+if 条件 then
+  条件が成り立った時に実行したい処理
+else
+  条件が成り立たなかった時に実行したい処理
+end
+</p>
+
+<p>
+　これを使って、List1.6を書き直すと、List1.7のようになります。
+</p>
+
+<p>
+List1.7 greater_smaller_else.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">a = 20
+if a &gt;= 10
+  print "greater\n"
+else
+  print "smaller\n"
+end
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-14" class="outline-3">
+<h3 id="sec-1-14"><span class="section-number-3">1.14</span> 繰り返し</h3>
+<div class="outline-text-3" id="text-1-14">
+</div><div id="outline-container-sec-1-14-1" class="outline-4">
+<h4 id="sec-1-14-1">イントロダクション</h4>
+<div class="outline-text-4" id="text-1-14-1">
+<p>
+　同じこと、または同じようなことを何度か繰り返したい場合があります。繰り返し処理を行う方法を2つ紹介しましょう。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-14-2" class="outline-4">
+<h4 id="sec-1-14-2">while文</h4>
+<div class="outline-text-4" id="text-1-14-2">
+<p>
+　while文は、繰り返しを行うための基本的な構文です。なお、doは省略することもできます。
+</p>
+
+<p>
+while 繰り返し続ける条件 do
+  繰り返したい処理
+end
+</p>
+
+<p>
+例：1から10までの数を順番に表示する
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">i = 1
+while i &lt;= 10
+  print i, "\n"
+  i = i + 1
+end
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-14-3" class="outline-4">
+<h4 id="sec-1-14-3">timesメソッド</h4>
+<div class="outline-text-4" id="text-1-14-3">
+<p>
+　繰り返しの回数が決まっているときは、「times」というメソッドを使うとシンプルにできます。なお、こちらの「do」は省略できません。
+</p>
+
+<p>
+繰り返す回数.times do
+  繰り返したい処理
+end
+</p>
+
+<p>
+例：「All work and no play makes Jack a dull boy.」と100行表示する
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">100.times do
+  print "All work and no play makes Jack a dull boy.\n"
+end
+</pre>
+</div>
+
+<p>
+　timesメソッドはイテレータと呼ばれるメソッドです。イテレータ（iterator）は、Rubyの特徴的な機能です。スペルからもわかるように「繰り返す（iterate）もの（-or）」という意味です。オペレータ（operator）が「演算（operate）するもの」として「演算子」と呼ばれるのを真似るなら、さしずめ「繰り返し子」「反復子」というところでしょうか。その名の通り、繰り返しを行うためのメソッドです。
+　Rubyはtimesメソッド以外にも数多くのイテレータを提供しています。イテレータの代表はeachメソッドです。eachメソッドについては、第２章で配列やハッシュと一緒に紹介します。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 便利なオブジェクト</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> イントロダクション</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+　第１章では、Rubyで扱う基本的なデータとして「文字列」と「数値」を取り上げましたが、Rubyで扱えるオブジェクトはこれだけではありません。多くのRubyのプログラムでは、もっと複雑なデータを扱うことになるでしょう。
+　Rubyでアドレス帳を作ることを考えてみます。アドレス帳に必要な項目は、
+</p>
+
+<p>
+・名前　　　　・電話番号
+・ふりがな　　・メールアドレス
+・郵便番号　　・SNSのID
+・住所　　　　・登録日
+</p>
+
+<p>
+といったところでしょうか。これらはいずれも文字列で表現できそうです。
+　これらの項目をひとまとめにすることで、１人分の情報になります。さらに、交友関係の人たちの情報が集まって、アドレス帳全体のデータが出来上がるわけです。
+</p>
+
+
+<p>
+　このようにデータとデータを合わせた1つのデータを表すには、これまでに紹介した「文字列」や「数値」といった単純なオブジェクト以外に、データの集まりを表現するデータ構造が必要になります。
+　この章では、「配列」と「ハッシュ」というデータ構造を紹介します。また、「正規表現」という、文字列処理に使われるオブジェクトも紹介します。
+</p>
+
+<p>
+＊メモ 配列やハッシュのようにオブジェクトを格納するオブジェクトを、コンテナやコレクションと言います。
+</p>
+
+<p>
+　配列・ハッシュ・正規表現はさまざまな場面で使われますが、より詳しい説明は後の章で行うことにして、ここではごく大まかにイメージをつかむことを目的に解説します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 配列（array）</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1">イントロダクション</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+　配列は「いくつかのオブジェクトを順序付きで格納したオブジェクト」として、もっとも基本的でよく使われるコンテナです。「配列オブジェクト」「Arrayオブジェクト」などと呼ばれることもあります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2">2.1.1. 配列を作る</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+　新しい配列を作るには、要素をカンマ区切りで並べて、「[]」で全体を囲みます。まずは簡単な、文字列の配列を作ってみましょう。
+</p>
+
+<p>
+names = ["小林", "林", "高野", "森岡"]
+</p>
+
+<p>
+　この例では、namesという配列オブジェクトが作られました。各要素として「"小林"」「"林"」「"高野"」「"森岡"」という4つの文字列を格納しています。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-3" class="outline-4">
+<h4 id="sec-2-2-3">2.1.2. 配列オブジェクト</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+　配列の要素となるオブジェクトが決まっていない場合には、「[]」とだけ書くと、空の配列オブジェクトができます。
+</p>
+
+<p>
+names = []
+</p>
+
+<p>
+　これ以外にも配列の作り方はいくつかあります。詳しくは「第１３章　配列
+（Array）クラス」で説明します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-4" class="outline-4">
+<h4 id="sec-2-2-4">2.1.3.  配列からオブジェクトを取り出す</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+　配列に格納されたオブジェクトには、位置を表す番号であるインデックスがつきます。このインデックスを使って、オブジェクトを格納したり、取り出したりできます。
+　配列の要素を取り出すには、
+</p>
+
+<p>
+配列名[インデックス]
+</p>
+
+<p>
+という構文を使います。例えば、namesという名前の配列オブジェクトを次のように作ったとします。
+</p>
+
+<p>
+names = ["小林", "林", "高野", "森岡"]
+</p>
+
+<p>
+　配列namesの最初の要素である「小林」という文字列を取り出すには、
+</p>
+
+<p>
+names<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+
+<p>
+と書きます。そのため、
+</p>
+
+<p>
+print "最初の名前は", names<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup>, "です。\n"
+</p>
+
+<p>
+という文を実行すると、
+</p>
+
+<p>
+最初の名前は小林です。
+</p>
+
+<p>
+と表示されます。同様に、names<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>は"林"、names<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup>は"高野"になります。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; names = ["小林", "林", "高野", "森岡"]
+=&gt; ["小林", "林", "高野", "森岡"]
+&gt;&gt; names<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup>
+=&gt; "小林"
+&gt;&gt; names<sup><a id="fnr.2.100" name="fnr.2.100" class="footref" href="#fn.2">2</a></sup>
+=&gt; "林"
+&gt;&gt; names<sup><a id="fnr.3.100" name="fnr.3.100" class="footref" href="#fn.3">3</a></sup>
+=&gt; "高野"
+&gt;&gt; names<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup>
+=&gt; "森岡"
+＊メモ 配列のインデックスは0から始まります。１ではありません。ですから、a<sup><a id="fnr.2.100" name="fnr.2.100" class="footref" href="#fn.2">2</a></sup>と書くと、aという配列オブジェクトの先頭の要素ではなく、２番目の要素が返ってきます。慣れるまでは間違いやすいかもしれません（慣れていても間違いやすいところです）。注意してください。
+</p>
+
+<p>
+＊注　Windowsのコマンドプロンプトで日本語入力モードに切り替えるには、[半角/全角]キーを押します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-5" class="outline-4">
+<h4 id="sec-2-2-5">2.1.4. 配列にオブジェクトを格納する</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<p>
+　すでにある配列に、新しいオブジェクトを格納することもできます。
+　配列の要素の1つを別のオブジェクトと置き換えるには、
+</p>
+
+<p>
+配列名[インデックス] = 格納したいオブジェクト
+</p>
+
+<p>
+という構文を使います。先ほどの配列namesを使ってみましょう。先頭に"野尻"という文字列を格納するには、
+</p>
+
+<p>
+names<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup> = "野尻"
+</p>
+
+<p>
+と書きます。例えば、次のように実行すると、namesの最初の要素が「野尻」になることがわかります。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; names = ["小林", "林", "高野", "森岡"]
+=&gt; ["小林", "林", "高野", "森岡"]
+&gt;&gt; names<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup> = "野尻"
+=&gt; "野尻"
+&gt;&gt; names
+=&gt; ["野尻", "林", "高野", "森岡"]
+</p>
+
+<p>
+　オブジェクトの格納先として、オブジェクトのまだ存在しない位置を指定すると、配列の大きさが変わります。Rubyの配列は、必要に応じて自動的に大きくなります。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; names = ["小林", "林", "高野", "森岡"]
+=&gt; ["小林", "林", "高野", "森岡"]
+&gt;&gt; name<sup><a id="fnr.5" name="fnr.5" class="footref" href="#fn.5">5</a></sup> = "野尻"
+=&gt; "野尻"
+&gt;&gt; names
+=&gt; ["小林", "林", "高野", "森岡", "野尻"]
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-6" class="outline-4">
+<h4 id="sec-2-2-6">2.1.5. 配列の中身</h4>
+<div class="outline-text-4" id="text-2-2-6">
+<p>
+　配列の中には、どんなオブジェクトも要素として格納できます。例えば、文字列ではなく数値の配列も作れます。
+</p>
+
+<p>
+num = [3, 1, 4, 1, 5, 9, 2, 6, 5]
+</p>
+
+<p>
+　1つの配列の中に、複数の種類のオブジェクトを混ぜることもできます。
+</p>
+
+<p>
+mixed = [1, "歌", 2, "風", 3]
+</p>
+
+<p>
+　ここでは例を挙げませんが、「時刻」や「ファイル」といったオブジェクトも、配列の要素にできます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-7" class="outline-4">
+<h4 id="sec-2-2-7">2.1.6. 配列と大きさ</h4>
+<div class="outline-text-4" id="text-2-2-7">
+<p>
+　配列の大きさを得るには、sizeメソッドを使います。例えば、配列arrayに対して次のように使います。
+</p>
+
+<p>
+array.size
+</p>
+
+<p>
+　sizeメソッドを使って、先ほどの配列オブジェクトnamesの大きさを調べてみましょう。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; names = ["小林", "林", "高野", "森岡"]
+=&gt; ["小林", "林", "高野", "森岡"]
+&gt;&gt; names.size
+=&gt; 4
+</p>
+
+<p>
+　このように、配列の大きさが、数値として返ってきます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-8" class="outline-4">
+<h4 id="sec-2-2-8">2.1.7. 配列と繰り返し</h4>
+<div class="outline-text-4" id="text-2-2-8">
+<p>
+「配列の要素をすべて表示したい」とか、「配列の要素のうち、ある条件に当てはまる要素についてはxxメソッドを、当てはまらない要素についてはyyメソッドを適用したい」といったときには、配列の要素すべてにアクセスする方法が必要です。
+　Rubyには、このためのメソッドとして、eachメソッドが用意されています。eachメソッドは、第１章でも少し触れたように「イテレータ」というメソッドの1つです。
+　eachメソッドは、次のように使います。
+</p>
+
+<p>
+配列.each do |変数|
+  繰り返したい処理
+end
+</p>
+
+<p>
+　eachのすぐ後ろの「do ~ end」で囲まれている部分をブロックといいます。そのため、eachのようなメソッドは、ブロックつきメソッドとも呼ばれます。ブロックにはいくつかの処理をまとめて記述することができます。
+　ブロックの冒頭には「|変数|」という部分があります。eachメソッドは、配列から要素を１つずつ取り出して、「|変数|」で指定された変数に代入して、ブロックの中のメソッドを繰り返し実行していきます。
+　実際に使ってみましょう。配列namesにあるすべての要素を順番に表示してみます。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; names = ["小林", "林", "高野", "森岡"]
+=&gt; ["小林", "林", "高野", "森岡"]
+&gt;&gt; names.each do |n|   # do~endのように複数行にまたがる場合、
+?&gt;   puts n              endが入力されるまで実行されません
+&gt;&gt; end
+小林   # putsメソッドの実行結果
+林
+高野
+森岡
+=&gt; ["小林", "林", "高野", "森岡"] 　# eachメソッドの戻り値
+</p>
+
+<p>
+　|n|となっている部分の変数nには、繰り返しの度に配列namesの要素が代入されます。
+</p>
+
+
+<p>
+　配列にはeachメソッドの他にもブロックを使うメソッドがたくさん用意されています。配列の要素をまとめて処理する場合によく使います。詳しくは「13.6 配列の主なメソッド」で取り上げます。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> ハッシュ（Hash）</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+　ハッシュ（Hash）もよく使われるコンテナです。ハッシュでは文字列やシンボルなどをキーにしてオブジェクトを格納します。
+</p>
+
+<p>
+address = {name: "高橋"m furigana: "タカハシ", postal: "1234567"}
+</p>
+</div>
+
+<div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1">2.2.1. シンボルとは</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+　シンボル（Symbol）というのは、文字列に似たオブジェクトで、Rubyがメソッドなどの名前を識別するためのラベルをオブジェクトにしたものです。
+　シンボルは、先頭に「:」をつけて表現します。
+</p>
+
+<p>
+sym = :foo    # これがシンボル「:foo」を表す
+sym2 = :"foo" # 上と同じ意味
+</p>
+
+<p>
+　シンボルと同様のことは大抵文字列でもできます。ハッシュのキーのように単純に「同じかどうか」を比較するような場合は、文字列よりも効率が良いことが多いので、シンボルがよく使われます。
+</p>
+
+<p>
+　なお、シンボルと文字列はそれぞれ互いに変換できます。シンボルにto_sメソッドを使えば、対応する文字列を取り出せます。逆に、文字列にto_symメソッドを使えば、対応するシンボルを得られます。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; sym = :foo
+=&gt; :foo
+&gt;&gt; sum.to_s      # シンボルを文字列に変換
+=&gt; "foo"
+&gt;&gt; "foo".to_sym  # 文字列をシンボルに変換
+=&gt; :foo
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2">2.2.2. ハッシュを作る</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+　新しいハッシュの作り方は、配列の作り方にちょっと似ています。配列と違うのは、「[]」の代わりに「{}」で囲むところです。また、ハッシュでは、オブジェクトを取り出すためのキーと、そのキーと対応させるオブジェクトを「キー =&gt; オブジェクト」という形式で指定します。キーにはシンボル、文字列、数理がよく使われます。
+</p>
+
+<p>
+song = { :title =&gt; "Paranoid Android", :artist =&gt; "Radiohead" }
+person = { "名前" =&gt; "高橋", "仮名" =&gt; "タカハシ" }
+mark = { 11 =&gt; "Jack", 12 =&gt; "Queen", 13 =&gt; "King" }
+</p>
+
+<p>
+　とりわけシンボルがよく用いられるため、専用の短い書き方が用意されています。次の２つは同じ意味です。
+</p>
+
+<p>
+person1 = { :name =&gt; "後藤", :kana =&gt; "ゴトウ" }
+person2 = { name: "後藤", kana: "ゴトウ" }
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3">2.2.3. ハッシュの操作</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+　ハッシュからオブジェクトを取り出したり、オブジェクトを格納したりする方法も、配列にそっくりです。ハッシュに格納されたオブジェクトを取り出すには、次の構文を使います。
+</p>
+
+<p>
+ハッシュ名[キー]
+</p>
+
+<p>
+　また、オブジェクトを格納するには次の構文を使います。
+</p>
+
+<p>
+ハッシュ名[キー] = 格納したいオブジェクト
+</p>
+
+<p>
+　配列と違って、キーには数値以外のオブジェクトも使えます。シンボルをキーにしたハッシュを操作してみましょう。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; address = {name: = "高橋", furigana: "タカハシ"}
+=&gt; {:name=&gt;"高橋", :furigana=&gt;"タカハシ"}
+&gt;&gt; address{:name}
+=&gt; "高橋"
+&gt;&gt; address{:furigana}
+=&gt; "タカハシ"
+&gt;&gt; address{:tel} = "000-1234-5678"
+=&gt; "000-1234-5678"
+&gt;&gt; address
+=&gt; {:name=&gt;"高橋", :furigana=&gt;"タカハシ", :tel=&gt;"000-1234-5678"}
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-4" class="outline-4">
+<h4 id="sec-2-3-4">2.2.4. ハッシュの繰り返し</h4>
+<div class="outline-text-4" id="text-2-3-4">
+<p>
+　eachメソッドを使って、ハッシュのキーと値を１つずつ取り出し、すべての要素を処理することができます。配列の場合はインデックスの順に要素を取り出しましたが、ハッシュの場合は「キー」と「値」の組を取り出すことになります。
+　ハッシュ用のeachは次のように書きます。
+</p>
+
+<p>
+ハッシュ.each do |キーの変数, 値の変数|
+  繰り返したい処理
+end
+</p>
+
+<p>
+早速使ってみましょう。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; address = {name: = "高橋", furigana: "タカハシ"}
+=&gt; {:name=&gt;"高橋", :furigana=&gt;"タカハシ"}
+&gt;&gt; address.each do |key, value|
+?&gt;   puts "#{key}: #{value}"
+&gt;&gt; end
+name: 高橋
+furigana: タカハシ
+=&gt; {:name=&gt;"高橋", :furigana=&gt;"タカハシ"}
+</p>
+
+<p>
+　eachメソッドによって、ハッシュaddressが持っている項目名とその値を表示するputsメソッドが繰り返し実行されるのがわかります。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 正規表現</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+　Rubyで文字列を処理するときには、正規表現（Regular Expression）というものがよく使われます。正規表現を使うと、
+</p>
+
+<p>
+・文字列とパターンの一致（マッチング）
+・パターンを使った文字列の切り出し
+</p>
+
+<p>
+などを手軽に行えます。
+　正規表現は、PerlやPythonなど、Rubyの先輩格にあたるスクリプト言語で培われてきた機能です。Rubyもその流れを受け継いでいて、言語に組み込みの機能として、手軽に正規表現を扱えます。文字列処理はRubyの得意分野ですが、それはこの正規表現のおかげでもあります。
+</p>
+</div>
+
+<div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1">2.3.1. パターンとマッチング</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+「〇〇という文字列を含んだ行を表示したい」とか、「〇〇と××の間に書かれた文字列を抜き出したい」などといった、特定の文字列のパターンに対する処理を行いたい場合があります。文字列がパターンに当てはまるかどうかを調べることをマッチングといい、パターンに当てはまることを「マッチする」といいます。
+　このような文字列のパターンをプログラミング言語で表現するために使われるのが、正規表現です。
+</p>
+
+<p>
+マッチングの例
+</p>
+
+<p>
+<i>cde</i> =~ "abcdefg"
+</p>
+
+
+<p>
+「正規表現」という言葉から、何やら難しげな雰囲気が漂う、硬そうな印象を持たれるかもしれません。実際のところ正規表現の世界は何かと奥が深いのですが、単純なマッチングに使う分にはあまり身構える必要はありません。まずは、そういうものがあるということを覚えておいてください。
+　正規表現オブジェクトを作るための構文は、次の通りです。
+</p>
+
+<p>
+<i>パターン</i>
+</p>
+
+<p>
+　例えば「Ruby」という文字列にマッチする正規表現は、
+</p>
+
+<p>
+<i>Ruby</i>
+</p>
+
+<p>
+と書きます。そのままですね。アルファベットと数字からなる文字列に一致するパターンを書く分には、「そのまま」で大丈夫です。
+　正規表現と文字列のマッチングを行うためには、「=~」演算子を使います。同じオブジェクト同士が等しいかどうかを調べる「==」に似ています。
+　正規表現と文字列のマッチングを行うには、
+</p>
+
+<p>
+<i>パターン</i> =~ マッチングしたい文字列
+</p>
+
+<p>
+と書きます。英数字や漢字だけのパターンを使った場合は、パターンの文字列を含んでいればマッチし、含んでいなければマッチしません。マッチングが成功した時は、マッチ部分の位置を返します。文字の位置は、配列のインデックスと同様に、0から数えます。つまり、先頭文字の位置は0と表されます。一方、マッチングが失敗だとnilを返します。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; <i>Ruby</i> =~ "Yet Another Ruby Hacker,"
+=&gt; 12
+&gt;&gt; <i>Ruby</i> =~ "Ruby"
+=&gt; 0
+&gt;&gt; <i>Ruby</i> =~ "Diamond"
+=&gt;nil
+</p>
+
+<p>
+　正規表現の右側の「/」に続けて「i」とかいた場合には、英字の大文字・小文字を区別せずにマッチングを行うようになります。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; <i>Ruby</i> =~ "ruby"
+=&gt; nil
+&gt;&gt; <i>Ruby</i> =~ "RUBY"
+=&gt; nil
+&gt;&gt; /Ruby/i =~ "ruby"
+=&gt; 0
+&gt;&gt; /Ruby/i =~ "RUBY"
+=&gt; 0
+&gt;&gt; /Ruby/i =~ "rUbY"
+=&gt; 0
+</p>
+
+<p>
+　これ以外にも、正規表現には数々の書き方や使い方があります。詳しくは「第１６章　正規表現（Regexp）クラス」で説明します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4-2" class="outline-4">
+<h4 id="sec-2-4-2">コラム「nilとは？」</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+　nilはオブジェクトが存在しないことを表す特別な値です。正規表現によるマッチングの際に、どこにもマッチしなかったことを表す場合のように、メソッドが意味のある値を返すことができないときにはnilが返されます。また、配列やハッシュからデータを取り出す場合に、まだ存在していないインデックスやキーを指定すると次のようにnilが得られます。
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; irb &#x2013;simple-prompt
+&gt;&gt; item = {"name"=&gt;"ブレンド", "price"=&gt;610}
+=&gt; {"name"=&gt;"ブレンド", "price"=&gt;610}
+&gt;&gt; item{"tax"}
+=&gt; nil
+</p>
+
+<p>
+　if文やwhile文は、条件を判定するときにfalseとnilを「偽」の値として扱い、それ以外の全ての値を「真」として扱います。したがって、trueかfalseのどちらかを返すメソッドだけではなく、「何らかの値」もしくは「nil」を返すメソッドも、条件として使うことができます。
+　次の例は配列の中の「林」という文字を含む文字列だけを出力します。
+</p>
+
+<p>
+List print_hayasi.rb
+</p>
+
+<p>
+names = ["小林", "林", "高野", "森岡"]
+names.each do |name|
+  if <i>林</i> =~ name
+    puts name
+  end
+end
+</p>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; ruby print_hayasi.rb
+小林
+林
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> コマンドを作ろう</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> イントロダクション</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+この章では、コマンドラインからデータを受け取り、処理を行う方法を紹介します。また、第１部のまとめとして、Unixのgrepコマンドもどきを作成しましょう。Rubyプログラミングの大まかな流れをつかんでください。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> コマンドラインからのデータの入力</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+今まで行ってきたことは、データを画面に出力することでした。「出力」があればその反対、「入力」も試してみたくなります。そもそも、普通に使えるコマンドを作るにはプログラムに動作を指示する方法を知らなければいけません。そこで、Rubyのプログラムにデータを入力してみましょう。
+</p>
+
+<p>
+プログラムにデータを与えるには、コマンドラインを利用する方法が一番簡単です。コマンドラインの情報をデータとして受け取るには「ARGV」という配列オブジェクトを使います。このARGVという配列は、コマンドラインからスクリプトの引数として与えられた文字列を要素として持っています。
+</p>
+
+<p>
+List3.1で確認してみましょう。コマンドラインでスクリプトに引数を指定するときは、１つずつ空白で区切って入力してください。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby"># List3.1 print_argv.rb
+puts "最初の引数: #{ARGV[0]}"
+puts "2番目の引数: #{ARGV[1]}"
+puts "3番目の引数: #{ARGV[2]}"
+puts "4番目の引数: #{ARGV[3]}"
+puts "5番目の引数: #{ARGV[4]}"
+</pre>
+</div>
+
+<pre class="example">
+実行例
+&gt; ruby print_argv.rb 1st 2nd 3rd 4th 5th
+最初の引数: 1st
+2番目の引数: 2nd
+3番目の引数: 3rd
+4番目の引数: 4th
+5番目の引数: 5th
+</pre>
+
+<p>
+配列ARGVを使えば、
+データをプログラムの中にすべて書いておく必要は無くなります。
+配列なので、要素を取り出して変数に代入することもできます。
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-ruby"># List3.2 happy_birth.rb
+name = ARGV[0]
+print "Happy Birthday, ", name, "!\n"
+</pre>
+</div>
+
+<pre class="example">
+実行例
+&gt; ruby happy_birth.rb Ruby
+Happy Birthday, Ruby!
+</pre>
+
+<p>
+引数から取得したデータは文字列になっているので、
+これを計算に使うときは数値に変換する必要があります。
+文字列を整数にするには、to_iメソッドを使います。
+</p>
+
+<ul class="org-ul">
+<li>to_i は to integer（整数へ）
+</li>
+</ul>
+
+
+<p>
+List3.3 arg_arith.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">num0 = ARGV[0].to_i
+num1 = ARGV[1].to_i
+puts "#{num0} + #{num1} = #{num0 + num1}"
+puts "#{num0} - #{num1} = #{num0 - num1}"
+puts "#{num0} * #{num1} = #{num0 * num1}"
+puts "#{num0} / #{num1} = #{num0 / num1}"
+</pre>
+</div>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; ruby arg_arith.rb 5 3
+5 + 3 = 8
+5 - 3 = 2
+5 * 3 = 15
+5 / 3 = 1
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> ファイルからの読み込み</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1">イントロダクション</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+　Rubyのスクリプトが入力として受け取れるデータは、コマンドライン引数だけではありません。ファイルからデータを読み込むこともできます。
+　Rubyのソースコードには、「ChangeLog」というテキストファイルが付いています。これには、誰がどのようにRubyを変更したかが記してあります。
+</p>
+
+
+<p>
+＊メモ Rubyのソースコードは、Rubyの公式ウェブサイトから入手できます。Changelogファイルは、GithubのRubyレポジトリからも取得可能です。
+</p>
+
+<p>
+・Rubyのソースコードダウンロード
+　<a href="https://www.ruby-lang.org/ja/downloads/">https://www.ruby-lang.org/ja/downloads/</a>
+・Github上のChangelogファイル
+　<a href="https://raw.github.com/ruby/ruby/ruby_2_3/ChangeLog">https://raw.github.com/ruby/ruby/ruby_2_3/ChangeLog</a>
+</p>
+
+
+<p>
+　このファイルを使って、Rubyでのファイル操作の練習をしてみましょう。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2">3.2.1. ファイルからテキストデータを読み込んで表示する</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+　まず、単純にファイルの中身をすべて表示するプログラムを作ってみましょう。ファイルの中身を表示するプログラムは、次のような流れになります。
+</p>
+
+<p>
+1.ファイルを開く
+2.ファイルのテキストデータを読み込む
+3.読み込んだテキストデータを出力する
+4.ファイルを閉じる
+</p>
+
+<p>
+　この流れを、そのままプログラムにしてみましょう。（List3.4）
+</p>
+
+<p>
+List3.4 read_text.rb
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">filename = ARGV[0]
+file = File.open(filename)  # 1.
+text = file.read            # 2.
+print text                  # 3.
+file.close                  # 4.
+</pre>
+</div>
+
+<p>
+　今までの例に比べると、ちょっとプログラムらしくなってきました。1行ずつ説明します。
+　１行目では、filenameという変数にコマンドラインから受け取った最初の引数の値ARGV<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup>を代入しています。つまり、変数filenameは読み出したいファイルの名前を示していることになります。
+　２行目で使っている「File.open(filename)」は、filenameという名前のファイルを開き、そのファイルを読み込むためのオブジェクトを返します。
+……と言われても、「ファイルを読み込むためのオブジェクト」というのが何を意味しているのかよくわからないという方もいるかもしれません。あまり気にせず、ここではそういうオブジェクトがあるとだけ思ってください。詳しくは「第１７章　IOクラス」で説明します。
+　この「ファイルを読み込むためのオブジェクト」が実際に使われるのは３行目です。ここでは、「read」というメソッドでデータを読み込み、その結果をtextに代入しています。ここでtextに代入されたテキストデータが、４行目で出力されます。printメソッドは今までにも何度も使ってきたので、もうすっかりおなじみのことでしょう。そして、最後に「close」というメソッドを実行します。これは、開いたファイルを閉じるためのメソッドです。
+　このプログラムを次のように実行すると、指定したファイルの内容をそのまま一気に表示します。
+</p>
+
+<p>
+&gt; ruby read_text.rb 表示したいファイル名
+</p>
+
+<p>
+　もっとも、ファイルを読み込むだけであれば、File.readメソッドを使うともっと簡単に書けます。（List3.5）
+</p>
+
+<p>
+List3.5 read_text_simple.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">filename = ARGV[0]
+text = File.read(filename)
+print text
+</pre>
+</div>
+
+<p>
+　File.readメソッドについても詳しくは「第１７章　IOクラス」で説明します。
+　さらに、変数が不要であれば、1行でも書けます。（List3.6）
+</p>
+
+<p>
+List3.6 read_text_oneline.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">print File.read(ARGV[0])
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-3" class="outline-4">
+<h4 id="sec-3-3-3">3.2.2. ファイルからテキストデータを1行ずつ読み込んで表示する</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+　ここまでで、まとめて読み込んだテキストデータを表示することができるようになりました。しかし、先ほどの方法では、
+</p>
+
+<p>
+・ファイルのデータをまとめて読み込むのに時間がかかる
+・一時的にすべてのデータをメモリに貯めることになるので、大きなファイルの場合に困ることがある
+</p>
+
+<p>
+といった問題があります。
+　100万行あるようなファイルでも、本当に必要なのは最初の数行だけ、ということもあります。そのような場合、すべてのファイルを読み込むまで何もしない、というのは、時間とメモリを無駄に使ってしまうことになります。
+　このような問題を解決するには、データを全て読み込んでから処理を開始するというアプローチをやめる必要があります。
+</p>
+
+<p>
+・データをすべて読み込んでから処理する
+　　ー＞ファイル全体を収めるメモリ空間が必要
+</p>
+
+<p>
+・一行ずつ読み込んで処理する
+　　ー＞メモリ空間は一行分でよい
+</p>
+
+<p>
+List3.7 read_line.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">filename = ARGV[0]
+file = File.open(filename)
+file.each_line do |line|
+  print line
+end
+file.close
+</pre>
+</div>
+
+<p>
+　1、2行目は、List3.4と同じです。3行目以降がちょっと変わっています。3行目から5行目はeach_lineメソッドを使っています。
+　each_lineメソッドは、第２章で紹介したeachメソッドに似たメソッドです。eachメソッドは配列の各要素をそれぞれ処理するメソッドでしたが、each_lineメソッドはファイルの各行をそれぞれ処理するメソッドです。ここではファイルを一行ずつ読み込み、その行の文字列lineをprintメソッドで出力することで、最終的にすべての行が出力されています。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-4" class="outline-4">
+<h4 id="sec-3-3-4">3.2.3. ファイルの中から特定のパターンの行のみを選んで出力する</h4>
+<div class="outline-text-4" id="text-3-3-4">
+<p>
+　Unixには、grepというコマンドがあります。これは、入力されたテキストデータの中から、正規表現で指定した特定のパターンにマッチする行を出力するコマンドです。これに似たコマンドを作ってみましょう。（List3.8）
+</p>
+
+<p>
+List3.8 simple_grep.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">pattern = Regexp.new(ARGV[0])
+filename = ARGV[1]
+
+file = File.open(filename)
+file.each_line do |line|
+  if pattern =~ line
+    print line
+  end
+end
+file.close
+</pre>
+</div>
+
+<p>
+　List3.8を実行するには、次のように入力します。
+</p>
+
+<p>
+&gt; ruby simple_grep.rb パターン ファイル名
+</p>
+
+<p>
+　少し長くなったので、一行ずつ見ていきましょう。
+　Rubyを実行する際にコマンドラインで与えた引数は、ARGV<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup>とARGV<sup><a id="fnr.2.100" name="fnr.2.100" class="footref" href="#fn.2">2</a></sup>に代入されます。1行目では、1つ目の引数ARGV<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup>を元に正規表現オブジェクトを作り、変数patternに代入します。「Regexp.nre(str)」という形で、引数の文字列strから正規表現オブジェクトを作ります。そして2行目では、2つ目の引数ARGV<sup><a id="fnr.2.100" name="fnr.2.100" class="footref" href="#fn.2">2</a></sup>をファイル名に使う変数filenameに代入します。
+　4行目では、ファイルを開き、ファイルオブジェクトを作り、これを変数Fileに代入します。
+　5行目はList3.7と同じです。1行ずつ読み込んで変数lineに代入し、8行目までを繰り返します。
+　6行目はif文になっています。ここで、変数lineの値である文字列が変数patternの値である正規表現にマッチするかどうか調べます。マッチした場合、7行目のprintメソッドでその文字列を出力します。このif文にはelse節がないので、マッチしなかった場合は何も起こりません。
+　すべてのテキストの読み込みが終わったらファイルを閉じて終了します。たとえば、ファイルChangelogから「matz」という文字列が含まれている行を出力したい場合には、次のように実行します。
+</p>
+
+<p>
+&gt; ruby simple_grep.rb matz Changelog
+</p>
+
+<p>
+「matz」とは、まつもとゆきひろ氏のニックネームです。まつもとゆきひろ氏による変更の履歴が出力されます。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> メソッドの作成</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+　今までいくつかのメソッドを使ってきましたが、自分で作ることもできます。メソッドを作成する構文は次のようになります。
+</p>
+
+<p>
+def メソッド名
+  メソッドで実行したい処理
+end
+</p>
+
+<p>
+「Hello, Ruby.」と表示するメソッドを作ってみましょう。
+</p>
+
+<p>
+def hello
+  puts "Hello, Ruby."
+end
+</p>
+
+<p>
+　この三行だけを書いたプログラムを実行しても、何も起こりません。helloメソッドが呼び出される前に、プログラムが終わってしまっているからです。そのため、自分で作成したメソッドを実行するコードも必要になります。
+</p>
+
+<p>
+List3.9 hello_ruby2.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">def hello
+  puts "Hello, Ruby."
+end
+
+hello()
+</pre>
+</div>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; ruby hello_ruby2.rb
+hello, Ruby.
+</p>
+
+<p>
+「hello()」というメソッド呼び出しにより、1~3行目で定義されたhelloメソッドが実行されます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> 別のファイルを取り込む</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+　プログラムの一部を、別の新しいプログラムの中で使いまわしたいことがあります。たとえば、あるプログラムで使った自作メソッドを、別のプログラムで利用したい、と言った場合です。
+　たいていのプログラミング言語では、別々のファイルに分割されたプログラムを組み合わせて、1つのプログラムとして利用するための機能を持っています。他のプログラムから読み込んで利用するためのプログラムを、ライブラリといいます。
+　プログラムの中でライブラリを読み込むには、requireメソッドまたはrequire_relativeメソッドを使います。
+</p>
+
+<p>
+require 使いたいライブラリのファイル名
+</p>
+
+<p>
+または、
+</p>
+
+<p>
+require_relative 使いたいライブラリのファイル名
+</p>
+
+<p>
+　使いたいライブラリのファイル名の「.rb」は省略することができます。
+　requireメソッドを呼ぶと、Rubyは引数に指定されたライブラリを探して、そのファイルに書かれた内容を読み込みます。ライブラリの読み込みが終わると再び、requireメソッドの次の行から処理を再開します。
+</p>
+
+<p>
+　requireメソッドは既存のライブラリを読み込むときに使います。ライブラリ名を指定するだけで、Rubyと一緒にインストールされたライブラリなど、あらかじめ決められた場所から探し出して読み込んでくれます。それに対してrequire_relativeメソッドは、実行するプログラムは置かれたディレクトリ（フォルダ）を基準にしてライブラリを探します。複数のファイルに分けて記述したプログラムを読み込むときに便利です。
+　実際の例として、先ほどのsimple_grep.rbの検索部分をライブラリとして、他のプログラムから使ってみましょう。ライブラリといっても別に変わった書き方は必要ありません。simple_grepメソッドを定義したファイル（List3.10）と、それを利用するプログラム（List3.11）を同じディレクトリに作成します。
+</p>
+
+<p>
+List3.10 grep.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">def simple_grep(pattern, filename)
+  file = File.open(filename)
+  file.each_line do |line|
+    if pattern =~ line
+      print line
+    end
+  end
+  file.close
+end
+</pre>
+</div>
+
+<p>
+List3.11 use_grep.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">require_relative "grep"
+
+pattern = Regexp.new(ARGV[0])
+filename = ARGV[1]
+simple+grep(pattern, filename)
+</pre>
+</div>
+
+<p>
+　simple_grepメソッドは検索するパターンとファイル名が必要なので、これらをpatternとfilenameという引数で受け取るようになっています。
+　grep.rbで定義したsimple_grepメソッドを、use_grep.rbで呼び出していることに注目してください。List3.8の実行例と同様に、ファイルChangelogから「matz」という文字列が含まれている行を出力したい場合には、次のように実行します。
+</p>
+
+<p>
+&gt; ruby use_grep.rb matz Changelog
+</p>
+
+<p>
+　Rubyには、たくさんの便利なライブラリが標準で付属しています。これらを利用する場合にrequireメソッドを使います。
+　たとえば、dateライブラリを読み込むことで、今日の日付を求めるDate.todayメソッドや特定の日付のオブジェクトを生成するDate.newメソッドなどを利用できるようになります。Rubyの誕生日である1993年2月24日から今日までの日数を求めるプログラムは次のようになります。dateライブラリについては第20章で詳しく説明します。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">require "date"
+
+days = Date.today - Date.new(1993, 2, 24)
+puts(days.to_i)
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-5-1" class="outline-4">
+<h4 id="sec-3-5-1">コラム「ppメソッド」</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<p>
+　pメソッドと同じような目的に使われるメソッドとして、ppメソッドがあります。ppは「Pretty Print」の略です。ppメソッドを利用するには、ppライブラリをrequireメソッドで読み込む必要があります。
+</p>
+
+<p>
+List p_and_pp.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">require "pp"
+
+books = [
+  { title: "猫街", author: "荻原翔太郎" },
+  { title: "猫の事務所", author: "宮沢賢治" },
+  { title: "猫語の教科書", author: "ポール・ギャリコ" },
+]
+p books
+pp books
+</pre>
+</div>
+
+<p>
+実行例
+</p>
+
+<p>
+&gt; ruby p_and_pp.rb
+[{:title=&gt;"猫街", :author=&gt;"萩原翔太郎"}, {:title=&gt;"猫の事務所", :author=&gt;"宮沢賢治"}, {:title=&gt;"猫語の教科書", :author=&gt;"ポール・ギャリコ"}]
+[{:title=&gt;"猫街", :author=&gt;"萩原翔太郎"},
+ {:title=&gt;"猫の事務所", :author=&gt;"宮沢賢治"},
+ {:title=&gt;"猫語の教科書", :author=&gt;"ポール・ギャリコ"}]
+</p>
+
+<p>
+　pメソッドとは異なり、ppメソッドはオブジェクトの構造を表示する際に、適当に改行を補ってみやすく整形してくれます。ハッシュの配列のように、入れ子になったコンテナを確認する場合に利用すると良いでしょう。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p>DEFINITION NOT FOUND.</p></div>
+
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p>DEFINITION NOT FOUND.</p></div>
+
+<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p>DEFINITION NOT FOUND.</p></div>
+
+<div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p>DEFINITION NOT FOUND.</p></div>
+
+<div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p>DEFINITION NOT FOUND.</p></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Shun Takahashi</p>
+<p class="date">Created: 2018-07-25 水 13:04</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
