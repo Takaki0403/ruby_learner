@@ -46,7 +46,7 @@ module RubyLearner
       # rand_num = rand(1..15)
       # rand_num = 1
       # origin_rand_file = "#{origin_rand_dir}/#{rand_num}.rb"
-      rand_num = 1
+      rand_num = rand(1..2)
       origin_rand_dir = "#{@rl_origin_dir}/questions/random_check_question/section_#{rand_num}"
       origin_rand_file = "#{origin_rand_dir}/sentence.org"
       # FileUtils.cp('/dev/null', "#{@workshop_dir}/answer.rb")

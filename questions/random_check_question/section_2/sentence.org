@@ -1,0 +1,12 @@
+#+STARTUP: indent nolineimages
+# section_1/sentence.org
+
+* if文の使い方
+- 条件分岐の基本ですよー
+
+* 問題文
+- 条件分岐で挨拶を作れ
+- japan >>> こんにちは
+- us >>> hello
+- その他 >>> ???
+- agreement(country)を用いて
