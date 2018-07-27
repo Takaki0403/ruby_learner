@@ -22,7 +22,8 @@ module RubyLearner
       emacs_other_dir = "#{ENV['HOME']}/.emacs.d/ruby_learner_init.el"
       if Dir.exist?(emacs_other_dir) != true then
         FileUtils.mkdir_p(emacs_other_dir)
-        system("cp #{rl_origin_dir}/.emacs.d/ruby_learner_init.el #{emacs_other_dir}")
+        system("cp #{@rl_origin_dir}/.emacs.d/ruby_learner_init.el #{emacs_other_dir}")
+      end
     end
 
     desc 'delete [number~number]', 'choose number to delete ruby_files'
