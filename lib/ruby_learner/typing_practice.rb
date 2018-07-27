@@ -8,9 +8,9 @@ class TypingPractice
   end
   def prac_sequence(origin_file: String)
     cp_file(origin_file: origin_file, clone_file: "#{@prac_dir}/question.org")
-    system "cd #{@prac_dir} && emacs question.rb answer.rb"
+    system "cd #{@prac_dir} && emacs question.org answer.rb"
     start_time = Time.now
-    typing_discriminant(answer_path: "#{@prac_dir}/answer.rb", question_path: "#{@prac_dir}/question.rb")
+    typing_discriminant(answer_path: "#{@prac_dir}/answer.rb", question_path: "#{@prac_dir}/question.org")
     elapsed_time = time_check(start_time: start_time)
     p "#{elapsed_time} sec"
     # mk_training_data(elapsed_time: elapsed_time, prac_dir: @prac_dir)
