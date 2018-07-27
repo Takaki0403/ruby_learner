@@ -1,1 +1,0 @@
-takakiotsu@MacBook-Air.local.27637
