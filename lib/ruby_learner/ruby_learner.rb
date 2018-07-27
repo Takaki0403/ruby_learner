@@ -42,7 +42,7 @@ module RubyLearner
 
     desc 'random_check', 'typing and editing practice.'
     def random_check(*_argv)
-      origin_rand_dir = "#{@rl_origin_dir}/questions/random_check_question"
+      origin_rand_dir = "#{@rl_origin_dir}/questions/random_check_question/lib"
       # rand_num = rand(1..15)
       rand_num = 1
       origin_rand_file = "#{origin_rand_dir}/#{rand_num}.rb"
