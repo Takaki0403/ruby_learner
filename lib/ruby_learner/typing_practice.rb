@@ -5,7 +5,7 @@ class TypingPractice
 
    def initialize(prac_dir: String, origin_dir: String)
     @prac_dir = prac_dir
-    @origin_dir = origin_dir
+    # @origin_dir = origin_dir
   end
   def prac_sequence(origin_file: String)
     cp_file(origin_file: origin_file, clone_file: "#{@prac_dir}/question.rb")
