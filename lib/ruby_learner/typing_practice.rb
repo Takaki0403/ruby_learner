@@ -3,7 +3,7 @@ require 'ruby_learner/methods.rb'
 
 class TypingPractice
 
-   def initialize(prac_dir: String, origin_dir: String)
+   def initialize(prac_dir: String)
     @prac_dir = prac_dir
     # @origin_dir = origin_dir
   end
