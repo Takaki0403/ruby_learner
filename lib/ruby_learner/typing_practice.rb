@@ -7,7 +7,7 @@ class TypingPractice
     @prac_dir = prac_dir
   end
   def prac_sequence(origin_file: String)
-    cp_file(origin_file: origin_file, clone_file: "#{@prac_dir}/question.rb")
+    cp_file(origin_file: origin_file, clone_file: "#{@prac_dir}/question.org")
     system "cd #{@prac_dir} && emacs question.rb answer.rb"
     start_time = Time.now
     typing_discriminant(answer_path: "#{@prac_dir}/answer.rb", question_path: "#{@prac_dir}/question.rb")
