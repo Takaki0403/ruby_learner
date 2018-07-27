@@ -30,7 +30,7 @@ def typing_discriminant(answer_path: String, question_path: String)
       if input_continue == 'exit'
         break
       elsif input_continue == 'answer'
-        system "cd #{@prac_dir} && emacs question.org answer.rb"
+        system "cd #{@prac_dir} && emacs -l ~/.emacs.d/ruby_learner_init.el answer.rb  "
       else
         system "cd #{@prac_dir} && emacs question.org answer.rb"
       end
