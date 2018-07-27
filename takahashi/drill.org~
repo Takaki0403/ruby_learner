@@ -1,0 +1,33 @@
+#+OPTIONS: ^:{} 
+#+TITLE: はじめてのRuby
+#+AUTHOR:  Shun Takahashi
+#+LANGUAGE:  jp
+#+OPTIONS:   H:4 toc:t num:2
+
+#+SETUPFILE: /Users/bob/Github/org-html-themes/setup/theme-readtheorg-local-daddygongon.setup
+
+* drillを作ってみる
+1. まず，Listを取り出す
+1. 実行結果をつける
+1. コードの振る舞いを記述するタイトルをつけていく．
+
+* コマンドラインからのデータの入力
+** List3.1 print_argv.rb
+#+begin_src ruby
+# List3.1 print_argv.rb
+puts "最初の引数: #{ARGV[0]}"
+puts "2番目の引数: #{ARGV[1]}"
+puts "3番目の引数: #{ARGV[2]}"
+puts "4番目の引数: #{ARGV[3]}"
+puts "5番目の引数: #{ARGV[4]}"
+#+end_src
+
+#+begin_example
+実行例
+> ruby print_argv.rb 1st 2nd 3rd 4th 5th
+最初の引数: 1st
+2番目の引数: 2nd
+3番目の引数: 3rd
+4番目の引数: 4th
+5番目の引数: 5th
+#+end_example
