@@ -16,13 +16,14 @@ def time_check(start_time: Time)
 end
 
 def typing_discriminant(answer_path: String, question_path: String)
+  workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop/lib"
   loop do
     if FileUtils.compare_file("#{answer_path}", "#{question_path}") == true then
       puts "It have been finished!"
       break
     else
       puts "There are some differences"
-      spell_diff_check(file1: "#{answer_path}", file2: "#{question_path}")
+      # spell_diff_check(file1: "#{answer_path}", file2: "#{question_path}")
       puts "If you continue this mode, press return-key"
       puts "When you want to finish this mode, input 'exit' and press return-key"
       puts "if you check the answer example, input 'answer' and press return_key"
@@ -30,9 +31,9 @@ def typing_discriminant(answer_path: String, question_path: String)
       if input_continue == 'exit'
         break
       elsif input_continue == 'answer'
-        system "cd #{@prac_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/ruby_learner_init.el answer.rb  "
+        system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/ruby_learner_init.el answer.rb  "
       else
-        system "cd #{@prac_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el  sentence.org workplace.rb"
+        system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el  sentence.org workplace.rb"
       end
     end
   end
