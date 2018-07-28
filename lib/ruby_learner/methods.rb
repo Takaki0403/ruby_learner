@@ -27,7 +27,7 @@ def typing_discriminant(answer_path: String, question_path: String)
       puts "It have been finished!"
       break
     else
-      puts "There are some differences"
+      puts "your code did an unexpected move!, please fix."
       # spell_diff_check(file1: "#{answer_path}", file2: "#{question_path}")
       instruct_print
       select = STDIN.gets.chomp
