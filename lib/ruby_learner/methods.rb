@@ -32,7 +32,7 @@ def typing_discriminant(answer_path: String, question_path: String)
       elsif input_continue == 'answer'
         system "cd #{@prac_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/ruby_learner_init.el answer.rb  "
       else
-        system "cd #{@prac_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el  question.org answer.rb"
+        system "cd #{@prac_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el  sentence.org workplace.rb"
       end
     end
   end
