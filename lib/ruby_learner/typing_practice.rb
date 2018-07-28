@@ -15,6 +15,6 @@ class TypingPractice
     typing_discriminant(answer_path: "#{@workshop_dir}/workplace.rb", question_path: "#{@workshop_dir}/sentence.org")
     elapsed_time = time_check(start_time: start_time)
     p "#{elapsed_time} sec"
-    mk_training_data(elapsed_time: elapsed_time, prac_dir: @prac_dir)
+    # mk_training_data(elapsed_time: elapsed_time, prac_dir: @prac_dir)
   end
 end

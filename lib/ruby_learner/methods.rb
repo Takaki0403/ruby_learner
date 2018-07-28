@@ -24,20 +24,16 @@ def typing_discriminant(answer_path: String, question_path: String)
       puts "There are some differences"
       # spell_diff_check(file1: "#{answer_path}", file2: "#{question_path}")
       instruct_print
-      input_continue = STDIN.gets.chomp
-      check_mode(select: input_continue)
+      select = STDIN.gets.chomp
+      workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop/lib"
+      if select == 'exit'
+        break
+      elsif select == 'answer'
+        system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/ruby_learner_init.el answer.rb"
+      else
+        system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el  sentence.org workplace.rb"
+      end
     end
-  end
-end
-
-def check_mode(select: String)
-  workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop/lib"
-  if select == 'exit'
-    break
-  elsif select == 'answer'
-    system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/ruby_learner_init.el answer.rb"
-  else
-    system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el  sentence.org workplace.rb"
   end
 end
 

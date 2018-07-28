@@ -33,20 +33,20 @@
 (setq custom-theme-directory "~/ruby_learner/workshop/emacs.d/themes")
 ;;(load-theme 'iceberg t)
 ;;(load-theme 'dracula t)
-(load-theme 'my-misterioso t)
-;;(load-theme 'my-wombat t)
+;;(load-theme 'my-misterioso t)
+(load-theme 'my-wombat t)
 
 ;; 起動時にスタートアップ画面を表示しない 
 (setq inhibit-startup-message t)
 ;; 1 行ずつスムーズにスクロールする 
 (setq scroll-step 1)
 ;; 行数を記載する
-;;(global-linum-mode t)
-;;(setq linum-format "%d")
-;;(set-face-attribute 'linum nil
-;;            :foreground "#999999"
-;;            :background "#000000"
-;;            :height 0.9)
+(global-linum-mode t)
+(setq linum-format "%d")
+(set-face-attribute 'linum nil
+            :foreground "#999999"
+            :background "#000000"
+            :height 0.9)
 ;; 括弧補完
 ;;(electric-pair-mode 1)
 ;; 行数を指定してジャンプする (goto-line) 
