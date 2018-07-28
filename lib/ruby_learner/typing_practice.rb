@@ -8,7 +8,7 @@ class TypingPractice
   end
   def prac_sequence(origin_file: String)
     cp_file(origin_file: origin_file, clone_file: "#{@prac_dir}/question.org")
-    system "cd #{@prac_dir} && emacs question.org answer.rb"
+    system "cd #{@prac_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el question.org answer.rb"
     start_time = Time.now
     typing_discriminant(answer_path: "#{@prac_dir}/answer.rb", question_path: "#{@prac_dir}/question.org")
     elapsed_time = time_check(start_time: start_time)

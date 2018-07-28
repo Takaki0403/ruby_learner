@@ -19,13 +19,13 @@ module RubyLearner
       rl_ver = app_vers[0].chomp.tr(' ', '-').delete('()')
       @rl_origin_dir = File.join(@gem_location[0].chomp, "/gems/#{rl_ver}")
       init_mk_files(origin_dir: @rl_origin_dir, prac_dir: @workshop_dir)
-      emacs_init_dir = "#{ENV['HOME']}/.emacs.d"
-      if Dir.exist?(emacs_init_dir) != true then
-        FileUtils.mkdir_p(emacs_init_dir)
-      end
-      if File.exist?("#{emacs_init_dir}/ruby_learner_init.el") != true then
-        system("cp #{@rl_origin_dir}/.emacs.d/ruby_learner_init.el #{emacs_init_dir}")
-      end
+      # emacs_init_dir = "#{ENV['HOME']}/.emacs.d"
+      # if Dir.exist?(emacs_init_dir) != true then
+      #   FileUtils.mkdir_p(emacs_init_dir)
+      # end
+      # if File.exist?("#{emacs_init_dir}/ruby_learner_init.el") != true then
+      #   system("cp #{@rl_origin_dir}/.emacs.d/ruby_learner_init.el #{emacs_init_dir}")
+      # end
     end
 
     desc 'delete [number~number]', 'choose number to delete ruby_files'
