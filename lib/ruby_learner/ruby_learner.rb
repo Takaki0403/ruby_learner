@@ -48,11 +48,9 @@ module RubyLearner
       # origin_rand_file = "#{origin_rand_dir}/#{rand_num}.rb"
       rand_num = rand(1..2)
       origin_rand_dir = "#{@rl_origin_dir}/questions/random_check_question/section_#{rand_num}"
-      origin_rand_file = "#{origin_rand_dir}/sentence.org"
       # FileUtils.cp('/dev/null', "#{@workshop_dir}/answer.rb")
-      FileUtils.cp("#{origin_rand_dir}/workplace.rb", "#{@workshop_dir}/answer.rb")
-      typing_prac_class = TypingPractice.new(prac_dir: @workshop_dir)
-      typing_prac_class.prac_sequence(origin_file: origin_rand_file)
+      typing_prac_class = TypingPractice.new(workshop_dir: @workshop_dir)
+      typing_prac_class.prac_sequence(origin_rand_dir: origin_rand_dir)
     end
   end
 end
