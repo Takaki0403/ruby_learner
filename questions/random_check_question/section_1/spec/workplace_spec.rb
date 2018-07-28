@@ -1,5 +1,5 @@
-require 'answer.rb'
-require 'spec_helper'
+require 'workplace.rb'
+
 RSpec.describe "A loop" do
   it "given 2 and 2, return 6" do
     expect(for_system(2, 2)).to eq(6)
