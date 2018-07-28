@@ -13,12 +13,12 @@ module RubyLearner
     def initialize(*args)
       super
       # rl is RubyLearner
-      @workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop/lib" # workshop_directory
+      @workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop" # workshop_directory
       @gem_location = Open3.capture3('gem environment gemdir')
       app_vers = Open3.capture3('gem list ruby_learner')
       rl_ver = app_vers[0].chomp.tr(' ', '-').delete('()')
       @rl_origin_dir = File.join(@gem_location[0].chomp, "/gems/#{rl_ver}")
-      init_mk_files(origin_dir: @rl_origin_dir, prac_dir: "#{ENV['HOME']}/ruby_learner/workshop/")
+      init_mk_files(origin_dir: @rl_origin_dir, prac_dir: @workshop_dir)
     end
 
     desc 'delete [number~number]', 'choose number to delete ruby_files'

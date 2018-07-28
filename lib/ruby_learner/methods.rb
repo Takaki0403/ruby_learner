@@ -15,8 +15,14 @@ def time_check(start_time: Time)
   return elapsed_time
 end
 
+def run_rspec
+  workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop"
+  system "cd #{workshop_dir} && rspec spec/workplace_spec.rb"
+end
+
 def typing_discriminant(answer_path: String, question_path: String)
   loop do
+    run_rspec
     if FileUtils.compare_file("#{answer_path}", "#{question_path}") == true then
       puts "It have been finished!"
       break
