@@ -26,8 +26,8 @@
 
 (setq w (selected-window))
 (setq w3 (split-window w nil nil))
+(setq windmove-wrap-around t)
 (setq w2 (split-window w nil t))
-
 ;;setting_theme
 (add-to-list 'custom-theme-load-path "~/ruby_learner/workshop/emacs.d/themes")
 (setq custom-theme-directory "~/ruby_learner/workshop/emacs.d/themes")
