@@ -16,7 +16,6 @@ def time_check(start_time: Time)
 end
 
 def typing_discriminant(answer_path: String, question_path: String)
-  workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop/lib"
   loop do
     if FileUtils.compare_file("#{answer_path}", "#{question_path}") == true then
       puts "It have been finished!"
@@ -24,29 +23,32 @@ def typing_discriminant(answer_path: String, question_path: String)
     else
       puts "There are some differences"
       # spell_diff_check(file1: "#{answer_path}", file2: "#{question_path}")
-      puts "If you continue this mode, press return-key"
-      puts "When you want to finish this mode, input 'exit' and press return-key"
-      puts "if you check the answer example, input 'answer' and press return_key"
+      instruct_print
       input_continue = STDIN.gets.chomp
-      if input_continue == 'exit'
-        break
-      elsif input_continue == 'answer'
-        system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/ruby_learner_init.el answer.rb  "
-      else
-        system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el  sentence.org workplace.rb"
-      end
+      check_mode(select: input_continue)
     end
   end
 end
 
-def cp_file(origin_file: String, clone_file: String)
-  FileUtils.cp("#{origin_file}",  "#{clone_file}")
+def check_mode(select: String)
+  workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop/lib"
+  if select == 'exit'
+    break
+  elsif select == 'answer'
+    system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/ruby_learner_init.el answer.rb"
+  else
+    system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el  sentence.org workplace.rb"
+  end
 end
 
+# def cp_file(origin_file: String, clone_file: String)
+#   FileUtils.cp("#{origin_file}",  "#{clone_file}")
+# end
+
 def instruct_print
-  puts "check starting ..."
-  puts "type following commands on the terminal"
-  puts "> emacs question.rb answer.rb"
+  puts "If you continue this mode, press return-key"
+  puts "When you want to finish this mode, input 'exit' and press return-key"
+  puts "if you check the answer example, input 'answer' and press return_key"
 end
 
 def init_mk_files(origin_dir: String, prac_dir: String)

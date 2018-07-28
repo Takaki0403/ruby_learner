@@ -42,15 +42,10 @@ module RubyLearner
 
     desc 'random_check', 'typing and editing practice.'
     def random_check(*_argv)
-      # origin_rand_dir = "#{@rl_origin_dir}/questions/random_check_question/lib"
-      # rand_num = rand(1..15)
-      # rand_num = 1
-      # origin_rand_file = "#{origin_rand_dir}/#{rand_num}.rb"
       rand_num = rand(1..2)
       origin_rand_dir = "#{@rl_origin_dir}/questions/random_check_question/section_#{rand_num}"
-      # FileUtils.cp('/dev/null', "#{@workshop_dir}/answer.rb")
-      typing_prac_class = TypingPractice.new(workshop_dir: @workshop_dir)
-      typing_prac_class.prac_sequence(origin_rand_dir: origin_rand_dir)
+      typing_practice = TypingPractice.new(workshop_dir: @workshop_dir)
+      typing_practice.prac_sequence(origin_rand_dir: origin_rand_dir)
     end
   end
 end
