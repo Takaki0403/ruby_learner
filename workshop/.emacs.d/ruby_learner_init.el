@@ -23,6 +23,11 @@
 (setq load-path (cons "~/.emacs.d/haml-mode-master" load-path))
 (setq load-path (cons "~/.emacs.d/org-mode" load-path))
 (setq load-path (cons "~/.emacs.d/themes" load-path))
+
+(setq w (selected-window))
+(setq w3 (split-window w nil nil))
+(setq w2 (split-window w nil t))
+
 ;;setting_theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (setq custom-theme-directory "~/.emacs.d/themes")
@@ -36,12 +41,12 @@
 ;; 1 行ずつスムーズにスクロールする 
 (setq scroll-step 1)
 ;; 行数を記載する
-(global-linum-mode t)
-(setq linum-format "%d")
-(set-face-attribute 'linum nil
-            :foreground "#999999"
-            :background "#000000"
-            :height 0.9)
+;;(global-linum-mode t)
+;;(setq linum-format "%d")
+;;(set-face-attribute 'linum nil
+;;            :foreground "#999999"
+;;            :background "#000000"
+;;            :height 0.9)
 ;; 括弧補完
 ;;(electric-pair-mode 1)
 ;; 行数を指定してジャンプする (goto-line) 
