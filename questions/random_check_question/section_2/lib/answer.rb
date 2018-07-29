@@ -6,11 +6,11 @@ country = gets.chomp
 
 def agreement(country)
   if country == 'japan'
-    puts 'こんにちは'
+    return 'こんにちは'
   elsif country == 'us'
-    puts 'hello'
+    return 'hello'
   else
-    puts '???'
+    return '???'
   end
 end
 
