@@ -24,9 +24,24 @@
 (setq load-path (cons "~/ruby_learner/workshop/emacs.d/org-mode" load-path))
 (setq load-path (cons "~/ruby_learner/workshop/emacs.d/themes" load-path))
 
+;; 画面分割
 (setq w (selected-window))
 (setq w3 (split-window w nil nil))
+;; 画面移動
 (setq windmove-wrap-around t)
+
+;; load-path で ~/.emacs.d とか書かなくてよくなる
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
+;; el-get
+(add-to-list 'load-path (locate-user-emacs-file "el-get"))
+(require 'el-get)
+;; el-getでダウンロードしたパッケージは ~/.emacs.d/ に入るようにする
+(setq el-get-dir (locate-user-emacs-file "~/ruby_learner/workshop/emacs.d/"))
+(el-get-bundle init-open-recentf)
+(setq init-open-recentf-function #'~/ruby_learner/workshop/lib/workplace.rb)
+(init-open-recentf)
+
 (setq w2 (split-window w nil t))
 ;;setting_theme
 (add-to-list 'custom-theme-load-path "~/ruby_learner/workshop/emacs.d/themes")
