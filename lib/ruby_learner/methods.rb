@@ -35,7 +35,7 @@ def typing_discriminant(answer_path: String, question_path: String)
       if select == 'exit'
         break
       elsif select == 'answer'
-        system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/ruby_learner_init.el sentence.org answer.rb"
+        system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
       else
         system "cd #{workshop_dir} && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el  sentence.org workplace.rb"
       end

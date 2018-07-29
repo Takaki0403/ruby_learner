@@ -26,10 +26,15 @@
 
 ;; 画面分割
 (setq w (selected-window))
-(setq w3 (split-window w nil nil))
+(setq w3 (split-window w nil t))
 ;; 画面移動
-(setq windmove-wrap-around t)
-(setq w2 (split-window w nil t))
+;; (setq windmove-wrap-around t)
+(setq w2 (split-window w nil nil))
+;; scratch文字
+(setq initial-scratch-message "ctrl x & ctrl f 後に answer.rb を入力。")
+(insert-file-contents "~/ruby_learner/workshop/lib/answer.rb" nil 0 500)
+(ruby-mode)
+(find-file "~/ruby_learner/workshop/lib/answer.rb")
 ;;setting_theme
 (add-to-list 'custom-theme-load-path "~/ruby_learner/workshop/emacs.d/themes")
 (setq custom-theme-directory "~/ruby_learner/workshop/emacs.d/themes")
