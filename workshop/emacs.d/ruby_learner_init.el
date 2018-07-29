@@ -65,6 +65,9 @@
 
 ;; エンコード方式をUTF-8に
 (set-default-coding-systems 'utf-8)
+
+(setq coding-system-for-read 'utf-8)
+(setq coding-system-for-write 'utf-8)
 ;; C-zでUndo
 ;;(global-set-key "\C-z" 'undo)
 ;; 行番号をデフォルトで表示
