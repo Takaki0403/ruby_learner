@@ -1,4 +1,4 @@
-# -*- coding: undecided -*-
+# -*- coding: utf-8 -*-
 # section_2/answer.rb
 
 puts "please input country"
@@ -14,4 +14,4 @@ def agreement(country)
   end
 end
 
-agreement(country)
+# agreement(country)
