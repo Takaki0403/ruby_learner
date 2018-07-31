@@ -45,9 +45,9 @@ p "Hello,\n\tRuby."
 3つの数値x、y、zを受け取り、縦x、横y、高さzの直方体の表面積と体積を求めるプログラム
 
 #+begin_src ruby
-x = ARGV[0]
-y = ARGV[1]
-z = ARGV[2]
+x = ARGV[0].to_i
+y = ARGV[1].to_i
+z = ARGV[2].to_i
 
 area = (x*y + y*z + z*x) * 2
 volume = x * y * z
@@ -64,12 +64,37 @@ print "体積=" volume, "\n"
 
 * 条件判断
 
-** List1.7 greater_smaller_else.rb
+** List1.6 greater_smaller.rb
+
+# List1.7だけで十分かも
 
 数値を1つ引数として受け取り、それが10以上ならば「greater」、9以下ならば「smaller」と出力するプログラム
 
 #+begin_src ruby
-a = ARGV[0]
+a = ARGV[0].to_i
+
+if a >= 10
+  print "greater\n"
+end
+if a <= 9
+  print "smaller\n"
+end
+#+end_src
+
+#+begin_example
+>ruby greater_smaller_else.rb 20
+greater
+
+>ruby greater_smaller_else.rb 5
+smaller
+#+end_example
+
+** List1.7 greater_smaller_else.rb
+
+List1.6のプログラムと同じ処理を、elseを用いて実行するプログラム
+
+#+begin_src ruby
+a = ARGV[0].to_i
 
 if a >= 10
   print "greater\n"
@@ -92,9 +117,9 @@ smaller
 入力された1つの数値nを引数として受け取り、1からnまでの数を順番に表示するプログラム
 
 #+begin_src ruby
-n = ARGV[0]
+n = ARGV[0].to_i
 i = 1
-while i <= 10
+while i <= n
   print i, "\n"
   i = i + 1
 end
@@ -108,6 +133,127 @@ end
 4
 5
 #+end_example
+
+
+** timesメソッド
+
+# while文と動作での差別化難しい
+
+「All work and no play makes Jack a dull boy.」と5行表示するプログラム
+
+#+begin_src ruby
+5.times do
+  print "All work and no play makes Jack a dull boy."
+end
+#+end_src
+
+
+
+
+* 配列
+
+** 配列からオブジェクトを取り出す
+
+配列のn番目の要素を取り出し、表示するプログラム
+
+#+begin_src ruby
+names = ["小林", "林", "高野", "森岡"]
+
+print names[ARGV[0]]
+#+end_src
+
+#+begin_src ruby
+>ruby answer.rb 0
+小林
+#+end_src
+
+** 配列にオブジェクトを格納する
+
+配列の先頭の要素をコマンドラインに入力した要素に変更するプログラム
+
+#+begin_src ruby
+nums = [1, 2, 3]
+
+nums[0] = ARGV[0]
+
+print nums
+#+end_src
+
+
+#+begin_example
+> ruby answer.rb 5
+[5, 2, 3]
+#+end_example
+
+** 配列と繰り返し
+
+配列全体を表示してから、配列の要素を順に表示するプログラム
+
+#+begin_src ruby
+names = ["小林", "林", "高野", "森岡"]
+
+print names, "\n"
+
+names.each do |n|
+  puts n
+end
+#+end_src
+
+#+begin_example
+> ruby answer.rb
+["小林", "林", "高野", "森岡"]
+小林
+林
+高野
+森岡
+#+end_example
+
+* ハッシュ
+
+** シンボル
+
+コマンドラインから文字列を受け取り、シンボルに変換して表示するプログラム
+
+#+begin_src ruby
+n = ARGV[0]
+
+p n.to_sym
+#+end_src
+
+#+begin_example
+> ruby answer.rb hash
+:hash
+#+end_example
+
+** ハッシュの操作
+
+:name, :furiganaというそれぞれのキーに"高橋", "タカハシ"というオブジェクトが格納されているハッシュを表示、さらに:telというキーに"000-1234-5678"を格納して再度表示するプログラム
+
+#+begin_src ruby
+address = {name: "高橋", furigana: "タカハシ"}
+
+puts address
+
+address[:tel] = "000-1234-5678"
+
+puts address
+#+end_src
+
+#+begin_example
+> ruby answer.rb 
+{:name=>"高橋", :furigana=>"タカハシ"}
+{:name=>"高橋", :furigana=>"タカハシ", :tel=>"000-1234-5678"}
+#+end_example
+
+
+* 正規表現
+
+** パターンとマッチング
+
+#+begin_src ruby
+
+
+#+end_src
 
 * コマンドラインからのデータの入力
 ** List3.1 print_argv.rb
@@ -135,4 +281,106 @@ puts "5番目の引数: #{ARGV[4]}"
 
 
 
-* 
+** List3.3 arg_arith.rb
+
+コマンドラインから数値を2つ受け取り、和、差、積、商を表示するプログラム
+
+#+begin_src ruby
+num0 = ARGV[0].to_i
+num1 = ARGV[1].to_i
+
+puts "#{num0 + num1}"
+puts "#{num0 - num1}"
+puts "#{num0 * num1}"
+puts "#{num0 / num1}"
+#+end_src
+
+#+begin_example
+> ruby answer.rb 5 3 
+8
+2
+15
+1
+#+end_example
+
+* ファイルからの読み込み
+
+** List3.4 read_text.rb
+
+コマンドラインからファイル名を受け取り、該当ファイルのテキストデータを表示するプログラム
+
+#+begin_src ruby
+filename = ARGV[0]
+text = File.read(filename)
+print text
+#+end_src
+
+#+begin_example
+>ruby answer.rb [filename]
+[text]
+#+end_example
+
+
+** List3.7 read_line.rb
+
+コマンドラインからファイル名を受け取り、該当ファイルのテキストデータを1行ずつ表示すつプログラム
+
+#+begin_src ruby
+filename = ARGV[0]
+file = File.open(filename)
+file.each_line do |line|
+  print line
+end
+#+end_src
+
+#+begin_example
+
+#+end_example
+
+
+** List3.8 simple_grep.rb
+
+入力したテキストデータの中から、正規表現で指定した特定のパターンにマッチする行を出力するプログラム
+
+#+begin_src ruby
+pattern = Regexp.new(ARGV[0])
+filename = ARGV[1]
+
+file = File.open(filename)
+file.each_line do |line|
+  if pattern =~ line
+    print line
+  end
+end
+file.close
+#+end_src
+
+#+begin_example
+>ruby answer.rb [pattern] [filename]
+#+end_example
+
+* メソッドの作成
+** List3.2 hello_ruby2.rb
+
+「Hello, Ruby.」と表示するメソッドhelloを用いて、
+
+
+#+begin_src ruby
+def hello
+  puts "Hello, Ruby."
+end
+
+hello()
+#+end_src
+
+#+begin_example
+> ruby hello_ruby2.rb
+Hello, Ruby.
+#+end_example
+
+
+
+
+
+* 別のファイルを取り込む
+
