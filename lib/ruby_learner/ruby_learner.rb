@@ -31,13 +31,11 @@ module RubyLearner
       end
     end
 
-    desc 'sequential_check [dir_num:1~6] [file_num:1~3] ', 'typing and editing practice.'
+    desc 'sequential_check [section:1~1] [part:1~2]',''
     def sequential_check(*_argv, dir_num, file_num)
-      origin_seq_dir = "#{@rl_origin_dir}/questions/sequential_check"
-      origin_file_path = "#{origin_seq_dir}/ruby_#{dir_num}/#{file_num}.rb"
-      p origin_file_path
-      typing_prac_class = TypingPractice.new(prac_dir: @workshop_dir, origin_dir: @rl_origin_dir)
-      typing_prac_class.prac_sequence(origin_file: origin_file_path)
+      origin_seq_dir = "#{@rl_origin_dir}/questions/sequential_check/section_#{dir_num}/part_#{file_num}"
+      typing_prac_class = TypingPractice.new(workshop_dir: @workshop_dir)
+      typing_prac_class.prac_sequence(mode_dir: origin_seq_dir)
     end
 
     desc 'random_check', 'typing and editing practice.'
@@ -45,7 +43,7 @@ module RubyLearner
       rand_num = rand(1..2)
       origin_rand_dir = "#{@rl_origin_dir}/questions/random_check/section_#{rand_num}"
       typing_practice = TypingPractice.new(workshop_dir: @workshop_dir)
-      typing_practice.prac_sequence(origin_rand_dir: origin_rand_dir)
+      typing_practice.prac_sequence(mode_dir: origin_rand_dir)
     end
   end
 end
