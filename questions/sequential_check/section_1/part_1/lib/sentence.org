@@ -1,0 +1,9 @@
+#+STARTUP: indent nolineimages
+# section_1/sentence.org
+
+* for文の使い方
+- 繰り返しの基本ですよー
+
+* 問題文
+- 繰り返し処理を用いて足し算してよ
+- for_system(a, b)を用いて

@@ -37,4 +37,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "colorize"
   spec.add_dependency "minitest", "~> 5.10.3"
   spec.add_dependency "diff-lcs"
+  spec.add_dependency "rubocop", "~> 0.55.0"
 end
