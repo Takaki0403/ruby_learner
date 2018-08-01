@@ -30,7 +30,7 @@ In this clone directory:
 ## Usage
 ```ruby
 Usage: ruby_learner [options]
-       sequential_check:	learning drill.
+       sequential_check [section:1~1] [part:1~2]:	learning drill.
 ```
 
 In learning in this app, you can choice 3 mode.  
