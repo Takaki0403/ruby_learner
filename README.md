@@ -24,11 +24,8 @@ Now it is not release. If you want to use it, you must under guides:
 
 In this clone directory:
 
-   $ rake build
-
-You can install in local:
-
-   $ rake install:local
+    $ rake build  
+    $ rake install:local
 
 ## Usage
 ```ruby
