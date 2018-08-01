@@ -19,9 +19,8 @@ Or install it yourself as:
     $ gem install ruby_learner
 
 Now it is not release. If you want to use it, you must under guides:
-```ruby
-git clone git@github.com:Takaki0403/ruby_learner.git
-```
+
+    $ git clone git@github.com:Takaki0403/ruby_learner.git
 
 In this clone directory:
    $ rake build
@@ -30,24 +29,22 @@ In this clone directory:
 ## Usage
 ```ruby
 Usage: ruby_learner [options]
-       sequential_check		learning drill.
+       sequential_check:	learning drill.
 ```
 
-In learning in this app, you can choice 3 mode.
-Mode 1: you can continue to answer the question. 
-```ruby
-[RET]
-```
+In learning in this app, you can choice 3 mode.\n
+Mode 1: you can continue to answer the question:
+
+     $ [RET]
+
 
 Mode 2: you can confirm answer example.
-```ruby
-answer + [RET]
-```
+
+     $ answer + [RET]
 
 Mode 3: you can stop answer the question.
-```ruby
-exit + [RET]
-```
+
+     $ exit + [RET]
 
 ## Development
 
