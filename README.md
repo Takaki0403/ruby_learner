@@ -23,7 +23,11 @@ Now it is not release. If you want to use it, you must under guides:
     $ git clone git@github.com:Takaki0403/ruby_learner.git
 
 In this clone directory:
-   $ rake build  
+
+   $ rake build
+
+You can install in local:
+
    $ rake install:local
 
 ## Usage
