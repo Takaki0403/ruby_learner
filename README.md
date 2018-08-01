@@ -23,7 +23,7 @@ Now it is not release. If you want to use it, you must under guides:
     $ git clone git@github.com:Takaki0403/ruby_learner.git
 
 In this clone directory:
-   $ rake build
+   $ rake build  
    $ rake install:local
 
 ## Usage
@@ -32,7 +32,7 @@ Usage: ruby_learner [options]
        sequential_check:	learning drill.
 ```
 
-In learning in this app, you can choice 3 mode.\n
+In learning in this app, you can choice 3 mode.  
 Mode 1: you can continue to answer the question:
 
      $ [RET]
