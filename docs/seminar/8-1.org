@@ -1,0 +1,18 @@
+#+STARTUP: indent nolineimages
+
+* Document化
+** アプリの説明書の作成
+- Readme と org にまとめる
+* ruby_learnerについて
+** 高橋さん（楽しいruby）
+- 回答例をrubocopで精査を行う
+- 文章に責任を持つ
+** システムについて
+- 見直し（Restore）機能（回答履歴を残しておく。ファイル名はわかりやすく）
+- randomcheck廃止。secentialに変更。
+- rspec完了後、rubocopで異常個所の出力（同時にabc_size_checkも）
+- 振る舞いに責任を持つ
+
+** 一通り終わってから
+- 楽しいRuby（第3版）の22,23章を参考に
+- 一種のツールの作成になるのかな？
