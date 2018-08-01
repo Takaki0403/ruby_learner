@@ -12,13 +12,12 @@ module RubyLearner
   class CLI < Thor
     def initialize(*args)
       super
-      # rl is RubyLearner
-      @workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop" # workshop_directory
-      @gem_location = Open3.capture3('gem environment gemdir')
+      @workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop"
+      gem_location = Open3.capture3('gem environment gemdir')
       app_vers = Open3.capture3('gem list ruby_learner')
       rl_ver = app_vers[0].chomp.tr(' ', '-').delete('()')
-      @rl_origin_dir = File.join(@gem_location[0].chomp, "/gems/#{rl_ver}")
-      init_mk_files(origin_dir: @rl_origin_dir, prac_dir: @workshop_dir)
+      @gem_dir = File.join(gem_location[0].chomp, "/gems/#{rl_ver}")
+      init_mk_files(gem_dir: @gem_dir, workshop_dir: @workshop_dir)
     end
 
     desc 'delete [number~number]', 'choose number to delete ruby_files'
@@ -33,17 +32,17 @@ module RubyLearner
 
     desc 'sequential_check [section:1~1] [part:1~2]',''
     def sequential_check(*_argv, dir_num, file_num)
-      origin_seq_dir = "#{@rl_origin_dir}/questions/sequential_check/section_#{dir_num}/part_#{file_num}"
+      seq_dir = "#{@gem_dir}/questions/sequential_check/section_#{dir_num}/part_#{file_num}"
       typing_prac_class = TypingPractice.new(workshop_dir: @workshop_dir)
-      typing_prac_class.prac_sequence(mode_dir: origin_seq_dir)
+      typing_prac_class.prac_sequence(mode_dir: seq_dir)
     end
 
     desc 'random_check', 'typing and editing practice.'
     def random_check(*_argv)
       rand_num = rand(1..2)
-      origin_rand_dir = "#{@rl_origin_dir}/questions/random_check/section_#{rand_num}"
+      rand_dir = "#{@gem_dir}/questions/random_check/section_#{rand_num}"
       typing_practice = TypingPractice.new(workshop_dir: @workshop_dir)
-      typing_practice.prac_sequence(mode_dir: origin_rand_dir)
+      typing_practice.prac_sequence(mode_dir: rand_dir)
     end
   end
 end

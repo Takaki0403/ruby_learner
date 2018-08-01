@@ -53,10 +53,10 @@ def instruct_print
   puts "if you check the answer example, input 'answer' and press return_key"
 end
 
-def init_mk_files(origin_dir: String, prac_dir: String)
-  if Dir.exist?(prac_dir) != true then
-    FileUtils.mkdir_p(prac_dir)
-    system("cp -R #{origin_dir}/workshop/* #{prac_dir}")
+def init_mk_files(gem_dir: String, workshop_dir: String)
+  if Dir.exist?(workshop_dir) != true then
+    FileUtils.mkdir_p(workshop_dir)
+    system("cp -R #{gem_dir}/workshop/* #{workshop_dir}")
   end
 end
 
