@@ -1,8 +1,6 @@
 # RubyLearner
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ruby_learner`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Ruby mastering application
 
 ## Installation
 
@@ -20,13 +18,38 @@ Or install it yourself as:
 
     $ gem install ruby_learner
 
-## Usage
+Now it is not release. If you want to use it, you must under guides:
+```ruby
+git clone git@github.com:Takaki0403/ruby_learner.git
+```
 
-TODO: Write usage instructions here
+In this clone directory:
+   $ rake build
+   $ rake install:local
+
+## Usage
+```ruby
+Usage: ruby_learner [options]
+       sequential_check		learning drill.
+```
+
+In learning in this app, you can choice 3 mode.
+Mode 1: you can continue to answer the question. 
+```ruby
+[RET]
+```
+
+Mode 2: you can confirm answer example.
+```ruby
+answer + [RET]
+```
+
+Mode 3: you can stop answer the question.
+```ruby
+exit + [RET]
+```
 
 ## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
@@ -37,8 +60,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the RubyLearner project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/ruby_learner/blob/master/CODE_OF_CONDUCT.md).
-# ruby_learner
