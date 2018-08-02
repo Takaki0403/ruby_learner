@@ -13,7 +13,7 @@ class TypingPractice
     FileUtils.cp("#{mode_dir}/spec/workplace_spec.rb", "#{@workshop_dir}/spec/workplace_spec.rb")
     system "cd #{@workshop_dir}/lib && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el sentence.org workplace.rb"
     start_time = Time.now
-    typing_discriminant(answer_path: "#{@workshop_dir}/lib/workplace.rb", question_path: "#{@workshop_dir}/lib/sentence.org")
+    typing_discriminant(dir: @workshop_dir)
     elapsed_time = time_check(start_time: start_time)
     p "#{elapsed_time} sec"
     # mk_training_data(elapsed_time: elapsed_time, prac_dir: @prac_dir)
