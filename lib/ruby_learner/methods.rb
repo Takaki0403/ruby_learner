@@ -122,6 +122,10 @@ def restore(file: String, workshop_dir: String)
   end
   restore_file.gsub!(" ", "")
   restore_file.delete!("#")
+  Dir::chdir("#{workshop_dir}/restore"){
+    file_count = Dir.glob("*.rb").count
+    restore_file.insert(-5, "[#{file_count}]")
+  }
   system "touch #{workshop_dir}/restore/#{restore_file}"
   system "cp #{workshop_dir}/lib/workplace.rb #{workshop_dir}/restore/#{restore_file}"
 end
