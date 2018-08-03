@@ -122,6 +122,7 @@
 (setq auto-mode-alist (append '(("\\.ru$" . ruby-mode)) auto-mode-alist))
 (setq interpreter-mode-alist (append '(("ruby" . ruby-mode))
                                      interpreter-mode-alist))
+(setq ruby-insert-encoding-magic-comment nil)
 (autoload 'run-ruby "inf-ruby"
   "Run an inferior Ruby process")
 (autoload 'inf-ruby-keys "inf-ruby"
