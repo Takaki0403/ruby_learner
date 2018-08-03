@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# section_2/answer.rb
+# 1.2-agreement.rb
 
 puts "please input country"
 country = gets.chomp

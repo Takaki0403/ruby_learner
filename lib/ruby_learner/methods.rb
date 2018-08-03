@@ -1,14 +1,8 @@
+# -*- coding: utf-8 -*-
 # def open_terminal(init_dir: String)
 #   system "osascript -e 'tell application \"Terminal\" to do script \"cd #{init_dir} \" '"
 # end
 require 'rubocop'
-
-def spell_diff_check(file1: String, file2: String)
-  stdin, stdout, stderr = Open3.popen3("diff -c #{file1} #{file2}")
-  stdout.each do |diff|
-    p diff.chomp
-  end
-end
 
 def time_check(start_time: Time)
   end_time = Time.now
@@ -24,6 +18,7 @@ def typing_discriminant(dir: workshop_dir)
       break
     end
   end
+  restore(file: "#{dir}/lib/workplace.rb", workshop_dir: dir)
 end
 
 def instruct_print
@@ -74,6 +69,7 @@ def rspec_check(dir: workshop_dir)
       instruct_print
       select = STDIN.gets.chomp
       if select == 'exit'
+        flag_rspec = true
         break
       elsif select == 'answer'
         system "cd #{dir}/lib && emacs -nw -q -l #{dir}/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
@@ -104,6 +100,7 @@ def rubocop_check(file: String, dir: workshop_dir)
       instruct_print
       select = STDIN.gets.chomp
       if select == 'exit'
+        flag_rubocop = true
         break
       elsif select == 'answer'
         system "cd #{dir}/lib && emacs -nw -q -l #{dir}/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
@@ -113,4 +110,18 @@ def rubocop_check(file: String, dir: workshop_dir)
     end
   end
   return flag_rubocop
+end
+
+def restore(file: String, workshop_dir: String)
+  restore_file = ""
+  line = File.open("#{workshop_dir}/lib/answer.rb") do |f|
+    0.times {
+      f.gets
+    }
+    puts restore_file = f.gets
+  end
+  restore_file.gsub!(" ", "")
+  restore_file.delete!("#")
+  system "touch #{workshop_dir}/restore/#{restore_file}"
+  system "cp #{workshop_dir}/lib/workplace.rb #{workshop_dir}/restore/#{restore_file}"
 end
