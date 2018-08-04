@@ -20,7 +20,7 @@ module RubyLearner
       init_mk_files(gem_dir: @gem_dir, workshop_dir: @workshop_dir)
     end
 
-    desc 'command', 'check emacs command'
+    desc 'emacs_key', 'check emacs key-bindings'
     def command(*_argv)
       system("cat #{@workshop_dir}/emacs_help.org")
     end
