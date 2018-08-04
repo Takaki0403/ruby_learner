@@ -1,5 +1,4 @@
 #+STARTUP: indent nolineimages
-# 以下の項目は[TAB]で開くことができます。
 * 記号の説明
   - emacsのキーバインド
   特殊キー操作

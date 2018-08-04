@@ -22,11 +22,7 @@ module RubyLearner
 
     desc 'command', 'check emacs command'
     def command(*_argv)
-      File.open("#{@workshop_dir}/emacs_help.org") do |sentence|
-        sentence.each_line{|line|
-          p line
-        }
-      end
+      system("cat #{@workshop_dir}/emacs_help.org")
     end
 
     desc 'sequential_check [section:1~1] [part:1~2]','learning drill'
