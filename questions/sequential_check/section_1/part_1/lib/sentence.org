@@ -6,4 +6,4 @@
 
 * 問題文
 - 繰り返し処理を用いて足し算してよ
-- for_system(a, b)を用いて
+- for_system(aaa, bbb)を用いて,値aaaをbbb回足す関数を作成せよ。
