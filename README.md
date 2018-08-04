@@ -18,19 +18,6 @@ Or install it yourself as:
 
     $ gem install ruby_learner
 
-Now it is not release. If you want to use it, you must under guides:
-
-    $ git clone git@github.com:Takaki0403/ruby_learner.git
-
-In this clone directory:
-
-    $ rake build  
-    $ rake install:local
-
-<Attention> If your Home_directory has ruby_learner, you must delete it.
-
-    $ rm -rf ~/ruby_learner
-
 ## Usage
 ```ruby
 Usage: ruby_learner [options]
