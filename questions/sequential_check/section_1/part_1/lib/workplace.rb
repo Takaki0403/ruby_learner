@@ -1,5 +1,5 @@
 # section_1/workplacs.rb
 
-def for_system(a, b)
+def for_system(aaa, bbb)
 
 end

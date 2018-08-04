@@ -2,7 +2,7 @@
 
 def for_system(aaa, bbb)
   answer = 0
-  bbb.each do
+  bbb.times do
     answer += aaa
   end
   answer
