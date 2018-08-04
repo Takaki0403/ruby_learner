@@ -118,7 +118,7 @@ def restore(file: String, workshop_dir: String)
     0.times {
       f.gets
     }
-    puts restore_file = f.gets
+    restore_file = f.gets
   end
   restore_file.gsub!(" ", "")
   restore_file.delete!("#")
