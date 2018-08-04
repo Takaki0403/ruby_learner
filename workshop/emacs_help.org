@@ -1,0 +1,35 @@
+#+STARTUP: indent nolineimages
+# 以下の項目は[TAB]で開くことができます。
+* 記号の説明
+  - emacsのキーバインド
+  特殊キー操作
+  - C-f, controlキーを押しながら    'f'
+  - M-f, escキーを押した後一度離して'f'
+  - 操作の中断C-g, 操作の取り消し(Undo) C-x u
+* カーソル移動
+  - C-f, move Forwrard,    前or右へ
+  - C-b, move Backwrard,   後or左へ
+  - C-a, go Ahead of line, 行頭へ
+  - C-e, go End of line,   行末へ
+  - C-n, move Next line,   次行へ
+  - C-p, move Previous line, 前行へ
+* 編集
+  - C-d, Delete char, 一字削除
+  - C-k, Kill line,   一行抹消，カット
+  - C-y, Yank,        ペースト
+  - C-w, Kill region, 領域抹消，カット
+  - M-y, copy region, 領域コピー
+  - 領域選択は，先頭or最後尾でC-spaceした後，最後尾or先頭へカーソル移動
+  - 領域選択後 M-x indent-region, 整地
+* ファイル
+  - C-x C-f, Find file, ファイルを開く
+  - C-x C-s, Save file, ファイルを保存
+  - C-x C-w, Write file NAME, ファイルを別名で書き込む
+* 終了
+  - C-x C-c, Quit emacs, ファイルを保存して終了
+  - C-z, suspend emacs,  一時停止，fgで復活
+* 画面
+  - C-x 2, 2 windows, 二つに分割
+  - C-x 1, 1 windows, 一つに戻す
+  - C-x 3, 3rd window sep,縦線分割
+  - C-x o, Other windows, 次の画面へ移動

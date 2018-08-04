@@ -20,17 +20,16 @@ module RubyLearner
       init_mk_files(gem_dir: @gem_dir, workshop_dir: @workshop_dir)
     end
 
-    desc 'delete [number~number]', 'choose number to delete ruby_files'
-    def delete(head_num, end_num)
-      range = head_num..end_num
-      range.each do |num|
-        if File.exist?("#{@workshop_dir}/ruby_#{num}") == true
-          system "rm -rf #{@workshop_dir}/ruby_#{num}"
-        end
+    desc 'command', 'check emacs command'
+    def command(*_argv)
+      File.open("#{@workshop_dir}/emacs_help.org") do |sentence|
+        sentence.each_line{|line|
+          p line
+        }
       end
     end
 
-    desc 'sequential_check [section:1~1] [part:1~2]',''
+    desc 'sequential_check [section:1~1] [part:1~2]','learning drill'
     def sequential_check(*_argv, dir_num, file_num)
       seq_dir = "#{@gem_dir}/questions/sequential_check/section_#{dir_num}/part_#{file_num}"
       typing_prac_class = TypingPractice.new(workshop_dir: @workshop_dir)
