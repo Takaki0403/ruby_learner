@@ -21,7 +21,7 @@ module RubyLearner
     end
 
     desc 'emacs_key', 'check emacs key-bindings'
-    def command(*_argv)
+    def emacs_key(*_argv)
       system("cat #{@workshop_dir}/emacs_help.org")
     end
 
