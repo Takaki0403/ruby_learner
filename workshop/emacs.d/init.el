@@ -56,6 +56,8 @@
 
 (setq coding-system-for-read 'utf-8)
 (setq coding-system-for-write 'utf-8)
+(require 'ruby-mode)
+(defun ruby-mode-set-encoding () nil)
 ;; C-zでUndo
 ;;(global-set-key "\C-z" 'undo)
 ;; 行番号をデフォルトで表示
@@ -110,7 +112,6 @@
 (setq auto-mode-alist (append '(("\\.ru$" . ruby-mode)) auto-mode-alist))
 (setq interpreter-mode-alist (append '(("ruby" . ruby-mode))
                                      interpreter-mode-alist))
-(setq ruby-insert-encoding-magic-comment nil)
 (autoload 'run-ruby "inf-ruby"
   "Run an inferior Ruby process")
 (autoload 'inf-ruby-keys "inf-ruby"

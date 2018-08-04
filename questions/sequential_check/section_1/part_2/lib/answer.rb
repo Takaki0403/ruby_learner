@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # 1.2-agreement.rb
 
 puts "please input country"
