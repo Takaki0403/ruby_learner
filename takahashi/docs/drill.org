@@ -4,17 +4,27 @@
 #+LANGUAGE:  jp
 #+OPTIONS:   H:4 toc:t num:2
 
-#+SETUPFILE: /Users/bob/Github/org-html-themes/setup/theme-readtheorg-local-daddygongon.setup
+# -*- mode: org; -*-
 
-* drillを作ってみる
-1. まず，Listを取り出す
-1. 実行結果をつける
-1. コードの振る舞いを記述するタイトルをつけていく．
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+
+#+HTML_HEAD: <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+#+HTML_HEAD: <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+# +SETUPFILE: /Users/bob/Github/org-html-themes/setup/theme-readtheorg-local-daddygongon.setup
+
+
+# * drillを作ってみる
+# 1. まず，Listを取り出す
+# 1. 実行結果をつける
+# 1. コードの振る舞いを記述するタイトルをつけていく．
 
 
 * print,puts,pメソッド
 
-** List1.1 helloruby.rb
+** helloruby.rb
 
 「Hello, Ruby.」という文字列を出力するプログラムを作成せよ
 
@@ -26,21 +36,84 @@ print('Hello, Ruby.\n')
 Hello, Ruby.
 #+end_example
 
-** List1.2 puts_and_p.rb
+** helloruby_2.rb
 
-「"Hello,\n\tRuby."という文字列を出力するプログラムを作成
+「Hello, "Ruby".」という文字列を出力するプログラムを作成せよ
+
+#+begin_src ruby
+print("Hello, \"Ruby\".\n")
+#+end_src
+
+#+begin_example
+> helloruby_2.rb
+Hello,"Ruby".
+#+end_example
+
+** p_method.rb
+
+「"Hello,\n\tRuby."」という文字列を出力するプログラムを作成せよ
 
 #+begin_src ruby
 p "Hello,\n\tRuby."
 #+end_src
 
-** List1.3 kiritsubo.rb
+
+
+** kiritsubo.rb
 
    # かな文字を出力で表示させるだけって必要？
 
+* コマンドラインからのデータの入力
+** print_argv.rb
+
+コマンドラインから引数を5つ入力として受け取り、出力するプログラム
+
+#+begin_src ruby
+# List3.1 print_argv.rb
+puts "最初の引数: #{ARGV[0]}"
+puts "2番目の引数: #{ARGV[1]}"
+puts "3番目の引数: #{ARGV[2]}"
+puts "4番目の引数: #{ARGV[3]}"
+puts "5番目の引数: #{ARGV[4]}"
+#+end_src
+
+#+begin_example
+実行例
+> ruby print_argv.rb 1st 2nd 3rd 4th 5th
+最初の引数: 1st
+2番目の引数: 2nd
+3番目の引数: 3rd
+4番目の引数: 4th
+5番目の引数: 5th
+#+end_example
+
+
+
+** arg_arith.rb
+
+コマンドラインから数値を2つ受け取り、和、差、積、商を表示するプログラム
+
+#+begin_src ruby
+num0 = ARGV[0].to_i
+num1 = ARGV[1].to_i
+
+puts "#{num0 + num1}"
+puts "#{num0 - num1}"
+puts "#{num0 * num1}"
+puts "#{num0 / num1}"
+#+end_src
+
+#+begin_example
+> ruby answer.rb 5 3 
+8
+2
+15
+1
+#+end_example
+
 * 変数
 
-** List1.4 area_volume.rb
+** area_volume.rb
 
 3つの数値x、y、zを受け取り、縦x、横y、高さzの直方体の表面積と体積を求めるプログラム
 
@@ -64,7 +137,7 @@ print "体積=" volume, "\n"
 
 * 条件判断
 
-** List1.6 greater_smaller.rb
+** greater_smaller.rb
 
 # List1.7だけで十分かも
 
@@ -89,7 +162,7 @@ greater
 smaller
 #+end_example
 
-** List1.7 greater_smaller_else.rb
+** greater_smaller_else.rb
 
 List1.6のプログラムと同じ処理を、elseを用いて実行するプログラム
 
@@ -112,9 +185,9 @@ smaller
 
 * 繰り返し
 
-** while文 
+** 1_to_n.rb 
 
-入力された1つの数値nを引数として受け取り、1からnまでの数を順番に表示するプログラム
+入力された1つの数値nを引数として受け取り、1からnまでの数を順番に表示するプログラムを作成せよ
 
 #+begin_src ruby
 n = ARGV[0].to_i
@@ -126,7 +199,7 @@ end
 #+end_src
 
 #+begin_example ruby
-> ruby test.rb 5
+> ruby 1_to_n.rb 5
 1
 2
 3
@@ -134,8 +207,7 @@ end
 5
 #+end_example
 
-
-** timesメソッド
+** five_times.rb
 
 # while文と動作での差別化難しい
 
@@ -146,7 +218,6 @@ end
   print "All work and no play makes Jack a dull boy."
 end
 #+end_src
-
 
 
 
@@ -184,6 +255,18 @@ print nums
 > ruby answer.rb 5
 [5, 2, 3]
 #+end_example
+
+** 配列の大きさ
+
+配列を表示し、その配列の大きさも表示するプログラムを作成せよ
+
+#+begin_src ruby
+names = 
+
+print names, "\n"
+
+print names.size
+#+end_src
 
 ** 配列と繰り返し
 
@@ -245,7 +328,6 @@ puts address
 {:name=>"高橋", :furigana=>"タカハシ", :tel=>"000-1234-5678"}
 #+end_example
 
-
 * 正規表現
 
 ** パターンとマッチング
@@ -255,57 +337,9 @@ puts address
 
 #+end_src
 
-* コマンドラインからのデータの入力
-** List3.1 print_argv.rb
-
-コマンドラインから引数を5つ入力として受け取り、出力するプログラム
-
-#+begin_src ruby
-# List3.1 print_argv.rb
-puts "最初の引数: #{ARGV[0]}"
-puts "2番目の引数: #{ARGV[1]}"
-puts "3番目の引数: #{ARGV[2]}"
-puts "4番目の引数: #{ARGV[3]}"
-puts "5番目の引数: #{ARGV[4]}"
-#+end_src
-
-#+begin_example
-実行例
-> ruby print_argv.rb 1st 2nd 3rd 4th 5th
-最初の引数: 1st
-2番目の引数: 2nd
-3番目の引数: 3rd
-4番目の引数: 4th
-5番目の引数: 5th
-#+end_example
-
-
-
-** List3.3 arg_arith.rb
-
-コマンドラインから数値を2つ受け取り、和、差、積、商を表示するプログラム
-
-#+begin_src ruby
-num0 = ARGV[0].to_i
-num1 = ARGV[1].to_i
-
-puts "#{num0 + num1}"
-puts "#{num0 - num1}"
-puts "#{num0 * num1}"
-puts "#{num0 / num1}"
-#+end_src
-
-#+begin_example
-> ruby answer.rb 5 3 
-8
-2
-15
-1
-#+end_example
-
 * ファイルからの読み込み
 
-** List3.4 read_text.rb
+** read_text.rb
 
 コマンドラインからファイル名を受け取り、該当ファイルのテキストデータを表示するプログラム
 
@@ -320,8 +354,7 @@ print text
 [text]
 #+end_example
 
-
-** List3.7 read_line.rb
+** read_line.rb
 
 コマンドラインからファイル名を受け取り、該当ファイルのテキストデータを1行ずつ表示すつプログラム
 
@@ -337,8 +370,7 @@ end
 
 #+end_example
 
-
-** List3.8 simple_grep.rb
+** simple_grep.rb
 
 入力したテキストデータの中から、正規表現で指定した特定のパターンにマッチする行を出力するプログラム
 
@@ -360,7 +392,7 @@ file.close
 #+end_example
 
 * メソッドの作成
-** List3.2 hello_ruby2.rb
+** hello_ruby2.rb
 
 「Hello, Ruby.」と表示するメソッドhelloを用いて、
 
@@ -381,6 +413,34 @@ Hello, Ruby.
 
 
 
-
 * 別のファイルを取り込む
 
+** ディレクトリ内のファイルの取り込み
+#+begin_src ruby
+def simple_grep(pattern, filename)
+  file = File.open(filename)
+  file.each_line do |line|
+    if pattern =~ line
+      print line
+    end
+  end
+  file.close
+end
+#+end_src
+
+#+begin_src ruby
+require_relative "grep"
+
+pattern = Regexp.new(ARGV[0])
+filename = ARGV[1]
+simple_grep(pattern, filename)
+#+end_src
+
+** Rubyの標準ライブラリ
+
+#+begin_src ruby
+require "date"
+
+days = Date.today - Date.new(1993, 2, 24)
+puts(days.to_i)
+#+end_src
