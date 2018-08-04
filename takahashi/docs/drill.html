@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="jp" xml:lang="jp">
+<head>
+<title>はじめてのRuby</title>
+<!-- 2018-08-04 土 06:48 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Shun Takahashi" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">はじめてのRuby</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. print,puts,pメソッド</a>
+<ul>
+<li><a href="#sec-1-1">1.1. helloruby.rb</a></li>
+<li><a href="#sec-1-2">1.2. helloruby_2.rb</a></li>
+<li><a href="#sec-1-3">1.3. p_method.rb</a></li>
+<li><a href="#sec-1-4">1.4. kiritsubo.rb</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. コマンドラインからのデータの入力</a>
+<ul>
+<li><a href="#sec-2-1">2.1. print_argv.rb</a></li>
+<li><a href="#sec-2-2">2.2. arg_arith.rb</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. 変数</a>
+<ul>
+<li><a href="#sec-3-1">3.1. area_volume.rb</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. 条件判断</a>
+<ul>
+<li><a href="#sec-4-1">4.1. greater_smaller.rb</a></li>
+<li><a href="#sec-4-2">4.2. greater_smaller_else.rb</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. 繰り返し</a>
+<ul>
+<li><a href="#sec-5-1">5.1. 1_to_n.rb</a></li>
+<li><a href="#sec-5-2">5.2. five_times.rb</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. 配列</a>
+<ul>
+<li><a href="#sec-6-1">6.1. 配列からオブジェクトを取り出す</a></li>
+<li><a href="#sec-6-2">6.2. 配列にオブジェクトを格納する</a></li>
+<li><a href="#sec-6-3">6.3. 配列の大きさ</a></li>
+<li><a href="#sec-6-4">6.4. 配列と繰り返し</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">7. ハッシュ</a>
+<ul>
+<li><a href="#sec-7-1">7.1. シンボル</a></li>
+<li><a href="#sec-7-2">7.2. ハッシュの操作</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8. 正規表現</a>
+<ul>
+<li><a href="#sec-8-1">8.1. パターンとマッチング</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">9. ファイルからの読み込み</a>
+<ul>
+<li><a href="#sec-9-1">9.1. read_text.rb</a></li>
+<li><a href="#sec-9-2">9.2. read_line.rb</a></li>
+<li><a href="#sec-9-3">9.3. simple_grep.rb</a></li>
+</ul>
+</li>
+<li><a href="#sec-10">10. メソッドの作成</a>
+<ul>
+<li><a href="#sec-10-1">10.1. hello_ruby2.rb</a></li>
+</ul>
+</li>
+<li><a href="#sec-11">11. 別のファイルを取り込む</a>
+<ul>
+<li><a href="#sec-11-1">11.1. ディレクトリ内のファイルの取り込み</a></li>
+<li><a href="#sec-11-2">11.2. Rubyの標準ライブラリ</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> print,puts,pメソッド</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> helloruby.rb</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+「Hello, Ruby.」という文字列を出力するプログラムを作成せよ
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">print('Hello, Ruby.\n')
+</pre>
+</div>
+
+<pre class="example">
+Hello, Ruby.
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> helloruby_2.rb</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+「Hello, "Ruby".」という文字列を出力するプログラムを作成せよ
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">print("Hello, \"Ruby\".\n")
+</pre>
+</div>
+
+<pre class="example">
+&gt; helloruby_2.rb
+Hello,"Ruby".
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> p_method.rb</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+「"Hello,\n\tRuby."」という文字列を出力するプログラムを作成せよ
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">p "Hello,\n\tRuby."
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> kiritsubo.rb</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> コマンドラインからのデータの入力</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> print_argv.rb</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+コマンドラインから引数を5つ入力として受け取り、出力するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby"># List3.1 print_argv.rb
+puts "最初の引数: #{ARGV[0]}"
+puts "2番目の引数: #{ARGV[1]}"
+puts "3番目の引数: #{ARGV[2]}"
+puts "4番目の引数: #{ARGV[3]}"
+puts "5番目の引数: #{ARGV[4]}"
+</pre>
+</div>
+
+<pre class="example">
+実行例
+&gt; ruby print_argv.rb 1st 2nd 3rd 4th 5th
+最初の引数: 1st
+2番目の引数: 2nd
+3番目の引数: 3rd
+4番目の引数: 4th
+5番目の引数: 5th
+</pre>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> arg_arith.rb</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+コマンドラインから数値を2つ受け取り、和、差、積、商を表示するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">num0 = ARGV[0].to_i
+num1 = ARGV[1].to_i
+
+puts "#{num0 + num1}"
+puts "#{num0 - num1}"
+puts "#{num0 * num1}"
+puts "#{num0 / num1}"
+</pre>
+</div>
+
+<pre class="example">
+&gt; ruby answer.rb 5 3 
+8
+2
+15
+1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 変数</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> area_volume.rb</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+3つの数値x、y、zを受け取り、縦x、横y、高さzの直方体の表面積と体積を求めるプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">x = ARGV[0].to_i
+y = ARGV[1].to_i
+z = ARGV[2].to_i
+
+area = (x*y + y*z + z*x) * 2
+volume = x * y * z
+
+print "表面積=", area, "\n"
+print "体積=" volume, "\n"
+</pre>
+</div>
+
+<pre class="example">
+&gt; ruby area_volume.rb 10 20 30
+表面積=2200
+体積=6000
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 条件判断</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> greater_smaller.rb</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+数値を1つ引数として受け取り、それが10以上ならば「greater」、9以下ならば「smaller」と出力するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">a = ARGV[0].to_i
+
+if a &gt;= 10
+  print "greater\n"
+end
+if a &lt;= 9
+  print "smaller\n"
+end
+</pre>
+</div>
+
+<pre class="example">
+&gt;ruby greater_smaller_else.rb 20
+greater
+
+&gt;ruby greater_smaller_else.rb 5
+smaller
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> greater_smaller_else.rb</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+List1.6のプログラムと同じ処理を、elseを用いて実行するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">a = ARGV[0].to_i
+
+if a &gt;= 10
+  print "greater\n"
+else
+  print "smaller\n"
+</pre>
+</div>
+
+<pre class="example">
+&gt;ruby greater_smaller_else.rb 20
+greater
+
+&gt;ruby greater_smaller_else.rb 5
+smaller
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 繰り返し</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 1_to_n.rb</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+入力された1つの数値nを引数として受け取り、1からnまでの数を順番に表示するプログラムを作成せよ
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">n = ARGV[0].to_i
+i = 1
+while i &lt;= n
+  print i, "\n"
+  i = i + 1
+end
+</pre>
+</div>
+
+<pre class="example">
+&gt; ruby 1_to_n.rb 5
+1
+2
+3
+4
+5
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> five_times.rb</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+「All work and no play makes Jack a dull boy.」と5行表示するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">5.times do
+  print "All work and no play makes Jack a dull boy."
+end
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 配列</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> 配列からオブジェクトを取り出す</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+配列のn番目の要素を取り出し、表示するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">names = ["小林", "林", "高野", "森岡"]
+
+print names[ARGV[0]]
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">&gt;ruby answer.rb 0
+小林
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> 配列にオブジェクトを格納する</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+配列の先頭の要素をコマンドラインに入力した要素に変更するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">nums = [1, 2, 3]
+
+nums[0] = ARGV[0]
+
+print nums
+</pre>
+</div>
+
+
+<pre class="example">
+&gt; ruby answer.rb 5
+[5, 2, 3]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> 配列の大きさ</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+配列を表示し、その配列の大きさも表示するプログラムを作成せよ
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">names = 
+
+print names, "\n"
+
+print names.size
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> 配列と繰り返し</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+配列全体を表示してから、配列の要素を順に表示するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">names = ["小林", "林", "高野", "森岡"]
+
+print names, "\n"
+
+names.each do |n|
+  puts n
+end
+</pre>
+</div>
+
+<pre class="example">
+&gt; ruby answer.rb
+["小林", "林", "高野", "森岡"]
+小林
+林
+高野
+森岡
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> ハッシュ</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> シンボル</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+コマンドラインから文字列を受け取り、シンボルに変換して表示するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">n = ARGV[0]
+
+p n.to_sym
+</pre>
+</div>
+
+<pre class="example">
+&gt; ruby answer.rb hash
+:hash
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> ハッシュの操作</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+:name, :furiganaというそれぞれのキーに"高橋", "タカハシ"というオブジェクトが格納されているハッシュを表示、さらに:telというキーに"000-1234-5678"を格納して再度表示するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">address = {name: "高橋", furigana: "タカハシ"}
+
+puts address
+
+address[:tel] = "000-1234-5678"
+
+puts address
+</pre>
+</div>
+
+<pre class="example">
+&gt; ruby answer.rb 
+{:name=&gt;"高橋", :furigana=&gt;"タカハシ"}
+{:name=&gt;"高橋", :furigana=&gt;"タカハシ", :tel=&gt;"000-1234-5678"}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 正規表現</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> パターンとマッチング</h3>
+<div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+
+<pre class="src src-ruby"></pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> ファイルからの読み込み</h2>
+<div class="outline-text-2" id="text-9">
+</div><div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> read_text.rb</h3>
+<div class="outline-text-3" id="text-9-1">
+<p>
+コマンドラインからファイル名を受け取り、該当ファイルのテキストデータを表示するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">filename = ARGV[0]
+text = File.read(filename)
+print text
+</pre>
+</div>
+
+<pre class="example">
+&gt;ruby answer.rb [filename]
+[text]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-9-2" class="outline-3">
+<h3 id="sec-9-2"><span class="section-number-3">9.2</span> read_line.rb</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+コマンドラインからファイル名を受け取り、該当ファイルのテキストデータを1行ずつ表示すつプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">filename = ARGV[0]
+file = File.open(filename)
+file.each_line do |line|
+  print line
+end
+</pre>
+</div>
+
+<pre class="example">
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-9-3" class="outline-3">
+<h3 id="sec-9-3"><span class="section-number-3">9.3</span> simple_grep.rb</h3>
+<div class="outline-text-3" id="text-9-3">
+<p>
+入力したテキストデータの中から、正規表現で指定した特定のパターンにマッチする行を出力するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">pattern = Regexp.new(ARGV[0])
+filename = ARGV[1]
+
+file = File.open(filename)
+file.each_line do |line|
+  if pattern =~ line
+    print line
+  end
+end
+file.close
+</pre>
+</div>
+
+<pre class="example">
+&gt;ruby answer.rb [pattern] [filename]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> メソッドの作成</h2>
+<div class="outline-text-2" id="text-10">
+</div><div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1"><span class="section-number-3">10.1</span> hello_ruby2.rb</h3>
+<div class="outline-text-3" id="text-10-1">
+<p>
+「Hello, Ruby.」と表示するメソッドhelloを用いて、
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">def hello
+  puts "Hello, Ruby."
+end
+
+hello()
+</pre>
+</div>
+
+<pre class="example">
+&gt; ruby hello_ruby2.rb
+Hello, Ruby.
+</pre>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> 別のファイルを取り込む</h2>
+<div class="outline-text-2" id="text-11">
+</div><div id="outline-container-sec-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> ディレクトリ内のファイルの取り込み</h3>
+<div class="outline-text-3" id="text-11-1">
+<div class="org-src-container">
+
+<pre class="src src-ruby">def simple_grep(pattern, filename)
+  file = File.open(filename)
+  file.each_line do |line|
+    if pattern =~ line
+      print line
+    end
+  end
+  file.close
+end
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">require_relative "grep"
+
+pattern = Regexp.new(ARGV[0])
+filename = ARGV[1]
+simple_grep(pattern, filename)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-11-2" class="outline-3">
+<h3 id="sec-11-2"><span class="section-number-3">11.2</span> Rubyの標準ライブラリ</h3>
+<div class="outline-text-3" id="text-11-2">
+<div class="org-src-container">
+
+<pre class="src src-ruby">require "date"
+
+days = Date.today - Date.new(1993, 2, 24)
+puts(days.to_i)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Shun Takahashi</p>
+<p class="date">Created: 2018-08-04 土 06:48</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
