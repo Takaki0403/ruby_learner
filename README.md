@@ -27,9 +27,14 @@ In this clone directory:
     $ rake build  
     $ rake install:local
 
+<Attention> If your Home_directory has ruby_learner, you must delete it.
+
+    $ rm -rf ~/ruby_learner
+
 ## Usage
 ```ruby
 Usage: ruby_learner [options]
+       emacs_key:					confirm emacs key-bindings
        sequential_check [section:1~1] [part:1~2]:	learning drill.
 ```
 
