@@ -1,10 +1,9 @@
-require 'workplace.rb'
+require 'workplace'
 
-RSpec.describe "A loop" do
-  it "given 2 and 2, return 4" do
-    expect(for_system(2, 2)).to eq(4)
-  end
-  it "given 3 and 3, return 6" do
-    expect(for_system(3, 2)).to eq(6)
+RSpec.describe "output_string" do
+  it "output 'Hello, Ruby.'" do
+    expect(output_string).to eq('Hello, Ruby.')
   end
 end
+
+output_string

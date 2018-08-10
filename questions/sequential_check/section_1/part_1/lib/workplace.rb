@@ -1,5 +1,5 @@
-# section_1/workplacs.rb
-
-def for_system(aaa, bbb)
+# section_1/part_1/workplace.rb
+def output_string
+  # add new sentences to output 'Hello, Ruby.'.
 
 end
