@@ -1,3 +1,3 @@
 def output_string
-  print 'Hello, Ruby.\n'
+  print 'Hello, Ruby.'
 end

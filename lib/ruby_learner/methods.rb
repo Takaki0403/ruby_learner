@@ -10,17 +10,6 @@ def time_check(start_time: Time)
   return elapsed_time
 end
 
-def typing_discriminant(dir: workshop_dir)
-  loop do
-    flag_rspec = rspec_check(dir: dir)
-    flag_rubocop = rubocop_check(file: "#{dir}/lib/workplace.rb", dir: dir)
-    if flag_rspec == true && flag_rubocop == true
-      break
-    end
-  end
-  restore(file: "#{dir}/lib/workplace.rb", workshop_dir: dir)
-end
-
 def instruct_print
   puts "continue >>> [RET]"
   puts "stop >>> 'exit' + [RET]"
@@ -50,12 +39,40 @@ def mk_training_data(elapsed_time: Time, prac_dir: String)
   end
 end
 
+def typing_discriminant(dir: workshop_dir)
+  file = "#{dir}/lib/workplace.rb"
+  loop do
+    flag_rspec, flag_rs_exit = rspec_check(dir: dir)
+    if flag_rs_exit == true
+      break
+    end
+    flag_rubocop, flag_rub_exit = rubocop_check(file: file, dir: dir)
+    if flag_rub_exit == true
+      break
+    end
+    if flag_rspec == true && flag_rubocop == true
+      puts "**********************************"
+      puts "Final Error Check"
+      puts "**********************************"
+      check_rs =  system "cd #{dir} && rspec spec/workplace_spec.rb"
+      if check_rs == true
+        puts "your code is perfect!"
+        break
+      else
+        puts "not perfect"
+      end
+    end
+  end
+  restore(file: "#{dir}/lib/workplace.rb", workshop_dir: dir)
+end
+
 def rspec_check(dir: workshop_dir)
   puts "**********************************"
   puts "RSpec Error Check"
   puts "**********************************"
   count = 0
   flag_rspec = false
+  flag_exit = false
   loop do
     count += 1
     puts "---------------------------"
@@ -69,7 +86,7 @@ def rspec_check(dir: workshop_dir)
       instruct_print
       select = STDIN.gets.chomp
       if select == 'exit'
-        flag_rspec = true
+        flag_exit = true
         break
       elsif select == 'answer'
         system "cd #{dir}/lib && emacs -nw -q -l #{dir}/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
@@ -78,7 +95,7 @@ def rspec_check(dir: workshop_dir)
       end
     end
   end
-  return flag_rspec
+  return flag_rspec, flag_exit
 end
 
 def rubocop_check(file: String, dir: workshop_dir)
@@ -87,6 +104,7 @@ def rubocop_check(file: String, dir: workshop_dir)
   puts "**********************************"
   count = 0
   flag_rubocop = false
+  flag_exit = false
   loop do
     count += 1
     puts "---------------------------"
@@ -100,7 +118,7 @@ def rubocop_check(file: String, dir: workshop_dir)
       instruct_print
       select = STDIN.gets.chomp
       if select == 'exit'
-        flag_rubocop = true
+        flag_exit = true
         break
       elsif select == 'answer'
         system "cd #{dir}/lib && emacs -nw -q -l #{dir}/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
@@ -109,7 +127,7 @@ def rubocop_check(file: String, dir: workshop_dir)
       end
     end
   end
-  return flag_rubocop
+  return flag_rubocop, flag_exit
 end
 
 def restore(file: String, workshop_dir: String)

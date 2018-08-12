@@ -2,8 +2,6 @@ require 'workplace'
 
 RSpec.describe "output_string" do
   it "output 'Hello, Ruby.'" do
-    expect(output_string).to eq('Hello, Ruby.')
+    expect { output_string }.to output("Hello, Ruby.").to_stdout
   end
 end
-
-output_string
