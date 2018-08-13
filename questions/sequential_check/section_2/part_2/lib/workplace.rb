@@ -1,5 +1,3 @@
-# section_1/workplacs.rb
+# section_2/part_2/workplacs.rb
+# add new sentences.
 
-def for_system(aaa, bbb)
-
-end

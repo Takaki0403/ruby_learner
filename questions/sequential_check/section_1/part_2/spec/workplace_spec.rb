@@ -2,8 +2,9 @@
 require 'workplace'
 
 RSpec.describe "output_string" do
-  it "output 'Hello, \"Ruby.\"'" do
-    expect { output_string }.to output("Hello, Ruby.\n").to_stdout
+  let(:out) { "Hello, Ruby.\n" }
+  it "output 'Hello, Ruby.\n'" do
+    expect { output_string }.to output(out).to_stdout
   end
 end
 
