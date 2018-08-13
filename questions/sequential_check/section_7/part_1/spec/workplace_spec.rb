@@ -1,10 +1,14 @@
-require 'workplace.rb'
+require "open3"
 
-RSpec.describe "A loop" do
-  it "given 2 and 2, return 4" do
-    expect(for_system(2, 2)).to eq(4)
+RSpec.describe "symbol-check" do
+  it 'given 2, return ":"2""' do
+    workshop = "#{ENV['HOME']}/ruby_learner/workshop"
+    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb 2")
+    expect { puts stdout }.to output(":\"2\"\n").to_stdout
   end
-  it "given 3 and 3, return 6" do
-    expect(for_system(3, 2)).to eq(6)
+  it 'given "hoge", return ":hoge"' do
+    workshop = "#{ENV['HOME']}/ruby_learner/workshop"
+    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb hoge")
+    expect { puts stdout }.to output(":hoge\n").to_stdout
   end
 end
