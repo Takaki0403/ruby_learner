@@ -1,10 +1,9 @@
-require 'workplace.rb'
+require "open3"
 
-RSpec.describe "A loop" do
-  it "given 2 and 2, return 4" do
-    expect(for_system(2, 2)).to eq(4)
-  end
-  it "given 3 and 3, return 6" do
-    expect(for_system(3, 2)).to eq(6)
+RSpec.describe "times-loop" do
+  it '5times, return "All work and no play makes Jack a dull boy.\n" x 5 ' do
+    workshop = "#{ENV['HOME']}/ruby_learner/workshop"
+    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb")
+    expect { puts stdout }.to output("All work and no play makes Jack a dull boy.\nAll work and no play makes Jack a dull boy.\nAll work and no play makes Jack a dull boy.\nAll work and no play makes Jack a dull boy.\nAll work and no play makes Jack a dull boy.\n").to_stdout
   end
 end
