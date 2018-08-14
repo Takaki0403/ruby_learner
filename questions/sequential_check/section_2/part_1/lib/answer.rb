@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # section_2/part_1/answer.rb
 # 2-1-ARGV.rb
 

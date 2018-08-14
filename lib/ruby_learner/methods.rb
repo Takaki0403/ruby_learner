@@ -133,7 +133,7 @@ end
 def restore(file: String, workshop_dir: String)
   restore_file = ""
   line = File.open("#{workshop_dir}/lib/answer.rb") do |f|
-    1.times {
+    2.times {
       f.gets
     }
     restore_file = f.gets

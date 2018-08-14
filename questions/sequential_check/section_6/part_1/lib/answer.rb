@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # section_6/part_1/answer.rb
 # 6-1-array.rb
 nums = [3, 1, 4, 1, 5]
