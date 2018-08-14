@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="jp" xml:lang="jp">
 <head>
 <title>はじめてのRuby</title>
-<!-- 2018-08-04 土 04:56 -->
+<!-- 2018-08-09 木 17:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Shun Takahashi" />
@@ -198,46 +198,45 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-4">1.4. kiritsubo.rb</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">2. 変数</a>
+<li><a href="#sec-2">2. コマンドラインからのデータの入力</a>
 <ul>
-<li><a href="#sec-2-1">2.1. area_volume.rb</a></li>
+<li><a href="#sec-2-1">2.1. print_argv.rb</a></li>
+<li><a href="#sec-2-2">2.2. arg_arith.rb</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3. 条件判断</a>
+<li><a href="#sec-3">3. 変数</a>
 <ul>
-<li><a href="#sec-3-1">3.1. greater_smaller.rb</a></li>
-<li><a href="#sec-3-2">3.2. greater_smaller_else.rb</a></li>
+<li><a href="#sec-3-1">3.1. area_volume.rb</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">4. 繰り返し</a>
+<li><a href="#sec-4">4. 条件判断</a>
 <ul>
-<li><a href="#sec-4-1">4.1. 1_to_n.rb</a></li>
-<li><a href="#sec-4-2">4.2. five_times.rb</a></li>
+<li><a href="#sec-4-1">4.1. greater_smaller_else.rb</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. 配列</a>
+<li><a href="#sec-5">5. 繰り返し</a>
 <ul>
-<li><a href="#sec-5-1">5.1. 配列からオブジェクトを取り出す</a></li>
-<li><a href="#sec-5-2">5.2. 配列にオブジェクトを格納する</a></li>
-<li><a href="#sec-5-3">5.3. 配列の大きさ</a></li>
-<li><a href="#sec-5-4">5.4. 配列と繰り返し</a></li>
+<li><a href="#sec-5-1">5.1. 1_to_n.rb</a></li>
+<li><a href="#sec-5-2">5.2. five_times.rb</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. ハッシュ</a>
+<li><a href="#sec-6">6. 配列</a>
 <ul>
-<li><a href="#sec-6-1">6.1. シンボル</a></li>
-<li><a href="#sec-6-2">6.2. ハッシュの操作</a></li>
+<li><a href="#sec-6-1">6.1. 配列からオブジェクトを取り出す</a></li>
+<li><a href="#sec-6-2">6.2. 配列にオブジェクトを格納する</a></li>
+<li><a href="#sec-6-3">6.3. 配列の大きさ</a></li>
+<li><a href="#sec-6-4">6.4. 配列と繰り返し</a></li>
 </ul>
 </li>
-<li><a href="#sec-7">7. 正規表現</a>
+<li><a href="#sec-7">7. ハッシュ</a>
 <ul>
-<li><a href="#sec-7-1">7.1. パターンとマッチング</a></li>
+<li><a href="#sec-7-1">7.1. シンボル</a></li>
+<li><a href="#sec-7-2">7.2. ハッシュの操作</a></li>
 </ul>
 </li>
-<li><a href="#sec-8">8. コマンドラインからのデータの入力</a>
+<li><a href="#sec-8">8. 正規表現</a>
 <ul>
-<li><a href="#sec-8-1">8.1. List3.1 print_argv.rb</a></li>
-<li><a href="#sec-8-2">8.2. List3.3 arg_arith.rb</a></li>
+<li><a href="#sec-8-1">8.1. パターンとマッチング</a></li>
 </ul>
 </li>
 <li><a href="#sec-9">9. ファイルからの読み込み</a>
@@ -254,7 +253,8 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#sec-11">11. 別のファイルを取り込む</a>
 <ul>
-<li><a href="#sec-11-1">11.1. Rubyの標準ライブラリ</a></li>
+<li><a href="#sec-11-1">11.1. ディレクトリ内のファイルの取り込み</a></li>
+<li><a href="#sec-11-2">11.2. Rubyの標準ライブラリ</a></li>
 </ul>
 </li>
 </ul>
@@ -274,11 +274,12 @@ for the JavaScript code in this tag.
 
 <div class="org-src-container">
 
-<pre class="src src-ruby">print('Hello, Ruby.\n')
+<pre class="src src-ruby">print 'Hello, Ruby.\n'
 </pre>
 </div>
 
 <pre class="example">
+&gt; answer.rb
 Hello, Ruby.
 </pre>
 </div>
@@ -293,13 +294,13 @@ Hello, Ruby.
 
 <div class="org-src-container">
 
-<pre class="src src-ruby">print("Hello, \"Ruby\".\n")
+<pre class="src src-ruby">print Hello, \"Ruby\".\n"
 </pre>
 </div>
 
 <pre class="example">
-&gt; helloruby_2.rb
-Hello,"Ruby".
+&gt; answer.rb
+Hello, "Ruby".
 </pre>
 </div>
 </div>
@@ -316,10 +317,13 @@ Hello,"Ruby".
 <pre class="src src-ruby">p "Hello,\n\tRuby."
 </pre>
 </div>
+
+<pre class="example">
+&gt; answer.rb
+"Hello,\n\tRuby."
+</pre>
 </div>
 </div>
-
-
 
 <div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4"><span class="section-number-3">1.4</span> kiritsubo.rb</h3>
@@ -329,11 +333,77 @@ Hello,"Ruby".
 </div>
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 変数</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> コマンドラインからのデータの入力</h2>
 <div class="outline-text-2" id="text-2">
 </div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> area_volume.rb</h3>
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> print_argv.rb</h3>
 <div class="outline-text-3" id="text-2-1">
+<p>
+コマンドラインから引数を5つ入力として受け取り、出力するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">puts ARGV[0]
+puts ARGV[1]
+puts ARGV[2]
+puts ARGV[3]
+puts ARGV[4]
+</pre>
+</div>
+
+<pre class="example">
+&gt; ruby answer.rb 1st 2nd 3rd 4th 5th
+1st
+2nd
+3rd
+4th
+5th
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> arg_arith.rb</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+コマンドラインから数値を2つ受け取り、和、差、積、商を表示するプログラム
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ruby">num0 = ARGV[0].to_i
+num1 = ARGV[1].to_i
+
+sum = num0 + num1
+dif = num0 - num1
+pro = num0 * num1
+quo = num0 / num1
+
+puts sum
+puts dif
+puts pro
+puts quo
+</pre>
+</div>
+
+<pre class="example">
+&gt; ruby answer.rb 5 3 
+8
+2
+15
+1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 変数</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> area_volume.rb</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 3つの数値x、y、zを受け取り、縦x、横y、高さzの直方体の表面積と体積を求めるプログラム
 </p>
@@ -344,16 +414,16 @@ Hello,"Ruby".
 y = ARGV[1].to_i
 z = ARGV[2].to_i
 
-area = (x*y + y*z + z*x) * 2
+area = (x * y + y * z + z * x) * 2
 volume = x * y * z
 
-print "表面積=", area, "\n"
-print "体積=" volume, "\n"
+print '表面積=', area, "\n"
+print '体積=' volume, "\n"
 </pre>
 </div>
 
 <pre class="example">
-&gt; ruby area_volume.rb 10 20 30
+&gt; ruby answer.rb 10 20 30
 表面積=2200
 体積=6000
 </pre>
@@ -361,44 +431,14 @@ print "体積=" volume, "\n"
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 条件判断</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> greater_smaller.rb</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 条件判断</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> greater_smaller_else.rb</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
-数値を1つ引数として受け取り、それが10以上ならば「greater」、9以下ならば「smaller」と出力するプログラム
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-ruby">a = ARGV[0].to_i
-
-if a &gt;= 10
-  print "greater\n"
-end
-if a &lt;= 9
-  print "smaller\n"
-end
-</pre>
-</div>
-
-<pre class="example">
-&gt;ruby greater_smaller_else.rb 20
-greater
-
-&gt;ruby greater_smaller_else.rb 5
-smaller
-</pre>
-</div>
-</div>
-
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> greater_smaller_else.rb</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-List1.6のプログラムと同じ処理を、elseを用いて実行するプログラム
+数値を1つ引数として受け取り、それが10より大きければ「greater」小さければ「smaller」と表示するプログラム
 </p>
 
 <div class="org-src-container">
@@ -409,26 +449,27 @@ if a &gt;= 10
   print "greater\n"
 else
   print "smaller\n"
+end
 </pre>
 </div>
 
 <pre class="example">
-&gt;ruby greater_smaller_else.rb 20
+&gt;ruby answer.rb 20
 greater
 
-&gt;ruby greater_smaller_else.rb 5
+&gt;ruby answer.rb 5
 smaller
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 繰り返し</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 1_to_n.rb</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 繰り返し</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 1_to_n.rb</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 入力された1つの数値nを引数として受け取り、1からnまでの数を順番に表示するプログラムを作成せよ
 </p>
@@ -439,13 +480,13 @@ smaller
 i = 1
 while i &lt;= n
   print i, "\n"
-  i = i + 1
+  i += 1
 end
 </pre>
 </div>
 
 <pre class="example">
-&gt; ruby 1_to_n.rb 5
+&gt; ruby answer.rb 5
 1
 2
 3
@@ -455,10 +496,9 @@ end
 </div>
 </div>
 
-
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> five_times.rb</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> five_times.rb</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 「All work and no play makes Jack a dull boy.」と5行表示するプログラム
 </p>
@@ -466,56 +506,66 @@ end
 <div class="org-src-container">
 
 <pre class="src src-ruby">5.times do
-  print "All work and no play makes Jack a dull boy."
+  print "All work and no play makes Jack a dull boy.\n"
 end
+</pre>
+</div>
+
+<pre class="example">
+&gt; answer.rb
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
 </pre>
 </div>
 </div>
 </div>
-</div>
 
 
-
-
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> 配列</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 配列からオブジェクトを取り出す</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 配列</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> 配列からオブジェクトを取り出す</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
-配列のn番目の要素を取り出し、表示するプログラム
+配列のn番目の要素を取り出し、表示するプログラム.ただし、配列には数値が入るものとする。
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-ruby">names = ["小林", "林", "高野", "森岡"]
+<pre class="src src-ruby">nums = [3, 1, 4, 1, 5]
 
-print names[ARGV[0]]
+print nums[ARGV[0].to_i]
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-ruby">&gt;ruby answer.rb 0
-小林
+<pre class="src src-ruby">&gt; ruby answer.rb 0
+3
+
+&gt; ruby answer.rb 3
+1
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 配列にオブジェクトを格納する</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> 配列にオブジェクトを格納する</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 配列の先頭の要素をコマンドラインに入力した要素に変更するプログラム
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-ruby">nums = [1, 2, 3]
+<pre class="src src-ruby">nums = [3, 1, 4, 1, 5]
 
-nums[0] = ARGV[0]
+nums[0] = ARGV[0].to_i
 
 print nums
 </pre>
@@ -524,14 +574,14 @@ print nums
 
 <pre class="example">
 &gt; ruby answer.rb 5
-[5, 2, 3]
+[5, 1, 4, 1, 5]
 </pre>
 </div>
 </div>
 
-<div id="outline-container-sec-5-3" class="outline-3">
-<h3 id="sec-5-3"><span class="section-number-3">5.3</span> 配列の大きさ</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> 配列の大きさ</h3>
+<div class="outline-text-3" id="text-6-3">
 <p>
 配列を表示し、その配列の大きさも表示するプログラムを作成せよ
 </p>
@@ -548,10 +598,9 @@ print names.size
 </div>
 </div>
 
-
-<div id="outline-container-sec-5-4" class="outline-3">
-<h3 id="sec-5-4"><span class="section-number-3">5.4</span> 配列と繰り返し</h3>
-<div class="outline-text-3" id="text-5-4">
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> 配列と繰り返し</h3>
+<div class="outline-text-3" id="text-6-4">
 <p>
 配列全体を表示してから、配列の要素を順に表示するプログラム
 </p>
@@ -580,12 +629,12 @@ end
 </div>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> ハッシュ</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> シンボル</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> ハッシュ</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> シンボル</h3>
+<div class="outline-text-3" id="text-7-1">
 <p>
 コマンドラインから文字列を受け取り、シンボルに変換して表示するプログラム
 </p>
@@ -605,9 +654,9 @@ p n.to_sym
 </div>
 </div>
 
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> ハッシュの操作</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> ハッシュの操作</h3>
+<div class="outline-text-3" id="text-7-2">
 <p>
 :name, :furiganaというそれぞれのキーに"高橋", "タカハシ"というオブジェクトが格納されているハッシュを表示、さらに:telというキーに"000-1234-5678"を格納して再度表示するプログラム
 </p>
@@ -633,82 +682,16 @@ puts address
 </div>
 </div>
 
-
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> 正規表現</h2>
-<div class="outline-text-2" id="text-7">
-</div><div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1"><span class="section-number-3">7.1</span> パターンとマッチング</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 正規表現</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> パターンとマッチング</h3>
+<div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
 
 <pre class="src src-ruby"></pre>
 </div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> コマンドラインからのデータの入力</h2>
-<div class="outline-text-2" id="text-8">
-</div><div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1"><span class="section-number-3">8.1</span> List3.1 print_argv.rb</h3>
-<div class="outline-text-3" id="text-8-1">
-<p>
-コマンドラインから引数を5つ入力として受け取り、出力するプログラム
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-ruby"># List3.1 print_argv.rb
-puts "最初の引数: #{ARGV[0]}"
-puts "2番目の引数: #{ARGV[1]}"
-puts "3番目の引数: #{ARGV[2]}"
-puts "4番目の引数: #{ARGV[3]}"
-puts "5番目の引数: #{ARGV[4]}"
-</pre>
-</div>
-
-<pre class="example">
-実行例
-&gt; ruby print_argv.rb 1st 2nd 3rd 4th 5th
-最初の引数: 1st
-2番目の引数: 2nd
-3番目の引数: 3rd
-4番目の引数: 4th
-5番目の引数: 5th
-</pre>
-</div>
-</div>
-
-
-
-<div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2"><span class="section-number-3">8.2</span> List3.3 arg_arith.rb</h3>
-<div class="outline-text-3" id="text-8-2">
-<p>
-コマンドラインから数値を2つ受け取り、和、差、積、商を表示するプログラム
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-ruby">num0 = ARGV[0].to_i
-num1 = ARGV[1].to_i
-
-puts "#{num0 + num1}"
-puts "#{num0 - num1}"
-puts "#{num0 * num1}"
-puts "#{num0 / num1}"
-</pre>
-</div>
-
-<pre class="example">
-&gt; ruby answer.rb 5 3 
-8
-2
-15
-1
-</pre>
 </div>
 </div>
 </div>
@@ -738,7 +721,6 @@ print text
 </div>
 </div>
 
-
 <div id="outline-container-sec-9-2" class="outline-3">
 <h3 id="sec-9-2"><span class="section-number-3">9.2</span> read_line.rb</h3>
 <div class="outline-text-3" id="text-9-2">
@@ -760,7 +742,6 @@ end
 </pre>
 </div>
 </div>
-
 
 <div id="outline-container-sec-9-3" class="outline-3">
 <h3 id="sec-9-3"><span class="section-number-3">9.3</span> simple_grep.rb</h3>
@@ -823,10 +804,12 @@ Hello, Ruby.
 
 
 
-
 <div id="outline-container-sec-11" class="outline-2">
 <h2 id="sec-11"><span class="section-number-2">11</span> 別のファイルを取り込む</h2>
 <div class="outline-text-2" id="text-11">
+</div><div id="outline-container-sec-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> ディレクトリ内のファイルの取り込み</h3>
+<div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 
 <pre class="src src-ruby">def simple_grep(pattern, filename)
@@ -851,10 +834,11 @@ simple_grep(pattern, filename)
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-11-1" class="outline-3">
-<h3 id="sec-11-1"><span class="section-number-3">11.1</span> Rubyの標準ライブラリ</h3>
-<div class="outline-text-3" id="text-11-1">
+<div id="outline-container-sec-11-2" class="outline-3">
+<h3 id="sec-11-2"><span class="section-number-3">11.2</span> Rubyの標準ライブラリ</h3>
+<div class="outline-text-3" id="text-11-2">
 <div class="org-src-container">
 
 <pre class="src src-ruby">require "date"
@@ -869,7 +853,7 @@ puts(days.to_i)
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Shun Takahashi</p>
-<p class="date">Created: 2018-08-04 土 04:56</p>
+<p class="date">Created: 2018-08-09 木 17:09</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
