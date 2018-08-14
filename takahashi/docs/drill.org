@@ -26,81 +26,83 @@
 
 ** helloruby.rb
 
-「Hello, Ruby.」という文字列を出力するプログラムを作成せよ
+「Hello, Ruby.」という文字列を表示するプログラムを作成せよ。
 
 #+begin_src ruby
-print('Hello, Ruby.\n')
+print 'Hello, Ruby.\n'
 #+end_src
 
 #+begin_example
+> answer.rb
 Hello, Ruby.
 #+end_example
 
 ** helloruby_2.rb
 
-「Hello, "Ruby".」という文字列を出力するプログラムを作成せよ
+「Hello, "Ruby".」という文字列を表示するプログラムを作成せよ。
 
 #+begin_src ruby
-print("Hello, \"Ruby\".\n")
+print Hello, \"Ruby\".\n"
 #+end_src
 
 #+begin_example
-> helloruby_2.rb
-Hello,"Ruby".
+> answer.rb
+Hello, "Ruby".
 #+end_example
 
 ** p_method.rb
 
-「"Hello,\n\tRuby."」という文字列を出力するプログラムを作成せよ
+「"Hello,\n\tRuby."」という文字列を表示するプログラムを作成せよ。
 
 #+begin_src ruby
 p "Hello,\n\tRuby."
 #+end_src
 
-
-
-** kiritsubo.rb
-
-   # かな文字を出力で表示させるだけって必要？
+#+begin_example
+> answer.rb
+"Hello,\n\tRuby."
+#+end_example
 
 * コマンドラインからのデータの入力
+
 ** print_argv.rb
 
-コマンドラインから引数を5つ入力として受け取り、出力するプログラム
+コマンドラインから5つの引数を受け取り、受け取った順に表示するプログラムを作成せよ。
 
 #+begin_src ruby
-# List3.1 print_argv.rb
-puts "最初の引数: #{ARGV[0]}"
-puts "2番目の引数: #{ARGV[1]}"
-puts "3番目の引数: #{ARGV[2]}"
-puts "4番目の引数: #{ARGV[3]}"
-puts "5番目の引数: #{ARGV[4]}"
+puts ARGV[0]
+puts ARGV[1]
+puts ARGV[2]
+puts ARGV[3]
+puts ARGV[4]
 #+end_src
 
 #+begin_example
-実行例
-> ruby print_argv.rb 1st 2nd 3rd 4th 5th
-最初の引数: 1st
-2番目の引数: 2nd
-3番目の引数: 3rd
-4番目の引数: 4th
-5番目の引数: 5th
+> ruby answer.rb 1st 2nd 3rd 4th 5th
+1st
+2nd
+3rd
+4th
+5th
 #+end_example
-
-
 
 ** arg_arith.rb
 
-コマンドラインから数値を2つ受け取り、和、差、積、商を表示するプログラム
+コマンドラインから数値を2つ受け取り、その和、差、積、商を表示するプログラムを作成せよ。
 
 #+begin_src ruby
 num0 = ARGV[0].to_i
 num1 = ARGV[1].to_i
 
-puts "#{num0 + num1}"
-puts "#{num0 - num1}"
-puts "#{num0 * num1}"
-puts "#{num0 / num1}"
+sum = num0 + num1
+dif = num0 - num1
+pro = num0 * num1
+quo = num0 / num1
+
+puts sum
+puts dif
+puts pro
+puts quo
 #+end_src
 
 #+begin_example
@@ -115,56 +117,31 @@ puts "#{num0 / num1}"
 
 ** area_volume.rb
 
-3つの数値x、y、zを受け取り、縦x、横y、高さzの直方体の表面積と体積を求めるプログラム
+3つの数値をx、y、zとして受け取り、縦x、横y、高さzの直方体の表面積と体積を求め、表示するプログラムを作成せよ。
 
 #+begin_src ruby
 x = ARGV[0].to_i
 y = ARGV[1].to_i
 z = ARGV[2].to_i
 
-area = (x*y + y*z + z*x) * 2
+area = (x * y + y * z + z * x) * 2
 volume = x * y * z
 
-print "表面積=", area, "\n"
-print "体積=" volume, "\n"
+print '表面積=', area, "\n"
+print '体積=' volume, "\n"
 #+end_src
 
 #+begin_example
-> ruby area_volume.rb 10 20 30
+> ruby answer.rb 10 20 30
 表面積=2200
 体積=6000
 #+end_example
 
 * 条件判断
 
-** greater_smaller.rb
-
-# List1.7だけで十分かも
-
-数値を1つ引数として受け取り、それが10以上ならば「greater」、9以下ならば「smaller」と出力するプログラム
-
-#+begin_src ruby
-a = ARGV[0].to_i
-
-if a >= 10
-  print "greater\n"
-end
-if a <= 9
-  print "smaller\n"
-end
-#+end_src
-
-#+begin_example
->ruby greater_smaller_else.rb 20
-greater
-
->ruby greater_smaller_else.rb 5
-smaller
-#+end_example
-
 ** greater_smaller_else.rb
 
-List1.6のプログラムと同じ処理を、elseを用いて実行するプログラム
+1つの数値を受け取り、それが10より大きければ「greater」小さければ「smaller」と表示するプログラムを作成せよ。
 
 #+begin_src ruby
 a = ARGV[0].to_i
@@ -173,13 +150,14 @@ if a >= 10
   print "greater\n"
 else
   print "smaller\n"
+end
 #+end_src
 
 #+begin_example ruby
->ruby greater_smaller_else.rb 20
+>ruby answer.rb 20
 greater
 
->ruby greater_smaller_else.rb 5
+>ruby answer.rb 5
 smaller
 #+end_example
 
@@ -187,19 +165,19 @@ smaller
 
 ** 1_to_n.rb 
 
-入力された1つの数値nを引数として受け取り、1からnまでの数を順番に表示するプログラムを作成せよ
+1つの数値をnとして受け取り、1からnまでの数を順番に表示するプログラムを作成せよ。
 
 #+begin_src ruby
 n = ARGV[0].to_i
 i = 1
 while i <= n
   print i, "\n"
-  i = i + 1
+  i += 1
 end
 #+end_src
 
 #+begin_example ruby
-> ruby 1_to_n.rb 5
+> ruby answer.rb 5
 1
 2
 3
@@ -211,41 +189,53 @@ end
 
 # while文と動作での差別化難しい
 
-「All work and no play makes Jack a dull boy.」と5行表示するプログラム
+「All work and no play makes Jack a dull boy.」と5行表示するプログラムを作成せよ。
 
 #+begin_src ruby
 5.times do
-  print "All work and no play makes Jack a dull boy."
+  print "All work and no play makes Jack a dull boy.\n"
 end
 #+end_src
 
+#+begin_example
+> answer.rb
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+All work and no play makes Jack a dull boy.
+#+end_example
 
 
 * 配列
 
 ** 配列からオブジェクトを取り出す
 
-配列のn番目の要素を取り出し、表示するプログラム
+1つの数値をnとして受け取り、配列のn番目の要素を取り出し、表示するプログラムを作成せよ。ただし、配列はプログラム内で定義し、配列には数値が入るものとする。
 
 #+begin_src ruby
-names = ["小林", "林", "高野", "森岡"]
+nums = [3, 1, 4, 1, 5]
 
-print names[ARGV[0]]
+print nums[ARGV[0].to_i]
 #+end_src
 
-#+begin_src ruby
->ruby answer.rb 0
-小林
-#+end_src
+#+begin_example ruby
+> ruby answer.rb 0
+3
+
+> ruby answer.rb 3
+1
+#+end_example
 
 ** 配列にオブジェクトを格納する
 
-配列の先頭の要素をコマンドラインに入力した要素に変更するプログラム
+配列の先頭の要素をコマンドラインに入力した要素に変更するプログラムを作成せよ。
+ただし、配列はプログラム内で定義し、配列には数値が入るものとする。
 
 #+begin_src ruby
-nums = [1, 2, 3]
+nums = [3, 1, 4, 1, 5]
 
-nums[0] = ARGV[0]
+nums[0] = ARGV[0].to_i
 
 print nums
 #+end_src
@@ -253,49 +243,58 @@ print nums
 
 #+begin_example
 > ruby answer.rb 5
-[5, 2, 3]
+[5, 1, 4, 1, 5]
 #+end_example
 
 ** 配列の大きさ
 
-配列を表示し、その配列の大きさも表示するプログラムを作成せよ
+配列を表示し、その配列の大きさも表示するプログラムを作成せよ。
+ただし、配列はプログラム内で定義すること。
 
 #+begin_src ruby
-names = 
+nums = [3, 1, 4, 1, 5]
 
-print names, "\n"
+print nums, "\n"
 
-print names.size
+print nums.size, "\n"
 #+end_src
+
+#+begin_example
+> ruby answer.rb
+[3, 1, 4, 1, 5]
+5
+#+end_example
 
 ** 配列と繰り返し
 
-配列全体を表示してから、配列の要素を順に表示するプログラム
+配列全体を表示してから、配列の要素を順に表示するプログラムを作成せよ。
+ただし、配列はプログラム内で定義すること。
 
 #+begin_src ruby
-names = ["小林", "林", "高野", "森岡"]
+nums = [3, 1, 4, 1, 5]
 
-print names, "\n"
+print nums, "\n"
 
-names.each do |n|
+nums.each do |n|
   puts n
 end
 #+end_src
 
 #+begin_example
 > ruby answer.rb
-["小林", "林", "高野", "森岡"]
-小林
-林
-高野
-森岡
+[3, 1, 4, 1, 5]
+3
+1
+4
+1
+5
 #+end_example
 
 * ハッシュ
 
 ** シンボル
 
-コマンドラインから文字列を受け取り、シンボルに変換して表示するプログラム
+1つの文字列を受け取り、シンボルに変換して表示するプログラムを作成せよ。
 
 #+begin_src ruby
 n = ARGV[0]
@@ -310,10 +309,10 @@ p n.to_sym
 
 ** ハッシュの操作
 
-:name, :furiganaというそれぞれのキーに"高橋", "タカハシ"というオブジェクトが格納されているハッシュを表示、さらに:telというキーに"000-1234-5678"を格納して再度表示するプログラム
+:name, :furigana というそれぞれのキーに"高橋", "タカハシ"というオブジェクトが格納されているハッシュを作成、表示し、さらに:tel というキーに"000-1234-5678"を格納して再度表示するプログラムを作成せよ。
 
 #+begin_src ruby
-address = {name: "高橋", furigana: "タカハシ"}
+address = { name: "高橋", furigana: "タカハシ" }
 
 puts address
 
@@ -332,16 +331,31 @@ puts address
 
 ** パターンとマッチング
 
+1つの文字列を受け取り、それが「Hello, Ruby」とマッチするなら「match.」マッチしないなら「not match.」と表示するプログラムを作成せよ。
+
 #+begin_src ruby
+n = /#{ARGV[0]}/
 
-
+if n =~ "Hello, Ruby."
+  print "match.\n"
+else
+  print "not match\n"
+end
 #+end_src
+
+#+begin_example
+> ruby answer.rb Ruby
+match.
+
+> ruby answer.rb RUBY
+not match.
+#+end_example
 
 * ファイルからの読み込み
 
 ** read_text.rb
 
-コマンドラインからファイル名を受け取り、該当ファイルのテキストデータを表示するプログラム
+1つの文字列を受け取り、該当するファイル名のテキストデータを表示するプログラムを作成せよ。
 
 #+begin_src ruby
 filename = ARGV[0]
@@ -356,7 +370,7 @@ print text
 
 ** read_line.rb
 
-コマンドラインからファイル名を受け取り、該当ファイルのテキストデータを1行ずつ表示すつプログラム
+1つの文字列を受け取り、該当するファイル名のテキストデータを1行ずつ読み取り、表示するプログラムを作成せよ。
 
 #+begin_src ruby
 filename = ARGV[0]
@@ -372,7 +386,7 @@ end
 
 ** simple_grep.rb
 
-入力したテキストデータの中から、正規表現で指定した特定のパターンにマッチする行を出力するプログラム
+2つの文字列を受け取り、2つ目の文字列に該当するファイル名のテキストデータの中から、1つ目の文字列にマッチする行を出力するプログラムを作成せよ。
 
 #+begin_src ruby
 pattern = Regexp.new(ARGV[0])
@@ -394,53 +408,82 @@ file.close
 * メソッドの作成
 ** hello_ruby2.rb
 
-「Hello, Ruby.」と表示するメソッドhelloを用いて、
-
+「Hello, Ruby.」と表示するメソッドhelloを用いて、「Hello, Ruby.」と表示するプログラムを作成せよ。
 
 #+begin_src ruby
 def hello
-  puts "Hello, Ruby."
+  puts 'Hello, Ruby.'
 end
 
-hello()
+hello
 #+end_src
 
 #+begin_example
-> ruby hello_ruby2.rb
+> ruby answer.rb
 Hello, Ruby.
 #+end_example
 
+** hello_ruby3.rb
 
+1つの文字列を受け取り、「Hello, [受け取った文字列].」と表示するメソッドhelloを作成し、
+2つの文字列を受け取り、「Hello, [受け取った文字列].」と２行表示するプログラムを作成せよ。
 
+#+begin_src ruby
+def hello(name)
+  print 'Hello, ', name, ".\n"
+end
 
+hello(ARGV[0])
+hello(ARGV[1])
+#+end_src
+
+#+begin_example
+> ruby answer.rb Ruby Takahashi
+Hello, Ruby.
+Hello, Takahashi.
+#+end_example
 * 別のファイルを取り込む
 
 ** ディレクトリ内のファイルの取り込み
+
+1つの文字列を受け取り、「Hello, [受け取った文字列].」と表示するメソッドhelloが書かれたプログラムhello.rbがある。
+
+このプログラムを取り込んで、1つの文字列を受け取り、「Hello, [受け取った文字列].」と表示するプログラムを作成せよ。
+
+
+- hello.rb
 #+begin_src ruby
-def simple_grep(pattern, filename)
-  file = File.open(filename)
-  file.each_line do |line|
-    if pattern =~ line
-      print line
-    end
-  end
-  file.close
+def hello(name)
+  print 'Hello, ', name, "\n"
 end
 #+end_src
 
 #+begin_src ruby
-require_relative "grep"
+require_relative "hello"
 
-pattern = Regexp.new(ARGV[0])
-filename = ARGV[1]
-simple_grep(pattern, filename)
+name = ARGV[0]
+
+hello(name)
 #+end_src
 
+#+begin_example
+> answer.rb Ruby
+Hello, Ruby.
+#+end_example
+
 ** Rubyの標準ライブラリ
+
+Rubyの標準ライブラリ「date」を用いて、Rubyが誕生した1993年2月24日から、今日までの日数を表示するプログラムを作成せよ。
 
 #+begin_src ruby
 require "date"
 
 days = Date.today - Date.new(1993, 2, 24)
-puts(days.to_i)
+puts days.to_i
 #+end_src
+
+#+begin_example
+> ruby answer.rb
+9302
+#+end_example
+- 2018/8/14時点
