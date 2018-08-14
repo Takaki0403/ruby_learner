@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # section_7/part_2/answer.rb
 # 7-2-hash.rb
 address = { name: '高橋', furigana: 'タカハシ' }

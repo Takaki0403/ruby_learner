@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # section_3/part_1/answer.rb
 # 3-1-cube.rb
 x = ARGV[0].to_i
