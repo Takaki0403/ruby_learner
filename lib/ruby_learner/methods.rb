@@ -4,6 +4,56 @@
 # end
 require 'rubocop'
 
+def drill_contents
+  puts "section_1  1~3"
+  puts "section_2  1~2"
+  puts "section_3  1"
+  puts "section_4  1"
+  puts "section_5  1~2"
+  puts "section_6  1~4"
+  puts "section_7  1~2"
+  puts "section_8  1"
+  puts "section_9  1~3"
+  puts "section_10 1~2"
+  puts "section_11 1~2"
+end
+
+def next_question(workshop_dir: @workshop_dir)
+  restore_dir = "#{workshop_dir}/restore"
+  last_restore = ''
+  max_num = 0
+  Dir::chdir("#{workshop_dir}/restore"){
+    files = Dir.glob("*.rb")
+    puts "files #{files}"
+    files.each do |f|
+      f = f.match!(/[(.*)/)[1]
+      p f
+      f = f.match!(/(.*)]/)[1]
+      p f
+      f.to_i
+      p f
+      if f > max_num
+        max_num = f
+      end
+    end
+    #file_count = Dir.glob("*.rb").count
+    #puts "file_count #{file_count}"
+    # restore_file.insert(-5, "[#{file_count}]")
+    #last_restore = Dir.glob("[#{file_count}]*")
+    last_restore = Dir.glob("[#{max_num}]*")
+    puts "last_restore #{last_restore}"
+    last_restore = last_restore.match!(/](.*)/)[1]
+    puts "last_restore #{last_restore}"
+    last_restore = last_restore.match!(/(.*)-/)[1]
+    puts "last_restore #{last_restore}"
+    dir_num = last_restore.match(/-(.*)/)[1]
+    puts "dir_num #{dir_num}"
+    file_num = last_restore.match(/(.*)-/)[1]
+    puts "file_num #{file_num}"
+  }
+  puts "section_#{dir_num}/part_#{file_num}"
+end
+
 def time_check(start_time: Time)
   end_time = Time.now
   elapsed_time = end_time - start_time - 1
