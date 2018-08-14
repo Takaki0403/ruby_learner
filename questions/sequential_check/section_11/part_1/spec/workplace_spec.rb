@@ -1,10 +1,11 @@
 require 'workplace.rb'
+require 'for-def-read'
 
-RSpec.describe "A loop" do
-  it "given 2 and 2, return 4" do
-    expect(for_system(2, 2)).to eq(4)
+RSpec.describe "hello" do
+  it "given 'tanaka', return \"Hello, tanaka.\n\"" do
+    expect(hello('tanaka')).to eq("Hello, tanaka.\n")
   end
-  it "given 3 and 3, return 6" do
-    expect(for_system(3, 2)).to eq(6)
+  it "given 'yamada', return \"Hello, yamada.\n\"" do
+    expect(hello('yamada')).to eq("Hello, yamada.\n")
   end
 end

@@ -1,4 +1,4 @@
-require_relative 'hello'
+require_relative 'for-def-read'
 
 name = ARGV[0]
 
