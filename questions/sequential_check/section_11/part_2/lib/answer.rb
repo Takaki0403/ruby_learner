@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 # section_11/part_2/answer.rb
 # 11-2-require-date.rb
 require 'date'

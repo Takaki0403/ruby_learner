@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 # section_9/part_3/answer.rb
 # 9-3-pattern.rb
 pattern = Regexp.new(ARGV[0])

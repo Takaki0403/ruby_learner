@@ -132,11 +132,25 @@ end
 
 def restore(file: String, workshop_dir: String)
   restore_file = ""
+  top_sentence = ""
   line = File.open("#{workshop_dir}/lib/answer.rb") do |f|
-    2.times {
+    0.times {
       f.gets
     }
-    restore_file = f.gets
+    top_sentence = f.gets
+    puts top_sentence
+    if top_sentence == '# -*- coding: utf-8 -*-'
+      1.times {
+        f.gets
+      }
+      restore_file = f.gets
+    else
+      0.times {
+        f.gets
+      }
+      restore_file = f.gets
+    end
+    puts restore_file
   end
   restore_file.gsub!(" ", "")
   restore_file.delete!("#")
