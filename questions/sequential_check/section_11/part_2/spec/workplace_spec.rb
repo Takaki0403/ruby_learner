@@ -1,10 +1,13 @@
-require 'workplace.rb'
+# -*- coding: utf-8 -*-
+require "open3"
+require 'date'
 
-RSpec.describe "A loop" do
-  it "given 2 and 2, return 4" do
-    expect(for_system(2, 2)).to eq(4)
-  end
-  it "given 3 and 3, return 6" do
-    expect(for_system(3, 2)).to eq(6)
+days = Date.today - Date.new(1993, 2, 24)
+
+RSpec.describe "ARGV-check" do
+  it 'given "tanaka", return "Hello, tanaka.\n"' do
+    workshop = "#{ENV['HOME']}/ruby_learner/workshop"
+    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb")
+    expect { puts stdout }.to output("#{days.to_i}\n").to_stdout
   end
 end
