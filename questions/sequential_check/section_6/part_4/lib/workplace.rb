@@ -1,5 +1,1 @@
-# section_1/workplacs.rb
-
-def for_system(aaa, bbb)
-
-end
+# section_6/part_4/workplace.rb
