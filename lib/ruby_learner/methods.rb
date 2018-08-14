@@ -133,7 +133,7 @@ end
 def restore(file: String, workshop_dir: String)
   restore_file = ""
   line = File.open("#{workshop_dir}/lib/answer.rb") do |f|
-    0.times {
+    1.times {
       f.gets
     }
     restore_file = f.gets
@@ -142,7 +142,8 @@ def restore(file: String, workshop_dir: String)
   restore_file.delete!("#")
   Dir::chdir("#{workshop_dir}/restore"){
     file_count = Dir.glob("*.rb").count
-    restore_file.insert(-5, "[#{file_count}]")
+    # restore_file.insert(-5, "[#{file_count}]")
+    restore_file.insert(0, "[#{file_count}]")
   }
   system "touch #{workshop_dir}/restore/#{restore_file}"
   system "cp #{workshop_dir}/lib/workplace.rb #{workshop_dir}/restore/#{restore_file}"

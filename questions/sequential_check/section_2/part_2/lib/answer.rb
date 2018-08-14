@@ -1,3 +1,5 @@
+# section_2/part_2/answer.rb
+# 2-2-math.rb
 num0 = ARGV[0].to_i
 num1 = ARGV[1].to_i
 

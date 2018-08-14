@@ -21,11 +21,11 @@ module RubyLearner
     end
 
     desc 'emacs_key', 'check emacs key-bindings'
-    def emacs_key(*_argv)
+    def emacs_key
       system("cat #{@workshop_dir}/emacs_help.org")
     end
 
-    desc 'sequential_check [section:1~1] [part:1~2]','learning drill'
+    desc 'sequential_check [section:1~11] [part:1~2]','learning drill'
     def sequential_check(*_argv, dir_num, file_num)
       seq_dir = "#{@gem_dir}/questions/sequential_check/section_#{dir_num}/part_#{file_num}"
       typing_prac_class = TypingPractice.new(workshop_dir: @workshop_dir)
@@ -33,7 +33,7 @@ module RubyLearner
     end
 
     desc 'random_check', 'typing and editing practice.'
-    def random_check(*_argv)
+    def random_check
       rand_num = rand(1..2)
       rand_dir = "#{@gem_dir}/questions/random_check/section_#{rand_num}"
       typing_practice = TypingPractice.new(workshop_dir: @workshop_dir)
