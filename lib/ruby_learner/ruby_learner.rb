@@ -22,7 +22,7 @@ module RubyLearner
 
     desc 'emacs_key', 'check emacs key-bindings'
     def emacs_key
-      system("cat #{@workshop_dir}/emacs_help.org")
+      system("cat #{@workshop_dir}/docs/emacs_help.org")
     end
 
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'

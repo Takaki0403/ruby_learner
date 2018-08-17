@@ -19,28 +19,19 @@ def drill_contents
 end
 
 def next_question(workshop_dir: @workshop_dir)
-  restore_dir = "#{workshop_dir}/restore"
-  last_restore = ''
-  max_num = 0
-  Dir::chdir("#{workshop_dir}/restore"){
-    files = Dir.glob("*.rb")
-    puts "files #{files}"
-    files.each do |f|
-      f = f.match!(/[(.*)/)[1]
-      p f
-      f = f.match!(/(.*)]/)[1]
-      p f
-      f.to_i
-      p f
-      if f > max_num
-        max_num = f
-      end
+  docs_dir = "#{workshop_dir}/docs"
+  Dir::chdir(docs_dir){
+    File.open("final_history_sequential.txt") do |f|
+      final_history = f.gets  # 1行目
     end
+    p final_sec = f.match(/(.*)\-/)[1]
+    p  final_par = f.match(/\-(.*)/)[1]
+    p max_num
     #file_count = Dir.glob("*.rb").count
     #puts "file_count #{file_count}"
     # restore_file.insert(-5, "[#{file_count}]")
     #last_restore = Dir.glob("[#{file_count}]*")
-    last_restore = Dir.glob("[#{max_num}]*")
+    last_restore = Dir.glob("*")
     puts "last_restore #{last_restore}"
     last_restore = last_restore.match!(/](.*)/)[1]
     puts "last_restore #{last_restore}"
