@@ -15,7 +15,7 @@ class TypingPractice
     FileUtils.cp("#{mode_dir}/lib/sentence.org", "#{@workshop_dir}/lib/sentence.org")
     FileUtils.cp("#{mode_dir}/lib/answer.rb", "#{@workshop_dir}/lib/answer.rb")
     FileUtils.cp("#{mode_dir}/spec/workplace_spec.rb", "#{@workshop_dir}/spec/workplace_spec.rb")
-    system "cd #{@workshop_dir}/lib && emacs -nw -q -l ~/ruby_learner/workshop/emacs.d/init.el sentence.org workplace.rb"
+    system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@gem_dir}/lib/emacs.d/init.el sentence.org workplace.rb"
     start_time = Time.now
     typing_discriminant(@workshop_dir, @gem_dir)
     elapsed_time = time_check(start_time: start_time)

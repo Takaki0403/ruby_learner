@@ -138,7 +138,7 @@ def sequential_check_main(gem_dir, workshop_dir ,sec, par)
   seq_dir = "#{gem_dir}/questions/sequential_check/section_#{sec}/part_#{par}"
   typing_prac_class = TypingPractice.new(workshop_dir: workshop_dir)
   typing_prac_class.prac_sequence(mode_dir: seq_dir)
-  write_final_history(workshop_dir, sec, par)
+  write_final_history(gem_dir, sec, par)
 end
 
 def time_check(start_time: Time)
