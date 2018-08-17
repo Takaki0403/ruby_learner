@@ -157,6 +157,7 @@ def init_mk_files(gem_dir: String, workshop_dir: String)
   if Dir.exist?(workshop_dir) != true then
     FileUtils.mkdir_p(workshop_dir)
     system("cp -R #{gem_dir}/workshop/* #{workshop_dir}")
+    system("cd #{workshop_dir} && mv emacs.d .emacs.d")
   end
 end
 
@@ -176,14 +177,14 @@ def mk_training_data(elapsed_time: Time, prac_dir: String)
   end
 end
 
-def typing_discriminant(workshop_dir, gem_dir)
+def typing_discriminant(workshop_dir)
   file = "#{workshop_dir}/lib/workplace.rb"
   loop do
-    flag_rspec, flag_rs_exit = rspec_check(workshop_dir, gem_dir)
+    flag_rspec, flag_rs_exit = rspec_check(workshop_dir)
     if flag_rs_exit == true
       break
     end
-    flag_rubocop, flag_rub_exit = rubocop_check(file, workshop_dir, gem_dir)
+    flag_rubocop, flag_rub_exit = rubocop_check(file, workshop_dir)
     if flag_rub_exit == true
       break
     end
@@ -203,7 +204,7 @@ def typing_discriminant(workshop_dir, gem_dir)
   restore(file: "#{workshop_dir}/lib/workplace.rb", workshop_dir: workshop_dir)
 end
 
-def rspec_check(workshop_dir, gem_dir)
+def rspec_check(workshop_dir)
   puts "**********************************"
   puts "RSpec Error Check"
   puts "**********************************"
@@ -226,16 +227,16 @@ def rspec_check(workshop_dir, gem_dir)
         flag_exit = true
         break
       elsif select == 'answer'
-        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{gem_dir}/lib/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
+        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{workshop_dir}/.emacs.d/ruby_learner_init.el sentence.org workplace.rb"
       else
-        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{gem_dir}/emacs.d/init.el  sentence.org workplace.rb"
+        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{workshop_dir}/.emacs.d/init.el  sentence.org workplace.rb"
       end
     end
   end
   return flag_rspec, flag_exit
 end
 
-def rubocop_check(file, workshop_dir, gem_dir)
+def rubocop_check(file, workshop_dir)
   puts "**********************************"
   puts "Rubocop Error Check"
   puts "**********************************"
@@ -258,9 +259,9 @@ def rubocop_check(file, workshop_dir, gem_dir)
         flag_exit = true
         break
       elsif select == 'answer'
-        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{gem_dir}/lib/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
+        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{workshop_dir}/.emacs.d/ruby_learner_init.el sentence.org workplace.rb"
       else
-        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{gem_dir}/lib/emacs.d/init.el  sentence.org workplace.rb"
+        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{workshop_dir}/.emacs.d/init.el  sentence.org workplace.rb"
       end
     end
   end
