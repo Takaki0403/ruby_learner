@@ -23,7 +23,7 @@ Or install it yourself as:
 ```ruby
 Usage: ruby_learner [options]
 Options: emacs_key					- confirm emacs key-bindings.
-       	 sequential_check [section:1~1] [part:1~2]	- learning drill.
+       	 sequential_check [section:1~11] [part:1~]	- learning drill.
 	 		  -drill			- confirm drill numbers
 			  -next				- learning next to final history
 ```
