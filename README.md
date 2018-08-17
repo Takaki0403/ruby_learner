@@ -45,6 +45,13 @@ Mode 3: you can stop answer the question.
 
 This app makes a directory in your Home-Directory, 'ruby_learner'. If you confirm your learning history, you should check ruby_learner/workshop/restore.
 
+## If it cannot be executed due to an error
+
+I think the cause is your workshop-directory. Please execute this command in your Home-Directory.
+
+     $ rm -rf ruby_learner
+
+
 ## Development
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
