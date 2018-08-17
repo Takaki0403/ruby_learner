@@ -21,15 +21,16 @@ Or install it yourself as:
 ## Usage
 ```ruby
 Usage: ruby_learner [options]
-       emacs_key:					confirm emacs key-bindings
-       sequential_check [section:1~1] [part:1~2]:	learning drill.
+Options: emacs_key					- confirm emacs key-bindings.
+       	 sequential_check [section:1~1] [part:1~2]	- learning drill.
+	 		  -drill			- confirm drill numbers
+			  -next				- learning next after final history
 ```
 
 In learning in this app, you can choice 3 mode.  
 Mode 1: you can continue to answer the question:
 
      $ [RET]
-
 
 Mode 2: you can confirm answer example.
 
@@ -38,6 +39,10 @@ Mode 2: you can confirm answer example.
 Mode 3: you can stop answer the question.
 
      $ exit + [RET]
+
+## Workshop
+
+This app makes a directory in your Home-Directory, 'ruby_learner'. If you confirm your learning history, you should check ruby_learner/workshop/restore.
 
 ## Development
 
