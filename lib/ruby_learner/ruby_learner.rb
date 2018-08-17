@@ -22,7 +22,7 @@ module RubyLearner
 
     desc 'emacs_key', 'check emacs key-bindings'
     def emacs_key
-      system("cat #{@workshop_dir}/docs/emacs_help.org")
+      system("cat #{@gem_dir}/lib/datas/emacs_help.org")
     end
 
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'
@@ -32,7 +32,7 @@ module RubyLearner
       if options[:drill]
         drill_contents
       elsif options[:next]
-        final_sec, final_par = final_history(workshop_dir: @workshop_dir)
+        final_sec, final_par = final_history(@gem_dir)
         next_sec, next_par = next_question(final_sec, final_par)
         sequential_check_main(@gem_dir, @workshop_dir, next_sec, next_par)
       else

@@ -18,8 +18,8 @@ def drill_contents
   puts "section_11 1~2"
 end
 
-def final_history(workshop_dir: @workshop_dir)
-  docs_dir = "#{workshop_dir}/docs"
+def final_history(gem_dir)
+  docs_dir = "#{gem_dir}/lib/datas"
   final_history = ''
   final_sec = 0
   final_par = 0
@@ -124,8 +124,8 @@ def next_question(final_sec, final_par)
   return next_sec, next_par
 end
 
-def write_final_history(workshop_dir, current_sec, current_par)
-  docs_dir = "#{workshop_dir}/docs"
+def write_final_history(gem_dir, current_sec, current_par)
+  docs_dir = "#{gem_dir}/lib/datas"
   Dir::chdir(docs_dir){
     File.open("final_history_sequential.txt","w") do |f|
       f.puts("#{current_sec}-#{current_par}")
@@ -176,14 +176,14 @@ def mk_training_data(elapsed_time: Time, prac_dir: String)
   end
 end
 
-def typing_discriminant(dir: workshop_dir)
-  file = "#{dir}/lib/workplace.rb"
+def typing_discriminant(workshop_dir, gem_dir)
+  file = "#{workshop_dir}/lib/workplace.rb"
   loop do
-    flag_rspec, flag_rs_exit = rspec_check(dir: dir)
+    flag_rspec, flag_rs_exit = rspec_check(workshop_dir, gem_dir)
     if flag_rs_exit == true
       break
     end
-    flag_rubocop, flag_rub_exit = rubocop_check(file: file, dir: dir)
+    flag_rubocop, flag_rub_exit = rubocop_check(file, workshop_dir, gem_dir)
     if flag_rub_exit == true
       break
     end
@@ -191,7 +191,7 @@ def typing_discriminant(dir: workshop_dir)
       puts "**********************************"
       puts "Final Error Check"
       puts "**********************************"
-      check_rs =  system "cd #{dir} && rspec spec/workplace_spec.rb"
+      check_rs =  system "cd #{workshop_dir} && rspec spec/workplace_spec.rb"
       if check_rs == true
         puts "your code is perfect!"
         break
@@ -200,10 +200,10 @@ def typing_discriminant(dir: workshop_dir)
       end
     end
   end
-  restore(file: "#{dir}/lib/workplace.rb", workshop_dir: dir)
+  restore(file: "#{workshop_dir}/lib/workplace.rb", workshop_dir: workshop_dir)
 end
 
-def rspec_check(dir: workshop_dir)
+def rspec_check(workshop_dir, gem_dir)
   puts "**********************************"
   puts "RSpec Error Check"
   puts "**********************************"
@@ -215,7 +215,7 @@ def rspec_check(dir: workshop_dir)
     puts "---------------------------"
     puts "Rspec try: #{count}"
     puts "---------------------------"
-    flag_rspec =  system "cd #{dir} && rspec spec/workplace_spec.rb"
+    flag_rspec =  system "cd #{workshop_dir} && rspec spec/workplace_spec.rb"
     if flag_rspec == true
       puts "Rspec check is clear!"
       break
@@ -226,16 +226,16 @@ def rspec_check(dir: workshop_dir)
         flag_exit = true
         break
       elsif select == 'answer'
-        system "cd #{dir}/lib && emacs -nw -q -l #{dir}/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
+        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{gem_dir}/lib/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
       else
-        system "cd #{dir}/lib && emacs -nw -q -l #{dir}/emacs.d/init.el  sentence.org workplace.rb"
+        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{gem_dir}/emacs.d/init.el  sentence.org workplace.rb"
       end
     end
   end
   return flag_rspec, flag_exit
 end
 
-def rubocop_check(file: String, dir: workshop_dir)
+def rubocop_check(file, workshop_dir, gem_dir)
   puts "**********************************"
   puts "Rubocop Error Check"
   puts "**********************************"
@@ -258,9 +258,9 @@ def rubocop_check(file: String, dir: workshop_dir)
         flag_exit = true
         break
       elsif select == 'answer'
-        system "cd #{dir}/lib && emacs -nw -q -l #{dir}/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
+        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{gem_dir}/lib/emacs.d/ruby_learner_init.el sentence.org workplace.rb"
       else
-        system "cd #{dir}/lib && emacs -nw -q -l #{dir}/emacs.d/init.el  sentence.org workplace.rb"
+        system "cd #{workshop_dir}/lib && emacs -nw -q -l #{gem_dir}/lib/emacs.d/init.el  sentence.org workplace.rb"
       end
     end
   end
