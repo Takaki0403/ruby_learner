@@ -24,7 +24,7 @@ Usage: ruby_learner [options]
 Options: emacs_key					- confirm emacs key-bindings.
        	 sequential_check [section:1~1] [part:1~2]	- learning drill.
 	 		  -drill			- confirm drill numbers
-			  -next				- learning next after final history
+			  -next				- learning next to final history
 ```
 
 In learning in this app, you can choice 3 mode.  
