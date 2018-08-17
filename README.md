@@ -1,6 +1,7 @@
 # RubyLearner
 
-Ruby mastering application
+Ruby mastering application.
+It checks your code using rspec and rubocop.
 
 ## Installation
 
