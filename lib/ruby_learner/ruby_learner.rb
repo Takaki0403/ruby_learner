@@ -26,18 +26,17 @@ module RubyLearner
     end
 
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'
-    option :next, aliases: '-n', type: :boolean
-    option :drill, aliases: '-d', type: :boolean
+    option :next, aliases: "-n", type: :boolean
+    option :drill, aliases: "-d", type: :boolean
     def sequential_check(*_argv, dir_num, file_num)
-      if options['drill']
+      if options[:drill]
         drill_contents
-      elsif options['next']
-        next_question(workshop_dir: @workshop_dir)
+      elsif options[:next]
+        final_sec, final_par = final_history(workshop_dir: @workshop_dir)
+        next_sec, next_par = next_question(final_sec, final_par)
+        sequential_check_main(@gem_dir, @workshop_dir, next_sec, next_par)
       else
-        puts "section_#{dir_num}/part_#{file_num}"
-        seq_dir = "#{@gem_dir}/questions/sequential_check/section_#{dir_num}/part_#{file_num}"
-        typing_prac_class = TypingPractice.new(workshop_dir: @workshop_dir)
-        typing_prac_class.prac_sequence(mode_dir: seq_dir)
+        sequential_check_main(@gem_dir, @workshop_dir, dir_num, file_num)
       end
     end
 
