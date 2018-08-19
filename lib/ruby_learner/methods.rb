@@ -192,12 +192,14 @@ def typing_discriminant(workshop_dir)
       puts "**********************************"
       puts "Final Error Check"
       puts "**********************************"
-      check_rs =  system "cd #{workshop_dir} && rspec spec/workplace_spec.rb"
-      if check_rs == true
-        puts "your code is perfect!"
+      stdout, stderr, status = Open3.capture3("rspec #{workshop_dir}/spec/workplace_spec.rb")
+      if stdout[0] == '.'
+        puts "your code is perfect."
+        puts 'If you want to run your code, you execute the following command.'
+        puts " $ ruby #{workshop_dir}/lib/workplace.rb"
         break
       else
-        puts "not perfect"
+        puts "not perfect, please fix your code."
       end
     end
   end
