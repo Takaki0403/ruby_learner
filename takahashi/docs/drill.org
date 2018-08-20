@@ -26,10 +26,10 @@
 
 ** helloruby.rb
 
-「Hello, Ruby.」という文字列を表示するプログラムを作成せよ。
+「Hello, Ruby.」という文字列を表示するプログラムを作成せよ。文字列の終わりは改行すること。
 
 #+begin_src ruby
-print 'Hello, Ruby.\n'
+print "Hello, Ruby.\n"
 #+end_src
 
 #+begin_example
@@ -39,10 +39,10 @@ Hello, Ruby.
 
 ** helloruby_2.rb
 
-「Hello, "Ruby".」という文字列を表示するプログラムを作成せよ。
+「Hello, "Ruby".」という文字列を表示するプログラムを作成せよ。文字列の終わりは改行すること。
 
 #+begin_src ruby
-print Hello, \"Ruby\".\n"
+print "Hello, \"Ruby\".\n"
 #+end_src
 
 #+begin_example
@@ -88,7 +88,7 @@ puts ARGV[4]
 
 ** arg_arith.rb
 
-コマンドラインから数値を2つ受け取り、その和、差、積、商を表示するプログラムを作成せよ。
+コマンドラインから2つの引数を受け取って数値に変換し、その和、差、積、商を表示するプログラムを作成せよ。
 
 #+begin_src ruby
 num0 = ARGV[0].to_i
@@ -355,7 +355,7 @@ not match.
 
 ** read_text.rb
 
-1つの文字列を受け取り、該当するファイル名のテキストデータを表示するプログラムを作成せよ。
+1つの文字列を受け取り、文字列と一致するファイル名のテキストデータを表示するプログラムを作成せよ。
 
 #+begin_src ruby
 filename = ARGV[0]
@@ -370,7 +370,7 @@ print text
 
 ** read_line.rb
 
-1つの文字列を受け取り、該当するファイル名のテキストデータを1行ずつ読み取り、表示するプログラムを作成せよ。
+1つの文字列を受け取り、文字列と一致するファイル名のテキストデータを1行ずつ読み取り、表示するプログラムを作成せよ。
 
 #+begin_src ruby
 filename = ARGV[0]
@@ -378,6 +378,7 @@ file = File.open(filename)
 file.each_line do |line|
   print line
 end
+file.close
 #+end_src
 
 #+begin_example
@@ -386,7 +387,7 @@ end
 
 ** simple_grep.rb
 
-2つの文字列を受け取り、2つ目の文字列に該当するファイル名のテキストデータの中から、1つ目の文字列にマッチする行を出力するプログラムを作成せよ。
+2つの文字列を受け取り、2つ目の文字列に一致するファイル名のテキストデータの各行から、1つ目の文字列にマッチする行を出力するプログラムを作成せよ。
 
 #+begin_src ruby
 pattern = Regexp.new(ARGV[0])
@@ -408,7 +409,7 @@ file.close
 * メソッドの作成
 ** hello_ruby2.rb
 
-「Hello, Ruby.」と表示するメソッドhelloを用いて、「Hello, Ruby.」と表示するプログラムを作成せよ。
+「Hello, Ruby.」と表示するメソッドhelloを作成し、helloメソッドを用いて「Hello, Ruby.」と表示するプログラムを作成せよ。
 
 #+begin_src ruby
 def hello
@@ -425,8 +426,8 @@ Hello, Ruby.
 
 ** hello_ruby3.rb
 
-1つの文字列を受け取り、「Hello, [受け取った文字列].」と表示するメソッドhelloを作成し、
-2つの文字列を受け取り、「Hello, [受け取った文字列].」と２行表示するプログラムを作成せよ。
+1つの文字列を受け取り、「Hello, 受け取った文字列.」と表示するメソッドhelloを作成し、
+2つの文字列を受け取り、「Hello, 受け取った文字列.」と２行表示するプログラムを作成せよ。
 
 #+begin_src ruby
 def hello(name)
@@ -446,9 +447,9 @@ Hello, Takahashi.
 
 ** ディレクトリ内のファイルの取り込み
 
-1つの文字列を受け取り、「Hello, [受け取った文字列].」と表示するメソッドhelloが書かれたプログラムhello.rbがある。
+1つの文字列を受け取り、「Hello, 受け取った文字列.」と表示するメソッドhelloが書かれたプログラムhello.rbがある。
 
-このプログラムを取り込んで、1つの文字列を受け取り、「Hello, [受け取った文字列].」と表示するプログラムを作成せよ。
+このプログラムを取り込んで、1つの文字列を受け取り、「Hello, 受け取った文字列.」と表示するプログラムを作成せよ。
 
 
 - hello.rb

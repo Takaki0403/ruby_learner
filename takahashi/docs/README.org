@@ -146,3 +146,11 @@ answer/2_1.rb:1:1: C: Style/Encoding: Unnecessary utf-8 encoding comment.
 たのしいRuby掲載のrake関係の頁は正直本を読み込まないと理解できないレベルのコードが書いてある
 
 どうしましょ
+** 8/20
+
+Sequential_checkの問題に構文等の解説を追加する作業。
+
+9_1まで暫定の解説を追加
+
+9_2.rb解答例最後の行に file.closeを追加
+

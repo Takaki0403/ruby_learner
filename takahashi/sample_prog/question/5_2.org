@@ -1,0 +1,10 @@
+「All work and no play makes Jack a dull boy.」と５行表示するプログラムを作成せよ。
+
+
+- timesメソッド
+
+繰り返す回数.times do
+  繰り返したい処理
+end
+
+繰り返す回数が決まっている場合は、timesメソッドを使ってシンプルにできる。
