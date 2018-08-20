@@ -17,15 +17,15 @@
 ;; tabの自動生成がうっとおしいからやめた
 
 ;; elファイルの置き場所を設定
-(setq load-path (cons "~/ruby_learner/workshop/emacs.d/inits" load-path))
-(setq load-path (cons "~/ruby_learner/workshop/emacs.d/ruby-mode" load-path))
-(setq load-path (cons "~/ruby_learner/workshop/emacs.d/processing-mode" load-path))
-(setq load-path (cons "~/ruby_learner/workshop/emacs.d/haml-mode-master" load-path))
-(setq load-path (cons "~/ruby_learner/workshop/emacs.d/org-mode" load-path))
-(setq load-path (cons "~/ruby_learner/workshop/emacs.d/themes" load-path))
+(setq load-path (cons "~/ruby_learner/workshop/.emacs.d/inits" load-path))
+(setq load-path (cons "~/ruby_learner/workshop/.emacs.d/ruby-mode" load-path))
+(setq load-path (cons "~/ruby_learner/workshop/.emacs.d/processing-mode" load-path))
+(setq load-path (cons "~/ruby_learner/workshop/.emacs.d/haml-mode-master" load-path))
+(setq load-path (cons "~/ruby_learner/workshop/.emacs.d/org-mode" load-path))
+(setq load-path (cons "~/ruby_learner/workshop/.emacs.d/themes" load-path))
 ;;setting_theme
-(add-to-list 'custom-theme-load-path "~/ruby_learner/workshop/emacs.d/themes")
-(setq custom-theme-directory "~/ruby_learner/workshop/emacs.d/themes")
+(add-to-list 'custom-theme-load-path "~/ruby_learner/workshop/.emacs.d/themes")
+(setq custom-theme-directory "~/ruby_learner/workshop/.emacs.d/themes")
 ;;(load-theme 'iceberg t)
 ;;(load-theme 'dracula t)
 ;;(load-theme 'my-misterioso t)

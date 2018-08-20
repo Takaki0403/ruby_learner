@@ -22,14 +22,22 @@ module RubyLearner
 
     desc 'emacs_key', 'check emacs key-bindings'
     def emacs_key
-      system("cat #{@workshop_dir}/emacs_help.org")
+      system("cat #{@gem_dir}/lib/datas/emacs_help.org")
     end
 
-    desc 'sequential_check [section:1~11] [part:1~2]','learning drill'
+    desc 'sequential_check [section:1~11] [part:1~]','learning drill'
+    option :next, aliases: "-n", type: :boolean
+    option :drill, aliases: "-d", type: :boolean
     def sequential_check(*_argv, dir_num, file_num)
-      seq_dir = "#{@gem_dir}/questions/sequential_check/section_#{dir_num}/part_#{file_num}"
-      typing_prac_class = TypingPractice.new(workshop_dir: @workshop_dir)
-      typing_prac_class.prac_sequence(mode_dir: seq_dir)
+      if options[:drill]
+        drill_contents
+      elsif options[:next]
+        final_sec, final_par = final_history(@gem_dir)
+        next_sec, next_par = next_question(final_sec, final_par)
+        sequential_check_main(@gem_dir, @workshop_dir, next_sec, next_par)
+      else
+        sequential_check_main(@gem_dir, @workshop_dir, dir_num, file_num)
+      end
     end
 
     desc 'random_check', 'typing and editing practice.'

@@ -1,9 +1,3 @@
-#+STARTUP: indent nolineimages
-# section_1/sentence.org
-
-* for文の使い方
-- 繰り返しの基本ですよー
-
-* 問題文
-- 繰り返し処理を用いて足し算してよ
-- for_system(aaa, bbb)を用いて,値aaaをbbb回足す関数を作成せよ。
+# -*- coding: utf-8 -*-
+配列全体を表示してから、配列の要素を順に表示するプログラムを作成せよ。
+ただし、配列はプログラム内で定義すること。
