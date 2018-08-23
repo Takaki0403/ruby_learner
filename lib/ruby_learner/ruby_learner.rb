@@ -1,11 +1,9 @@
 require 'fileutils'
-require 'colorize'
 require 'thor'
 require 'ruby_learner/version.rb'
-require 'diff-lcs'
 require 'open3'
-require 'ruby_learner/methods.rb'
-require 'ruby_learner/typing_practice.rb'
+require 'methods'
+require 'sequential_main'
 
 module RubyLearner
   # editor_learner CLI main class
@@ -29,14 +27,15 @@ module RubyLearner
     option :next, aliases: "-n", type: :boolean
     option :drill, aliases: "-d", type: :boolean
     def sequential_check(*_argv, dir_num, file_num)
+      sequential_main = SequentialMain.new(@gem_dir, @workshop_dir)
       if options[:drill]
-        drill_contents
+        sequential_main.drill_contents
       elsif options[:next]
-        final_sec, final_par = final_history(@gem_dir)
-        next_sec, next_par = next_question(final_sec, final_par)
-        sequential_check_main(@gem_dir, @workshop_dir, next_sec, next_par)
+        final_sec, final_par = sequential_main.get_final_history(@gem_dir)
+        next_sec, next_par = sequential_main.get_next_question(final_sec, final_par)
+        sequential_main.action(next_sec, next_par)
       else
-        sequential_check_main(@gem_dir, @workshop_dir, dir_num, file_num)
+        sequential_check_main(dir_num, file_num)
       end
     end
 
