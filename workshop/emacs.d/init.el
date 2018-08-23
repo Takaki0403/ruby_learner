@@ -42,6 +42,7 @@
             :foreground "#999999"
             :background "#000000"
             :height 0.9)
+(set-face-background 'default "#121212")
 ;; 括弧補完
 ;;(electric-pair-mode 1)
 ;; 行数を指定してジャンプする (goto-line) 
