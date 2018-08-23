@@ -40,12 +40,5 @@ module RubyLearner
       end
     end
 
-    desc 'random_check', 'typing and editing practice.'
-    def random_check
-      rand_num = rand(1..2)
-      rand_dir = "#{@gem_dir}/questions/random_check/section_#{rand_num}"
-      typing_practice = TypingPractice.new(workshop_dir: @workshop_dir)
-      typing_practice.prac_sequence(mode_dir: rand_dir)
-    end
   end
 end
