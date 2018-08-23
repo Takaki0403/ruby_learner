@@ -1,4 +1,4 @@
-class Commmon
+class Common
   def restore(file: String, workshop_dir: String)
   restore_file = ""
     line = File.open("#{workshop_dir}/lib/answer.rb") do |f|

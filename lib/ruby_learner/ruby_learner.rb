@@ -2,8 +2,8 @@ require 'fileutils'
 require 'thor'
 require 'ruby_learner/version.rb'
 require 'open3'
-require 'methods'
-require 'sequential_main'
+require 'ruby_learner/common.rb'
+require 'ruby_learner/sequential_main'
 
 module RubyLearner
   # editor_learner CLI main class
@@ -15,7 +15,7 @@ module RubyLearner
       app_vers = Open3.capture3('gem list ruby_learner')
       rl_ver = app_vers[0].chomp.tr(' ', '-').delete('()')
       @gem_dir = File.join(gem_location[0].chomp, "/gems/#{rl_ver}")
-      init_mk_files(gem_dir: @gem_dir, workshop_dir: @workshop_dir)
+      Common.allocate.init_mk_files(gem_dir: @gem_dir, workshop_dir: @workshop_dir)
     end
 
     desc 'emacs_key', 'check emacs key-bindings'
@@ -35,7 +35,7 @@ module RubyLearner
         next_sec, next_par = sequential_main.get_next_question(final_sec, final_par)
         sequential_main.action(next_sec, next_par)
       else
-        sequential_check_main(dir_num, file_num)
+        sequential_main.action(dir_num, file_num)
       end
     end
 

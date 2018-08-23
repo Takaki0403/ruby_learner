@@ -1,4 +1,4 @@
-require 'typing_practice'
+require 'ruby_learner/typing_practice'
 
 class SequentialMain
 
@@ -10,7 +10,7 @@ class SequentialMain
   def action(sec, par)
     puts "section_#{@sec}/part_#{@par}"
     seq_dir = "#{@gem_dir}/questions/sequential_check/section_#{sec}/part_#{par}"
-    typing_prac_class = TypingPractice.new(workshop_dir, gem_dir)
+    typing_prac_class = TypingPractice.new(@workshop_dir, @gem_dir)
     typing_prac_class.prac_sequence(mode_dir: seq_dir)
     write_final_history(sec, par)
   end
