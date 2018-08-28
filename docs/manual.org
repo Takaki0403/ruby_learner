@@ -24,6 +24,7 @@
 ** common
 - 本アプリは使用者のパソコンのホームディレクトリにruby_learnerというディレクトリを形成する。
 - ruby_learnerに含まれる要素はemacsの設定ファイル・学習を行う場所のworkshop・学習の履歴を保存するrestoreである。
+- 今までの自分の回答コードはworkshopのrestoreに保存されて行く
 ** emacs_key
 *** 使用コマンド
 - emacsのキーバインドの確認: ruby_learner emacs_key
