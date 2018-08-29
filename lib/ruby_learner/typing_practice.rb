@@ -36,8 +36,7 @@ class TypingPractice
         puts "Final Error Check"
         puts "**********************************"
         stdout, stderr, status = Open3.capture3("rspec #{@workshop_dir}/spec/workplace_spec.rb")
-        puts stdout[0]
-        if stdout[0] == '.'
+        if status == 0
           puts "your code is perfect."
           puts 'If you want to run your code, you execute the following command.'
           puts " $ ruby #{@workshop_dir}/lib/workplace.rb"
@@ -77,7 +76,7 @@ class TypingPractice
       puts "---------------------------"
       flag_check = system "#{check_mode} #{file}"
       if  flag_check == true
-        puts '#{check_mode} check is clear!'
+        puts "#{check_mode} check is clear!"
         break
       else
         Common.allocate.instruct_print
