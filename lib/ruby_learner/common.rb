@@ -29,14 +29,16 @@ class Common
     puts "stop >>> 'exit' + [RET]"
     puts "check answer >>> 'answer' + [RET]"
   end
+
   def init_mk_files(gem_dir: String, workshop_dir: String)
     if Dir.exist?(workshop_dir) != true then
       FileUtils.mkdir_p(workshop_dir)
       system("cp -R #{gem_dir}/workshop/* #{workshop_dir}")
       system("cd #{workshop_dir} && mv emacs.d .emacs.d")
+      system("cd #{workshop_dir} && mv rspec .rspec")
     end
   end
-  
+
   def get_app_ver(app_name: String)
     app_vers = Open3.capture3("gem list #{app_name}")
     latest_ver = app_vers[0].chomp.gsub(' (', '-').gsub(')','')
