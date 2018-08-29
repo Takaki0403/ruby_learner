@@ -36,6 +36,7 @@ class TypingPractice
         puts "Final Error Check"
         puts "**********************************"
         stdout, stderr, status = Open3.capture3("rspec #{@workshop_dir}/spec/workplace_spec.rb")
+        puts stdout[0]
         if stdout[0] == '.'
           puts "your code is perfect."
           puts 'If you want to run your code, you execute the following command.'

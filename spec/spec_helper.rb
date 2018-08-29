@@ -1,5 +1,5 @@
 require "bundler/setup"
-# require "ruby_learner"
+require "ruby_learner/ruby_learner.rb"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
