@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+#
+def
+  File.read()
+end
+
+
+#受け取った引数を計算するメソッド
+def
+  result = num0 * num1 % 6
+end
+
+#
+
+ARGV[0]
+ARGV[1]
+method1(num0, num1)
