@@ -24,9 +24,9 @@ module RubyLearner
     end
 
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'
-    option :next, aliases: "-n", type: :boolean
-    option :drill, aliases: "-d", type: :boolean
-    def sequential_check(*_argv, dir_num, file_num)
+    option :next, aliases: :n, type: :boolean
+    option :drill, aliases: :d, type: :boolean
+    def sequential_check(*_args, dir_num, file_num)
       sequential_main = SequentialMain.new(@gem_dir, @workshop_dir)
       if options[:drill]
         sequential_main.drill_contents
