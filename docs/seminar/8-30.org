@@ -1,1 +1,14 @@
 #+STARTUP: indent nolineimages
+* mid_term_presentation
+- template <gradreseach2018/members/dadygongon/midterm_presentation>
+- emacs texTemplate.tex
+- open sample_2018.tex
+
+- platex smaple_2018.tex ２回いるかも tidyしたら消えちゃうねん
+- dvipdfmx sample_2018
+- open samle_2018.pdf
+- .aux に参照系[1]とかが入っている(bibcite)
+- [?]の時は２回tex回す必要がある
+- タイトル、著者、出版社、出版日
+- bundlerでインストールしたgemはアプリ外でも使用可能
+- 純粋にインストールされている

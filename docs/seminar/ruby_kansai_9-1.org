@@ -1,0 +1,7 @@
+#+STARTUP: indent nolineimages
+* graphQLをrubyで気軽にね
+** graphQLとはなんぞや
+- APIのための問い合わせ言語
+- SQLをAPIでかいせる
+- APIのデータ群から指定の範囲を取れる
+** graphpl-rubyがruby用のgemとしてリリースされている 
