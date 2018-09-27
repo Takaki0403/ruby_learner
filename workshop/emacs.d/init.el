@@ -1,3 +1,4 @@
+
 (require 'package)
 (add-to-list 'package-archives '("org" . "http:/orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("org-plus-contrib" . "https:/orgmode.org/elpa/contrib") t)
@@ -29,7 +30,7 @@
 ;; 背景色を設定
 (set-face-background 'default "#121212")
 ;; 文字色を設定
-(set-face-foreground 'default "#000000")
+(set-face-foreground 'default "white")
 ;; 括弧補完
 ;;(electric-pair-mode 1)
 ;; 言語を日本語に設定

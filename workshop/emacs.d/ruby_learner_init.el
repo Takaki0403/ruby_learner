@@ -39,6 +39,8 @@
             :background "#000000"
             :height 0.9)
 (set-face-background 'default "#121212")
+;; 文字色を設定
+(set-face-foreground 'default "white")
 ;; 言語を日本語に設定
 (set-language-environment 'Japanese)
 ;; 極力UTF-8とする
