@@ -18,9 +18,10 @@ class SequentialMain
   def write_final_history(sec, par)
     docs_dir = "#{@gem_dir}/lib/datas"
     Dir::chdir(docs_dir){
-      File.open("final_history_sequential.txt","w") do |f|
-        f.puts("#{sec}-#{par}")
-      end
+      #      File.open("final_history_sequential.txt","w") do |f|
+      #        f.puts("#{sec}-#{par}")
+      #      end
+      File.write('final_history_sequential.txt', "#{sec}-#{par}")
     }
   end
 

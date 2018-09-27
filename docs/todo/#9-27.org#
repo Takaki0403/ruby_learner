@@ -1,0 +1,22 @@
+* 納期-10/2
+** 課題文章の文字色が背景色と同化する
+   - 白にしろ
+** rubyインストールの自動化
+   - emacsのインストール用コマンド
+   - rubyのインストール用コマンド
+   - 小脇さんの自動化ファイルを参考にするべき？
+** 問題作成
+   - Ruby技術者認定か楽しく学べるRubyの内容を参考
+** rubocopのfrozen_string_literalについての対応
+   - .rubocop.ymlに解決コードの書き込みを行う（ファイルの位置は不明）
+   - 各回答用ファイルの先頭に解決コード書き込み
+** document
+   - エラー対応の記載
+   - 対応パッケージのversionを記載
+** 領域の人が使えるようにする
+   - rbenv versions
+     system
+     2.4.1 (set by /Users/takakiotsu/.rbenv/version)
+   - rbenv local system
+     systemの標準に切り替え（macの標準仕様）
+     そこでgemをインストール
