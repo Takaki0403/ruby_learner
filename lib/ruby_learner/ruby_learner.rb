@@ -6,13 +6,19 @@ require 'ruby_learner/common.rb'
 require 'ruby_learner/sequential_main'
 
 module RubyLearner
-  # editor_learner CLI main class
+  # ruby_learner CLI main class
   class CLI < Thor
     def initialize(*args)
       super
       @workshop_dir = "#{ENV['HOME']}/.ruby_learner/workshop"
       @gem_dir = File.expand_path("../../../", __FILE__)
       Common.allocate.init_mk_files(gem_dir: @gem_dir, workshop_dir: @workshop_dir)
+    end
+
+    desc '-v', 'show program version'
+    map "-v" => "version"
+    def version
+      puts RubyLearner::VERSION
     end
 
     desc 'emacs_key', 'check emacs key-bindings'
