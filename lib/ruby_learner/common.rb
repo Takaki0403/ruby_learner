@@ -36,6 +36,7 @@ class Common
       system("cp -R #{gem_dir}/workshop/* #{workshop_dir}")
       system("cd #{workshop_dir} && mv emacs.d .emacs.d")
       system("cd #{workshop_dir} && mv rspec .rspec")
+      system("cd #{workshop_dir} && mv rubocop.yml .rubocop.yml")
     end
   end
 

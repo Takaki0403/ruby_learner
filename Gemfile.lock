@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ruby_learner (1.1.7)
+    ruby_learner (1.1.9)
       rspec (~> 3.8)
       rubocop (~> 0.55.0)
       thor (~> 0.20.0)
