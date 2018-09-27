@@ -28,6 +28,8 @@
             :height 0.9)
 ;; 背景色を設定
 (set-face-background 'default "#121212")
+;; 文字色を設定
+(set-face-foreground 'default "#000000")
 ;; 括弧補完
 ;;(electric-pair-mode 1)
 ;; 言語を日本語に設定
