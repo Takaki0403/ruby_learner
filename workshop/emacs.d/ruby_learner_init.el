@@ -6,10 +6,10 @@
 (package-initialize)
 
 ;; elファイルの置き場所を設定
-(setq load-path (cons "~/ruby_learner/workshop/.emacs.d/inits" load-path))
-(setq load-path (cons "~/ruby_learner/workshop/.emacs.d/ruby-mode" load-path))
-(setq load-path (cons "~/ruby_learner/workshop/.emacs.d/org-mode" load-path))
-(setq load-path (cons "~/ruby_learner/workshop/.emacs.d/themes" load-path))
+(setq load-path (cons "~/.ruby_learner/workshop/.emacs.d/inits" load-path))
+(setq load-path (cons "~/.ruby_learner/workshop/.emacs.d/ruby-mode" load-path))
+(setq load-path (cons "~/.ruby_learner/workshop/.emacs.d/org-mode" load-path))
+(setq load-path (cons "~/.ruby_learner/workshop/.emacs.d/themes" load-path))
 
 ;; 画面分割
 (setq w (selected-window))
@@ -19,12 +19,12 @@
 (setq w2 (split-window w nil nil))
 ;; scratch文字
 (setq initial-scratch-message "ctrl x & ctrl f 後に answer.rb を入力。")
-(insert-file-contents "~/ruby_learner/workshop/lib/answer.rb" nil 0 500)
+(insert-file-contents "~/.ruby_learner/workshop/lib/answer.rb" nil 0 500)
 (ruby-mode)
-(find-file "~/ruby_learner/workshop/lib/answer.rb")
+(find-file "~/.ruby_learner/workshop/lib/answer.rb")
 ;;setting_theme
-(add-to-list 'custom-theme-load-path "~/ruby_learner/workshop/.emacs.d/themes")
-(setq custom-theme-directory "~/ruby_learner/workshop/.emacs.d/themes")
+(add-to-list 'custom-theme-load-path "~/.ruby_learner/workshop/.emacs.d/themes")
+(setq custom-theme-directory "~/.ruby_learner/workshop/.emacs.d/themes")
 (load-theme 'my-wombat t)
 
 ;; 起動時にスタートアップ画面を表示しない 

@@ -37,7 +37,7 @@ class SequentialMain
     puts "section_10 1~2"
     puts "section_11 1~2"
   end
-  
+
   def get_final_history(gem_dir)
     docs_dir = "#{gem_dir}/lib/datas"
     final_history = ''
@@ -52,7 +52,7 @@ class SequentialMain
     }
     return final_sec, final_par
   end
-  
+
   def get_next_question(final_sec, final_par)
     if final_sec == 1
     if final_par == 1
@@ -142,5 +142,5 @@ class SequentialMain
     end
     return next_sec, next_par
   end
-  
+
 end

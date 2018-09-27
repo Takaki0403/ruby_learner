@@ -10,11 +10,8 @@ module RubyLearner
   class CLI < Thor
     def initialize(*args)
       super
-      @workshop_dir = "#{ENV['HOME']}/ruby_learner/workshop"
-      gem_location = Open3.capture3('gem environment gemdir')
-      app_vers = Open3.capture3('gem list ruby_learner')
-      rl_ver = app_vers[0].chomp.tr(' ', '-').delete('()')
-      @gem_dir = File.join(gem_location[0].chomp, "/gems/#{rl_ver}")
+      @workshop_dir = "#{ENV['HOME']}/.ruby_learner/workshop"
+      @gem_dir = File.expand_path("../../../", __FILE__)
       Common.allocate.init_mk_files(gem_dir: @gem_dir, workshop_dir: @workshop_dir)
     end
 
@@ -26,7 +23,7 @@ module RubyLearner
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'
     option :next, aliases: :n, type: :boolean
     option :drill, aliases: :d, type: :boolean
-    def sequential_check(*_args, dir_num, file_num)
+    def sequential_check(*args)
       sequential_main = SequentialMain.new(@gem_dir, @workshop_dir)
       if options[:drill]
         sequential_main.drill_contents
@@ -35,7 +32,17 @@ module RubyLearner
         next_sec, next_par = sequential_main.get_next_question(final_sec, final_par)
         sequential_main.action(next_sec, next_par)
       else
-        sequential_main.action(dir_num, file_num)
+        sequential_main.action(args[0], args[1]) if args.empty? == false
+      end
+    end
+
+    desc 'restore','check your restore'
+    def restore(*args)
+      if args.empty? == true then
+        system("ls #{@workshop_dir}/restore")
+        print("\n If you want to open a restore_file, you execute 'ruby_learner restore [file_name]'")
+      else
+        system("emacs #{@workshop_dir}/restore/#{args[0]}")
       end
     end
 
