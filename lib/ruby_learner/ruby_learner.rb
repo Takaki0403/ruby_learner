@@ -52,5 +52,11 @@ module RubyLearner
       end
     end
 
+    desc 'install_emacs','install emacs in your mac'
+    def install_emacs
+      file_path = "#{@gem_dir}/lib/datas/install_emacs.sh"
+      system("sh #{file_path}")
+    end
+
   end
 end

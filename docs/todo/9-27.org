@@ -8,6 +8,9 @@
 ** document
    - エラー対応の記載
    - 対応パッケージのversionを記載
+** theme変更機能
+
+* finish
 ** 領域の人が使えるようにする
    - rbenv versions
      system
@@ -15,11 +18,12 @@
    - rbenv local system
      systemの標準に切り替え（macの標準仕様）
      そこでgemをインストール
-** localでgem実行
-   - bundle exec exe/ruby_learner
+
 ** チェック後にpermission dinied
    - sshの設定する？
 
+** localでgem実行
+   - bundle exec exe/ruby_learner
 
 ** rubocopのfrozen_string_literalについての対応
    - .rubocop.ymlに解決コードの書き込みを行う（ファイルの位置は不明）
