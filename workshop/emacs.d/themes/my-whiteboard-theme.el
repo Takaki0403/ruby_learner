@@ -1,4 +1,4 @@
-;;; whiteboard-theme.el --- Custom theme for faces
+;;; my-whiteboard-theme.el --- Custom theme for faces
 
 ;; Copyright (C) 2011-2017 Free Software Foundation, Inc.
 
@@ -21,12 +21,12 @@
 
 ;;; Code:
 
-(deftheme whiteboard
-  "Face colors similar to markers on a whiteboard.")
+(deftheme my-whiteboard
+  "Face colors similar to markers on a my-whiteboard.")
 
 (let ((class '((class color) (min-colors 89))))
   (custom-theme-set-faces
-   'whiteboard
+   'my-whiteboard
    `(Info-title-1-face ((,class (:family "helv" :weight bold :height 1.728))))
    `(Info-title-2-face ((,class (:family "helv" :weight bold :height 1.44))))
    `(Info-title-3-face ((,class (:family "helv" :weight bold :height 1.2))))
@@ -88,10 +88,10 @@
    `(show-paren-mismatch-face ((,class (:background "red1" :foreground "white"))))
    `(warning ((,class (:foreground "Yellow4"))))))
 
-(provide-theme 'whiteboard)
+(provide-theme 'my-whiteboard)
 
 ;; Local Variables:
 ;; no-byte-compile: t
 ;; End:
 
-;;; whiteboard-theme.el ends here
+;;;my-whiteboard-theme.el ends here

@@ -25,7 +25,7 @@
 ;;setting_theme
 (add-to-list 'custom-theme-load-path "~/.ruby_learner/workshop/.emacs.d/themes")
 (setq custom-theme-directory "~/.ruby_learner/workshop/.emacs.d/themes")
-(load-theme 'my-wombat t)
+(load-theme 'my-whiteboard t)
 
 ;; 起動時にスタートアップ画面を表示しない 
 (setq inhibit-startup-message t)
@@ -35,12 +35,13 @@
 (global-linum-mode t)
 (setq linum-format "%d")
 (set-face-attribute 'linum nil
-            :foreground "#999999"
-            :background "#000000"
+            :foreground "#000000"
+            :background "#ffffff"
             :height 0.9)
-(set-face-background 'default "#121212")
+;; 背景色を設定
+;;(set-face-background 'default "#121212")
 ;; 文字色を設定
-(set-face-foreground 'default "white")
+;;(set-face-foreground 'default "white")
 ;; 言語を日本語に設定
 (set-language-environment 'Japanese)
 ;; 極力UTF-8とする
