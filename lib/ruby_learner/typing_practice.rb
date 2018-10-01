@@ -7,14 +7,18 @@ class TypingPractice
   def initialize(workshop_dir, gem_dir)
     @workshop_dir = workshop_dir
     @gem_dir = gem_dir
-   end
+    File.open("#{gem_dir}/lib/datas/theme_color.txt") do |f|
+      theme_color = f.gets
+    end
+    @emacs_dir = "#{@workshop_dir}/.emacs.d/#{theme_color}"
+    end
 
   def prac_sequence(mode_dir: String)
     FileUtils.cp("#{mode_dir}/lib/workplace.rb", "#{@workshop_dir}/lib/workplace.rb")
     FileUtils.cp("#{mode_dir}/lib/sentence.org", "#{@workshop_dir}/lib/sentence.org")
     FileUtils.cp("#{mode_dir}/lib/answer.rb", "#{@workshop_dir}/lib/answer.rb")
     FileUtils.cp("#{mode_dir}/spec/workplace_spec.rb", "#{@workshop_dir}/spec/workplace_spec.rb")
-    system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@workshop_dir}/.emacs.d/init.el sentence.org workplace.rb"
+    system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@emacs_dir}/init.el sentence.org workplace.rb"
     start_time = Time.now
     typing_discriminant
     elapsed_time = Common.allocate.time_check(start_time: start_time)
@@ -85,9 +89,9 @@ class TypingPractice
           flag_exit = true
           break
         elsif select == 'answer'
-          system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@workshop_dir}/.emacs.d/ruby_learner_init.el sentence.org workplace.rb"
+          system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@emacs_dir}/answer.el sentence.org workplace.rb"
         else
-          system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@workshop_dir}/.emacs.d/init.el  sentence.org workplace.rb"
+          system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@emacs_dir}/init.el  sentence.org workplace.rb"
         end
       end
     end

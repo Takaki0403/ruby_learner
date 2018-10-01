@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'emacs_install start 1-step'
+echo 'emacs_install start 2-step'
 cd ~
 
 echo '1-step: install homebrew?[Y/n]'

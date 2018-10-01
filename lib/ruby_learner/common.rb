@@ -45,4 +45,18 @@ class Common
     latest_ver = app_vers[0].chomp.gsub(' (', '-').gsub(')','')
     return latest_ver
   end
+
+  def change_theme(color: String)
+    chmoded = 0
+    file_path = "#{@gem_dir}/lib/datas/theme_color.txt"
+    begin
+      File.write(file_dir, "#{color}")
+    rescue => error
+      system "sudo chmod go+w #{file_path}"
+      chmoded += 1
+      retry if chmoded < 2
+      puts "FileWrite error #{error.message}"
+      puts "you should input $sudo chmod go+w #{file_path}"
+    end
+  end
 end

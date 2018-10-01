@@ -58,5 +58,14 @@ module RubyLearner
       system("sh #{file_path}")
     end
 
+    desc 'theme [black or white]',"change ruby_learner's theme"
+    def install_emacs(color: String)
+      color.chomp!
+      if color == 'black' || color == 'white'
+        Common.change_theme(color)
+      else
+        puts "you can change the theme_color, only black or white."
+      end
+    end
   end
 end
