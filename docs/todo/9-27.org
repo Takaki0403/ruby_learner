@@ -4,9 +4,10 @@
 ** document
    - エラー対応の記載
    - 対応パッケージのversionを記載
-** theme変更機能
 
 * finish
+** theme変更機能
+
 ** rubyインストールの自動化
    - emacsのインストール用コマンド
    - rubyのインストール用コマンド

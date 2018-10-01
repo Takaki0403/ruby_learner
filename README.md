@@ -11,7 +11,7 @@ Add this line to your application's Gemfile:
 gem 'ruby_learner'
 ```
 
-And then execute:
+And then execute:
 
     $ bundle
 
@@ -22,10 +22,15 @@ Or install it yourself as:
 ## Usage
 ```ruby
 Usage: ruby_learner [options]
-Options: emacs_key					- confirm emacs key-bindings.
-       	 sequential_check [section:1~11] [part:1~]	- learning drill.
-	 		  -drill			- confirm drill numbers
-			  -next				- learning next to final history
+Options:
+	 -v						- check ruby_learner's version
+	 emacs_key					- confirm emacs key-bindings.
+	 sequential_check [section:1~11] [part:1~]	- learning drill.
+	 sequential_check -drill (-d)	 		- confirm drill numbers
+	 sequential_check -next (-n)			- learn next to final history
+	 restore	  				- check your restore
+	 install_emacs					- install emacs in your mac
+	 theme [black or white]				- change ruby_learner's theme
 ```
 
 In learning in this app, you can choice 3 mode.  
