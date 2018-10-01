@@ -21,6 +21,9 @@ class SequentialMain
     begin
       File.write(file_dir, "#{sec}-#{par}")
     rescue => error
+      system "sudo chmod go+w #{file_dir}"
+      chmoded += 1
+      retry if chmoded < 2
       puts "FileWrite error #{error.message}"
       puts "you should input $sudo chmod go+w #{file_dir}"
     end
