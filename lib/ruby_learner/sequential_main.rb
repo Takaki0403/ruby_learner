@@ -1,5 +1,5 @@
 require 'ruby_learner/typing_practice'
-
+require 'fileutils'
 class SequentialMain
 
   def initialize(gem_dir, workshop_dir)
@@ -16,13 +16,14 @@ class SequentialMain
   end
 
   def write_final_history(sec, par)
-    docs_dir = "#{@gem_dir}/lib/datas"
-    Dir::chdir(docs_dir){
-      #      File.open("final_history_sequential.txt","w") do |f|
-      #        f.puts("#{sec}-#{par}")
-      #      end
-      File.write('final_history_sequential.txt', "#{sec}-#{par}")
-    }
+    chmoded = 0
+    file_dir = "#{@gem_dir}/lib/datas/final_history_sequential.txt"
+    begin
+      File.write(file_dir, "#{sec}-#{par}")
+    rescue => error
+      puts "FileWrite error #{error.message}"
+      puts "you should input $sudo chmod go+w #{file_dir}"
+    end
   end
 
   def drill_contents

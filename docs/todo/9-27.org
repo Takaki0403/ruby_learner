@@ -1,15 +1,10 @@
 * 納期-10/2
-** 課題文章の文字色が背景色と同化する
-   - 白にしろ
 ** rubyインストールの自動化
    - emacsのインストール用コマンド
    - rubyのインストール用コマンド
    - 小脇さんの自動化ファイルを参考にするべき？
 ** 問題作成
    - Ruby技術者認定か楽しく学べるRubyの内容を参考
-*** rubocopのfrozen_string_literalについての対応
-   - .rubocop.ymlに解決コードの書き込みを行う（ファイルの位置は不明）
-   - 各回答用ファイルの先頭に解決コード書き込み
 ** document
    - エラー対応の記載
    - 対応パッケージのversionを記載
@@ -24,3 +19,12 @@
    - bundle exec exe/ruby_learner
 ** チェック後にpermission dinied
    - sshの設定する？
+
+
+** rubocopのfrozen_string_literalについての対応
+   - .rubocop.ymlに解決コードの書き込みを行う（ファイルの位置は不明）
+   - 各回答用ファイルの先頭に解決コード書き込み
+** 課題文章の文字色が背景色と同化する
+   - 白にしろ
+* file権限の確認
+　- https://do-zan.com/mac-terminal-chmod/
