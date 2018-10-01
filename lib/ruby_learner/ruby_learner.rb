@@ -59,10 +59,10 @@ module RubyLearner
     end
 
     desc 'theme [black or white]',"change ruby_learner's theme"
-    def install_emacs(color: String)
-      color.chomp!
-      if color == 'black' || color == 'white'
-        Common.change_theme(color)
+    def theme(*args)
+      args[0].chomp
+      if args[0] == 'black' || args[0] == 'white'
+        Common.allocate.change_theme(color: args[0], gem_dir: @gem_dir)
       else
         puts "you can change the theme_color, only black or white."
       end

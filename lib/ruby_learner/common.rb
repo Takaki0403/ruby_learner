@@ -46,11 +46,12 @@ class Common
     return latest_ver
   end
 
-  def change_theme(color: String)
+  def change_theme(color: String, gem_dir: String)
     chmoded = 0
-    file_path = "#{@gem_dir}/lib/datas/theme_color.txt"
+    file_path = "#{gem_dir}/lib/datas/theme_color.txt"
     begin
-      File.write(file_dir, "#{color}")
+      File.write(file_path, "#{color}")
+      puts "your ruby_learner's color is #{color}!!"
     rescue => error
       system "sudo chmod go+w #{file_path}"
       chmoded += 1

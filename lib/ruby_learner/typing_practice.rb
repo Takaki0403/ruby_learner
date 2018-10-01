@@ -7,8 +7,9 @@ class TypingPractice
   def initialize(workshop_dir, gem_dir)
     @workshop_dir = workshop_dir
     @gem_dir = gem_dir
+    theme_color = ""
     File.open("#{gem_dir}/lib/datas/theme_color.txt") do |f|
-      theme_color = f.gets
+      theme_color = f.gets.chomp
     end
     @emacs_dir = "#{@workshop_dir}/.emacs.d/#{theme_color}"
     end

@@ -1,4 +1,3 @@
-
 (require 'package)
 (add-to-list 'package-archives '("org" . "http:/orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("org-plus-contrib" . "https:/orgmode.org/elpa/contrib") t)
@@ -14,7 +13,7 @@
 ;;setting_theme
 (add-to-list 'custom-theme-load-path "~/.ruby_learner/workshop/.emacs.d/themes")
 (setq custom-theme-directory "~/.ruby_learner/workshop/.emacs.d/themes")
-(load-theme 'my-wombat t)
+(load-theme 'my-whiteboard t) 
 
 ;; 起動時にスタートアップ画面を表示しない 
 (setq inhibit-startup-message t)
@@ -24,13 +23,13 @@
 (global-linum-mode t)
 (setq linum-format "%d")
 (set-face-attribute 'linum nil
-            :foreground "#999999"
-            :background "#000000"
+            :foreground "#000000"
+            :background "#ffffff"
             :height 0.9)
 ;; 背景色を設定
-(set-face-background 'default "#white")
+;;(set-face-background 'default "brightwhite")
 ;; 文字色を設定
-(set-face-foreground 'default "black")
+;;(set-face-foreground 'default "black")
 ;; 括弧補完
 ;;(electric-pair-mode 1)
 ;; 言語を日本語に設定
