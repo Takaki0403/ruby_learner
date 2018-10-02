@@ -1,15 +1,13 @@
 require "open3"
+require "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
 
-$stdin = StringIO.new(1.5)
-
-RSpec.describe "ARGV-check" do
-  it 'given 1 4, return "5\n-3\n4\n0\n"' do
-    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb")
-    expect { puts stdout }.to output("1.5").to_stdout
+RSpec.describe "STDIN-check" do
+  it 'given 3, return "3.0\n9.0\n"' do
+    allow(STDIN).to receive(:gets) { 3 }
+    expect { standard_input() }.to output("3.0\n9.0\n").to_stdout
   end
-#  it 'given 20 4, return "24\n16\n80\n5\n"' do
-#    workshop = "#{ENV['HOME']}/.ruby_learner/workshop"
-#    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb 20 4")
- #   expect { puts stdout }.to output("24\n16\n80\n5\n").to_stdout
-#  end
+  it 'given 8, return "8.0\n64.0\n"' do
+    allow(STDIN).to receive(:gets) { 8 }
+    expect { standard_input() }.to output("8.0\n64.0\n").to_stdout
+  end
 end
