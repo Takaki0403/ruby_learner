@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 require "open3"
 
 RSpec.describe "ARGV-check" do
