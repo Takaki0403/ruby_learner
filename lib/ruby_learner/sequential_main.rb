@@ -31,7 +31,7 @@ class SequentialMain
 
   def drill_contents
     puts "section_1  1~3"
-    puts "section_2  1~2"
+    puts "section_2  1~3"
     puts "section_3  1"
     puts "section_4  1"
     puts "section_5  1~2"
@@ -60,20 +60,23 @@ class SequentialMain
 
   def get_next_question(final_sec, final_par)
     if final_sec == 1
-    if final_par == 1
-      next_sec = 1
-      next_par = 2
-    elsif final_par == 2
-      next_sec = 1
-      next_par = 3
-    else
-      next_sec = 2
-      next_par = 1
-    end
+      if final_par == 1
+        next_sec = 1
+        next_par = 2
+      elsif final_par == 2
+        next_sec = 1
+        next_par = 3
+      else
+        next_sec = 2
+        next_par = 1
+      end
     elsif final_sec == 2
       if final_par == 1
         next_sec = 2
         next_par = 2
+      elsif final_par == 2
+        next_sec = 2
+        next_par = 3
       else
         next_sec = 3
         next_par = 1
