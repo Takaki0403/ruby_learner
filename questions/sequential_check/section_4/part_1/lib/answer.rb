@@ -3,7 +3,7 @@
 a = 50
 b = 50
 
-# 以下の結果を出力せよ
+# output following results
 p a == b # a == b
 p a != b # a != b
 
