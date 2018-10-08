@@ -1,9 +1,20 @@
 # section_4/part_1/answer.rb
-# 4-1-if.rb
-a = ARGV[0].to_i
+# 4-1-trueAndFalse.rb
+a = 50
+b = 50
 
-if a >= 10
-  print "greater\n"
-else
-  print "smaller\n"
-end
+# 以下の結果を出力せよ
+p a == b # a == b
+p a != b # a != b
+
+a = 50
+b = 150
+
+p a > b # a > b
+p a < b # a < b
+
+c = 10
+d = 10
+
+p a < b && c == d # a < b && c == d
+p a < b || c == d # a < b || c == d
