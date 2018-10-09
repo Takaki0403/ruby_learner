@@ -13,7 +13,5 @@ index = 0
 loop do
   puts names[index]
   index += 1
-  if index >= names.size
-    break
-  end
+  break if index >= names.size
 end
