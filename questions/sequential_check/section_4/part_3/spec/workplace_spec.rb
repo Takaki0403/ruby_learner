@@ -1,19 +1,21 @@
 require "open3"
 require "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
 
+filename = "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
+check_method = false
+
 RSpec.describe "STDIN-check" do
-  filename = "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
-  check-method = false
   it 'check case-method, return boolean' do
     File.open(filename, "r") do |file|
       file.each_line do |line|
-        check-method = true if line =~ 'case'
+        check_method = true if line.include?('case')
       end
     end
-    expect { check-method }.to output(true)
+    puts "Message: you don't use case-methods．" if !check_method
+    expect( check_method ).to eq(true)
   end
   it 'given Japan, return "こんにちは\n"' do
-    allow(STDIN).to receive(:gets) { "japan\n" }
+    allow(STDIN).to receive(:gets) { "Japan\n" }
     expect { gree() }.to output("こんにちは\n").to_stdout
   end
   it 'given USA, return "Hello\n"' do
@@ -22,6 +24,6 @@ RSpec.describe "STDIN-check" do
   end
   it 'given Italy, return "else\n"' do
     allow(STDIN).to receive(:gets) { "Italy\n" }
-    expect { gree() }.to output("else\n").to_stdout
+    expect { gree() }.to output("else").to_stdout
   end
 end
