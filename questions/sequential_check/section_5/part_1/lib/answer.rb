@@ -1,8 +1,8 @@
 # section_5/part_1/answer.rb
 # 5-1-while.rb
-n = ARGV[0].to_i
+max = 15
 i = 1
-while i <= n
-  print i, "\n"
+while i <= max
+  puts i
   i += 1
 end

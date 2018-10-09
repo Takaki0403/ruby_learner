@@ -1,4 +1,4 @@
-# section_5/part_2/workplace.rb
+# section_5/part_3/workplace.rb
 names = %w[tanaka nakamura sasaki suzuki]
 index = 0
 

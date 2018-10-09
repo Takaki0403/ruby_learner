@@ -1,18 +1,18 @@
 require "open3"
 
-is_each_method = false
+is_loop_method = false
 workshop = "#{ENV['HOME']}/.ruby_learner/workshop"
 filename = "#{workshop}/lib/workplace.rb"
 
-RSpec.describe "each-check" do
-  it 'check each-method, return boolean' do
+RSpec.describe "loop-check" do
+  it 'check loop-method, return boolean' do
     File.open(filename, "r") do |file|
       file.each_line do |line|
-        is_each_method = true if line.include?('each')
+        is_loop_method = true if line.include?('loop')
       end
     end
-    puts "ErrorMessage: you don't use each-methods．" if !is_each_method
-    expect( is_each_method ).to eq(true)
+    puts "ErrorMessage: you don't use loop-methods．" if !is_loop_method
+    expect( is_loop_method ).to eq(true)
   end
 
   it 'return names-items' do
