@@ -1,5 +1,10 @@
 # section_6/part_1/answer.rb
 # 6-1-array.rb
-nums = [3, 1, 4, 1, 5]
+nums = [1, 5, 3, 7, 5]
 
-print nums[ARGV[0].to_i]
+p nums
+
+nums[1] = 2
+nums[3] = 4
+
+p nums
