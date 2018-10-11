@@ -15,6 +15,22 @@ class SequentialMain
     write_final_history(sec, par)
   end
 
+  def last_re_action()
+    final_sec, final_par = get_final_history(@gem_dir)
+    puts "section_#{final_sec}/part_#{final_par}"
+    theme_color = ""
+    File.open("#{@gem_dir}/lib/datas/theme_color.txt") do |f|
+      theme_color = f.gets.chomp
+    end
+    emacs_dir = "#{@workshop_dir}/.emacs.d/#{theme_color}"
+    system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{emacs_dir}/init.el sentence.org workplace.rb"
+    start_time = Time.now
+    typing_prac_class = TypingPractice.new(@workshop_dir, @gem_dir)
+    typing_prac_class.typing_discriminant
+    elapsed_time = Common.allocate.time_check(start_time: start_time)
+    p "#{elapsed_time} sec"
+  end
+
   def write_final_history(sec, par)
     chmoded = 0
     file_dir = "#{@gem_dir}/lib/datas/final_history_sequential.txt"
@@ -30,17 +46,19 @@ class SequentialMain
   end
 
   def drill_contents
-    puts "section_1  1~3"
-    puts "section_2  1~3"
-    puts "section_3  1~3"
-    puts "section_4  1~3"
-    puts "section_5  1~3"
-    puts "section_6  1~4"
-    puts "section_7  1~2"
-    puts "section_8  1"
-    puts "section_9  1~3"
-    puts "section_10 1~2"
-    puts "section_11 1~2"
+    puts "section  \t part\t contents"
+    puts "section_1\t 1~3\t standard_output"
+    puts "section_2\t 1~3\t standard_input"
+    puts "section_3\t 1~3\t standard_I/O summary"
+    puts "section_4\t 1~3\t comparisons & conditionals"
+    puts "section_5\t 1~3\t loop_methods"
+    puts "section_6\t 1~4\t array & hash"
+    puts "section_7\t 1~2\t function"
+    puts "section_8\t 1~1\t class"
+    puts "section_9\t 1~3\t symbol"
+    puts "section_10\t 1~2\t regular_expression"
+    puts "section_11\t 1~2\t file_operation"
+    puts "section_12\t 1~2\t library"
   end
 
   def get_final_history(gem_dir)

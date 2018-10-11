@@ -29,6 +29,7 @@ module RubyLearner
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'
     option :next, aliases: :n, type: :boolean
     option :drill, aliases: :d, type: :boolean
+    option :last, aliases: :l, type: :boolean
     def sequential_check(*args)
       begin
         sequential_main = SequentialMain.new(@gem_dir, @workshop_dir)
@@ -38,30 +39,44 @@ module RubyLearner
           final_sec, final_par = sequential_main.get_final_history(@gem_dir)
           next_sec, next_par = sequential_main.get_next_question(final_sec, final_par)
           sequential_main.action(next_sec, next_par)
+        elsif options[:last]
+          sequential_main.last_re_action
         else
           sequential_main.action(args[0], args[1])
         end
       rescue => error
         puts "Error.message: #{error.message}"
         puts 'sequential_check has 3-modes'
-        puts 'mode-1: $ sequential_check [section:1~11] [part:1~] ,ex) sequential_check 1 3'
+        puts 'mode-1: $ sequential_check [section:1~11] [part:1~], ex) sequential_check 1 3'
         puts 'mode-2: $ sequential_check -d, check drill contents'
         puts 'mode-3: $ sequential_check -n, learn next to your last-question'
+        puts 'mode-4: $ sequential_check -l, learn your last-question'
       end
     end
 
     desc 'restore','check your restore'
     option :refresh, aliases: :r, type: :boolean
     def restore(*args)
+      restores = []
+      dir = Dir.open("#{@workshop_dir}/restore")
+      dir.each do |file|
+        if file != '.' && file != '..' && file != 'empty.rb'
+          restores << file.slice(1..file.length)
+        end
+      end
+      sorted_restores = restores.sort_by{|item| item.to_i}
+      sorted_restores.each{|item| item.insert(0, "[")}
       if options[:refresh]
         system("rm -rf #{@workshop_dir}/restore/")
         system("mkdir #{@workshop_dir}/restore")
-      elsif args.empty? == true then
-        system("ls #{@workshop_dir}/restore")
-        print("\n If you want to open a restore_file, you execute 'ruby_learner restore [file_name]'")
-        print("\n If you want to remove all restore_files, you execute 'ruby_learner restore -r'")
+      elsif args.empty? == true
+        puts sorted_restores
+        puts "If you want to open a restore_file, you execute 'ruby_learner restore [number]'"
+        puts "ex) ruby_learner restore 3"
+        print "If you want to remove all restore_files, you execute 'ruby_learner restore -r'"
       else
-        system("emacs #{@workshop_dir}/restore/#{args[0]}")
+        filename = sorted_restores[args[0].to_i - 1]
+        system("emacs #{@workshop_dir}/restore/#{filename}")
       end
     end
 
