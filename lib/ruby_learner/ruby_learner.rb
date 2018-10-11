@@ -82,12 +82,12 @@ module RubyLearner
         print "If you want to remove all restore_files, you execute 'ruby_learner restore -r'"
       else
         case args[0].to_i
-        when 0..sorted_restores.size
+        when 0..sorted_restores.size-1
           filename = sorted_restores[args[0].to_i]
           system("emacs #{@workshop_dir}/restore/#{filename}")
         else
-          puts "you have #{args[0]} restore_files."
-          puts "you must put 'ruby_learner restore 0~#{args[0]}.'"
+          puts "you have #{sorted_restores.size} restore_files."
+          puts "you must put 'ruby_learner restore 0~#{sorted_restores.size - 1}.'"
         end
       end
     end
