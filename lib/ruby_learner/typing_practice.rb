@@ -51,7 +51,7 @@ class TypingPractice
         end
       end
     end
-    Common.allocate.restore(file: "#{@workshop_dir}/lib/workplace.rb", workshop_dir: @workshop_dir)
+    Common.allocate.save_restore(file: "#{@workshop_dir}/lib/workplace.rb", workshop_dir: @workshop_dir)
   end
 
   def rspec_check
