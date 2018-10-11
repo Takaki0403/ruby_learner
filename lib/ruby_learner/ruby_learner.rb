@@ -70,13 +70,25 @@ module RubyLearner
         system("rm -rf #{@workshop_dir}/restore/")
         system("mkdir #{@workshop_dir}/restore")
       elsif args.empty? == true
-        puts sorted_restores
+        if sorted_restores.size < 20
+          puts sorted_restores
+        else
+          system("ls #{@workshop_dir}/restore")
+          puts "\nlast 5 restore history."
+          puts sorted_restores[-5..-1], "\n"
+        end
         puts "If you want to open a restore_file, you execute 'ruby_learner restore [number]'"
         puts "ex) ruby_learner restore 3"
         print "If you want to remove all restore_files, you execute 'ruby_learner restore -r'"
       else
-        filename = sorted_restores[args[0].to_i - 1]
-        system("emacs #{@workshop_dir}/restore/#{filename}")
+        case args[0].to_i
+        when 1..sorted_restores.size
+          filename = sorted_restores[args[0].to_i - 1]
+          system("emacs #{@workshop_dir}/restore/#{filename}")
+        else
+          puts "you have #{args[0]} restore_files."
+          puts "you must put 'ruby_learner restore 1~#{args[0]}.'"
+        end
       end
     end
 
