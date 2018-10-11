@@ -60,7 +60,7 @@ module RubyLearner
       restores = []
       dir = Dir.open("#{@workshop_dir}/restore")
       dir.each do |file|
-        if file != '.' && file != '..'
+        if file != '.' && file != '..' && file != '.empty.rb'
           restores << file.slice(1..file.length)
         end
       end
@@ -82,7 +82,7 @@ module RubyLearner
         print "If you want to remove all restore_files, you execute 'ruby_learner restore -r'"
       else
         case args[0].to_i
-        when 1..sorted_restores.size
+        when 0..sorted_restores.size
           filename = sorted_restores[args[0].to_i]
           system("emacs #{@workshop_dir}/restore/#{filename}")
         else
