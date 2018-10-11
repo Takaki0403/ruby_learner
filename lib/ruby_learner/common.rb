@@ -37,6 +37,7 @@ class Common
       system("cd #{workshop_dir} && mv emacs.d .emacs.d")
       system("cd #{workshop_dir} && mv rspec .rspec")
       system("cd #{workshop_dir} && mv rubocop.yml .rubocop.yml")
+      system("cd #{workshop_dir}/restore && rm empty.rb")
     end
   end
 
