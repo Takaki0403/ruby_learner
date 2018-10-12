@@ -1,7 +1,7 @@
 class Common
-  def save_restore(file: String, workshop_dir: String)
+  def save_restore(file: String, local_dir: String)
     restore_file = ""
-    line = File.open("#{workshop_dir}/lib/answer.rb") do |f|
+    line = File.open("#{local_dir}/workshop/lib/answer.rb") do |f|
       1.times {
         f.gets
       }
@@ -9,13 +9,12 @@ class Common
     end
     restore_file.gsub!(" ", "")
     restore_file.delete!("#")
-    Dir::chdir("#{workshop_dir}/restore"){
+    Dir::chdir("#{local_dir}/restore"){
       file_count = Dir.glob("*.rb").count
-      # restore_file.insert(-5, "[#{file_count}]")
       restore_file.insert(0, "[#{file_count}]")
     }
-    system "touch #{workshop_dir}/restore/#{restore_file}"
-    system "cp #{workshop_dir}/lib/workplace.rb #{workshop_dir}/restore/#{restore_file}"
+    system "touch #{local_dir}/restore/#{restore_file}"
+    system "cp #{local_dir}/workshop/lib/workplace.rb #{local_dir}/restore/#{restore_file}"
   end
 
   def time_check(start_time: Time)
@@ -30,26 +29,25 @@ class Common
     puts "check answer >>> 'answer' + [RET]"
   end
 
-  def init_mk_files(gem_dir: String, workshop_dir: String)
-    if Dir.exist?(workshop_dir) != true then
-      FileUtils.mkdir_p(workshop_dir)
-      system("cp -R #{gem_dir}/workshop/* #{workshop_dir}")
-      system("cd #{workshop_dir} && mv emacs.d .emacs.d")
-      system("cd #{workshop_dir} && mv rspec .rspec")
-      system("cd #{workshop_dir} && mv rubocop.yml .rubocop.yml")
-      system("cd #{workshop_dir}/restore && mv empty.rb .empty.rb")
+  def init_mk_files(gem_dir: String, local_dir: String)
+    gem_contents_dir = "#{gem_dir}/contents"
+    if Dir.exist?(local_dir) != true then
+      FileUtils.mkdir_p("#{local_dir}/workshop")
+      system("cp -R #{gem_contents_dir}/workshop/* #{local_dir/}/workshop")
+      FileUtils.mkdir_p("#{local_dir}/restore")
+      system("cp -R #{gem_contents_dir}/restore/* #{local_dir}/restore")
+      FileUtils.mkdir_p("#{local_dir}/.datas")
+      system("cp -R #{gem_contents_dir}/datas/* #{local_dir}/.datas")
+      system("cd #{local_dir}/.datas && mv emacs.d .emacs.d")
+      system("cd #{local_dir}/workshop && mv rspec .rspec")
+      system("cd #{local_dir}/workshop && mv rubocop.yml .rubocop.yml")
+      system("cd #{local_dir}/restore && mv empty.rb .empty.rb")
     end
   end
 
-  def get_app_ver(app_name: String)
-    app_vers = Open3.capture3("gem list #{app_name}")
-    latest_ver = app_vers[0].chomp.gsub(' (', '-').gsub(')','')
-    return latest_ver
-  end
-
-  def change_theme(color: String, gem_dir: String)
+  def change_theme(color: String, datas_dir: String)
     chmoded = 0
-    file_path = "#{gem_dir}/lib/datas/theme_color.txt"
+    file_path = "#{datas_dir}/theme_color.txt"
     begin
       File.write(file_path, "#{color}")
       puts "your ruby_learner's color is #{color}!!"

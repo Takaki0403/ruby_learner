@@ -10,9 +10,12 @@ module RubyLearner
   class CLI < Thor
     def initialize(*args)
       super
-      @workshop_dir = "#{ENV['HOME']}/.ruby_learner/workshop"
+      @local_dir = "#{ENV['HOME']}/.ruby_learner"
+      @workshop_dir = "#{local_dir}/workshop"
+      @restore_dir = "#{local_dir}/restore"
+      @datas_dir = "#{local_dir}/.datas"
       @gem_dir = File.expand_path("../../../", __FILE__)
-      Common.allocate.init_mk_files(gem_dir: @gem_dir, workshop_dir: @workshop_dir)
+      Common.allocate.init_mk_files(gem_dir: @gem_dir, local_dir: local_dir)
     end
 
     desc '-v', 'show program version'
@@ -23,7 +26,7 @@ module RubyLearner
 
     desc 'emacs_key', 'check emacs key-bindings'
     def emacs_key
-      system("cat #{@gem_dir}/lib/datas/emacs_help.org")
+      system("cat #{@datas_dir}/emacs_help.org")
     end
 
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'
@@ -32,7 +35,7 @@ module RubyLearner
     option :last, aliases: :l, type: :boolean
     def sequential_check(*args)
       begin
-        sequential_main = SequentialMain.new(@gem_dir, @workshop_dir)
+        sequential_main = SequentialMain.new(@gem_dir, @local_dir)
         if options[:drill]
           sequential_main.drill_contents
         elsif options[:next]
@@ -58,7 +61,7 @@ module RubyLearner
     option :refresh, aliases: :r, type: :boolean
     def restore(*args)
       restores = []
-      dir = Dir.open("#{@workshop_dir}/restore")
+      dir = Dir.open(@restore_dir)
       dir.each do |file|
         if file != '.' && file != '..' && file != '.empty.rb'
           restores << file.slice(1..file.length)
@@ -67,13 +70,13 @@ module RubyLearner
       sorted_restores = restores.sort_by{|item| item.to_i}
       sorted_restores.each{|item| item.insert(0, "[")}
       if options[:refresh]
-        system("rm -rf #{@workshop_dir}/restore/")
-        system("mkdir #{@workshop_dir}/restore")
+        system("rm -rf #{@restore_dir}")
+        system("mkdir #{@restore_dir}")
       elsif args.empty? == true
         if sorted_restores.size < 20
           puts sorted_restores
         else
-          system("ls #{@workshop_dir}/restore")
+          system("ls #{@restore_dir}")
           puts "\nlast 5 restore history."
           puts sorted_restores[-5..-1], "\n"
         end
@@ -84,7 +87,7 @@ module RubyLearner
         case args[0].to_i
         when 0..sorted_restores.size-1
           filename = sorted_restores[args[0].to_i]
-          system("emacs #{@workshop_dir}/restore/#{filename}")
+          system("emacs #{@restore_dir}/#{filename}")
         else
           puts "you have #{sorted_restores.size} restore_files."
           puts "you must put 'ruby_learner restore 0~#{sorted_restores.size - 1}.'"
@@ -94,7 +97,7 @@ module RubyLearner
 
     desc 'install_emacs','install emacs in your mac'
     def install_emacs
-      file_path = "#{@gem_dir}/lib/datas/install_emacs.sh"
+      file_path = "#{@datas_dir}/install_emacs.sh"
       system("sh #{file_path}")
     end
 

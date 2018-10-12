@@ -2,15 +2,18 @@ require 'ruby_learner/typing_practice'
 require 'fileutils'
 class SequentialMain
 
-  def initialize(gem_dir, workshop_dir)
+  def initialize(gem_dir, local_dir)
     @gem_dir = gem_dir
-    @workshop_dir = workshop_dir
+    @local_dir = local_dir
+    @workshop_dir = "#{local_dir}/workshop"
+    @restore_dir = "#{local_dir}/restore"
+    @datas_dir = "#{local_dir}/.datas"
   end
 
   def action(sec, par)
     puts "section_#{sec}/part_#{par}"
     seq_dir = "#{@gem_dir}/questions/sequential_check/section_#{sec}/part_#{par}"
-    typing_prac_class = TypingPractice.new(@workshop_dir, @gem_dir)
+    typing_prac_class = TypingPractice.new(@workshop_dir, @local_dir)
     typing_prac_class.prac_sequence(mode_dir: seq_dir)
     write_final_history(sec, par)
   end
@@ -19,13 +22,13 @@ class SequentialMain
     final_sec, final_par = get_final_history(@gem_dir)
     puts "section_#{final_sec}/part_#{final_par}"
     theme_color = ""
-    File.open("#{@gem_dir}/lib/datas/theme_color.txt") do |f|
+    File.open("#{@datas_dir}/theme_color.txt") do |f|
       theme_color = f.gets.chomp
     end
-    emacs_dir = "#{@workshop_dir}/.emacs.d/#{theme_color}"
+    emacs_dir = "#{@datas_dir}/.emacs.d/#{theme_color}"
     system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{emacs_dir}/init.el sentence.org workplace.rb"
     start_time = Time.now
-    typing_prac_class = TypingPractice.new(@workshop_dir, @gem_dir)
+    typing_prac_class = TypingPractice.new(@workshop_dir, @local_dir)
     typing_prac_class.typing_discriminant
     elapsed_time = Common.allocate.time_check(start_time: start_time)
     p "#{elapsed_time} sec"
@@ -33,7 +36,7 @@ class SequentialMain
 
   def write_final_history(sec, par)
     chmoded = 0
-    file_dir = "#{@gem_dir}/lib/datas/final_history_sequential.txt"
+    file_dir = "#{@datas_dir}/final_history_sequential.txt"
     begin
       File.write(file_dir, "#{sec}-#{par}")
     rescue => error
@@ -61,12 +64,11 @@ class SequentialMain
     puts "section_12\t 1~2\t library"
   end
 
-  def get_final_history(gem_dir)
-    docs_dir = "#{gem_dir}/lib/datas"
+  def get_final_history()
     final_history = ''
     final_sec = 0
     final_par = 0
-    Dir::chdir(docs_dir){
+    Dir::chdir(@datas_dir){
       File.open("final_history_sequential.txt") do |f|
       final_history = f.gets
       end

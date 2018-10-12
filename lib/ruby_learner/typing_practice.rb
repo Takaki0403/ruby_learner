@@ -4,14 +4,17 @@ require 'rubocop'
 
 class TypingPractice
 
-  def initialize(workshop_dir, gem_dir)
-    @workshop_dir = workshop_dir
+  def initialize(local_dir, gem_dir)
+    @local_dir = local_dir
+    @workshop_dir = "#{local_dir}/workshop"
+    @restore_dir = "#{local_dir}/restore"
+    @datas_dir = "#{local_dir}/.datas"
     @gem_dir = gem_dir
     theme_color = ""
-    File.open("#{gem_dir}/lib/datas/theme_color.txt") do |f|
+    File.open("#{datas_dir}/theme_color.txt") do |f|
       theme_color = f.gets.chomp
     end
-    @emacs_dir = "#{@workshop_dir}/.emacs.d/#{theme_color}"
+    @emacs_dir = "#{@datas_dir}/.emacs.d/#{theme_color}"
     end
 
   def prac_sequence(mode_dir: String)
@@ -51,7 +54,7 @@ class TypingPractice
         end
       end
     end
-    Common.allocate.save_restore(file: "#{@workshop_dir}/lib/workplace.rb", workshop_dir: @workshop_dir)
+    Common.allocate.save_restore(file: "#{@workshop_dir}/lib/workplace.rb", local_dir: @local_dir)
   end
 
   def rspec_check
