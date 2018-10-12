@@ -33,7 +33,7 @@ class Common
     gem_contents_dir = "#{gem_dir}/contents"
     if Dir.exist?(local_dir) != true then
       FileUtils.mkdir_p("#{local_dir}/workshop")
-      system("cp -R #{gem_contents_dir}/workshop/* #{local_dir/}/workshop")
+      system("cp -R #{gem_contents_dir}/workshop/* #{local_dir}/workshop")
       FileUtils.mkdir_p("#{local_dir}/restore")
       system("cp -R #{gem_contents_dir}/restore/* #{local_dir}/restore")
       FileUtils.mkdir_p("#{local_dir}/.datas")

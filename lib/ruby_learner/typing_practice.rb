@@ -11,7 +11,7 @@ class TypingPractice
     @datas_dir = "#{local_dir}/.datas"
     @gem_dir = gem_dir
     theme_color = ""
-    File.open("#{datas_dir}/theme_color.txt") do |f|
+    File.open("#{@datas_dir}/theme_color.txt") do |f|
       theme_color = f.gets.chomp
     end
     @emacs_dir = "#{@datas_dir}/.emacs.d/#{theme_color}"

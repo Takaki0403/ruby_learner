@@ -11,11 +11,11 @@ module RubyLearner
     def initialize(*args)
       super
       @local_dir = "#{ENV['HOME']}/.ruby_learner"
-      @workshop_dir = "#{local_dir}/workshop"
-      @restore_dir = "#{local_dir}/restore"
-      @datas_dir = "#{local_dir}/.datas"
+      @workshop_dir = "#{@local_dir}/workshop"
+      @restore_dir = "#{@local_dir}/restore"
+      @datas_dir = "#{@local_dir}/.datas"
       @gem_dir = File.expand_path("../../../", __FILE__)
-      Common.allocate.init_mk_files(gem_dir: @gem_dir, local_dir: local_dir)
+      Common.allocate.init_mk_files(gem_dir: @gem_dir, local_dir: @local_dir)
     end
 
     desc '-v', 'show program version'
@@ -39,11 +39,11 @@ module RubyLearner
         if options[:drill]
           sequential_main.drill_contents
         elsif options[:next]
-          final_sec, final_par = sequential_main.get_final_history(@gem_dir)
+          final_sec, final_par = sequential_main.get_final_history()
           next_sec, next_par = sequential_main.get_next_question(final_sec, final_par)
           sequential_main.action(next_sec, next_par)
         elsif options[:last]
-          sequential_main.last_re_action
+          sequential_main.last_re_action()
         else
           sequential_main.action(args[0], args[1])
         end
@@ -105,7 +105,7 @@ module RubyLearner
     def theme(*args)
       args[0].chomp
       if args[0] == 'black' || args[0] == 'white'
-        Common.allocate.change_theme(color: args[0], gem_dir: @gem_dir)
+        Common.allocate.change_theme(color: args[0], datas_dir: @datas_dir)
       else
         puts "you can change the theme_color, only black or white."
       end

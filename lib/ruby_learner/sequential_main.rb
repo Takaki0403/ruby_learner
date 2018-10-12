@@ -12,14 +12,14 @@ class SequentialMain
 
   def action(sec, par)
     puts "section_#{sec}/part_#{par}"
-    seq_dir = "#{@gem_dir}/questions/sequential_check/section_#{sec}/part_#{par}"
-    typing_prac_class = TypingPractice.new(@workshop_dir, @local_dir)
+    seq_dir = "#{@gem_dir}/contents/questions/sequential_check/section_#{sec}/part_#{par}"
+    typing_prac_class = TypingPractice.new(@local_dir, @gem_dir)
     typing_prac_class.prac_sequence(mode_dir: seq_dir)
     write_final_history(sec, par)
   end
 
   def last_re_action()
-    final_sec, final_par = get_final_history(@gem_dir)
+    final_sec, final_par = get_final_history()
     puts "section_#{final_sec}/part_#{final_par}"
     theme_color = ""
     File.open("#{@datas_dir}/theme_color.txt") do |f|
@@ -28,7 +28,7 @@ class SequentialMain
     emacs_dir = "#{@datas_dir}/.emacs.d/#{theme_color}"
     system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{emacs_dir}/init.el sentence.org workplace.rb"
     start_time = Time.now
-    typing_prac_class = TypingPractice.new(@workshop_dir, @local_dir)
+    typing_prac_class = TypingPractice.new(@local_dir, @gem_dir)
     typing_prac_class.typing_discriminant
     elapsed_time = Common.allocate.time_check(start_time: start_time)
     p "#{elapsed_time} sec"
