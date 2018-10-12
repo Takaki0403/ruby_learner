@@ -26,9 +26,9 @@ module RubyLearner
 
     desc 'emacs_key', 'check emacs key-bindings'
     option :image, aliases: :i, type: :boolean
-    def emacs_key
-      if option[:image]
-        system("open #{datas_dir}/emacs_help.png}")
+    def emacs_key(*args)
+      if options[:image]
+        system("open #{@datas_dir}/emacs_help.pdf")
       else
         system("cat #{@datas_dir}/emacs_help.org")
       end
