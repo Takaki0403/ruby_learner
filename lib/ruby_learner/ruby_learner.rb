@@ -25,8 +25,13 @@ module RubyLearner
     end
 
     desc 'emacs_key', 'check emacs key-bindings'
+    option :image, aliases: :i, type: :boolean
     def emacs_key
-      system("cat #{@datas_dir}/emacs_help.org")
+      if option[:image]
+        system("open #{datas_dir}/emacs_help.png}")
+      else
+        system("cat #{@datas_dir}/emacs_help.org")
+      end
     end
 
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'
