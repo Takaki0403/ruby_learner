@@ -1,7 +1,7 @@
 # section_6/part_3/answer.rb
-# 6-3-array-size.rb
-nums = [3, 1, 4, 1, 5]
+# 6-3-hash_mehods.rb
+hash = { sasaki: 21, minami: 18, tanaka: 32 }
 
-print nums, "\n"
-
-print nums.size, "\n"
+p hash.keys
+p hash.values
+p hash.to_a

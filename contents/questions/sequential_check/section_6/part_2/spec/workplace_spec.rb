@@ -1,14 +1,13 @@
 require "open3"
 
-RSpec.describe "ARGV-check" do
-  it 'given 2, return [2, 1, 4, 1, 5]' do
-    workshop = "#{ENV['HOME']}/.ruby_learner/workshop"
-    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb 2")
-    expect { puts stdout }.to output("[2, 1, 4, 1, 5]\n").to_stdout
-  end
-  it 'given 4, return 5' do
-    workshop = "#{ENV['HOME']}/.ruby_learner/workshop"
-    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb 4")
-    expect { puts stdout }.to output("[4, 1, 4, 1, 5]\n").to_stdout
+workshop = "#{ENV['HOME']}/.ruby_learner/workshop"
+
+RSpec.describe "hash-check" do
+  it 'return {:name=>"tanaka", :age=>22}\n
+       name: suzuki\n
+       age: 22\n
+       gender: man\n' do
+    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb")
+    expect { puts stdout }.to output("{:name=>\"tanaka\", :age=>22}\nname: suzuki\nage: 22\ngender: man\n").to_stdout
   end
 end

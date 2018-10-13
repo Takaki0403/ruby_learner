@@ -1,7 +1,12 @@
 # section_6/part_2/answer.rb
-# 6-2-array.rb
-nums = [3, 1, 4, 1, 5]
+# 6-2-hash.rb
+address = { name: 'tanaka', age: 22 }
 
-nums[0] = ARGV[0].to_i
+p address
 
-print nums
+address[:name] = 'suzuki'
+address[:gender] = :man
+
+address.each do |key, value|
+  puts "#{key}: #{value}"
+end
