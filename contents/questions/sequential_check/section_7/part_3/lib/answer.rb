@@ -7,6 +7,7 @@ def average(array)
   array.each do |item|
     result += item
   end
+  result
 end
 
 puts average(nums)
