@@ -1,5 +1,4 @@
 require "open3"
-require "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
 
 filename = "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
 check_method = false
@@ -15,15 +14,15 @@ RSpec.describe "STDIN-check" do
     expect( check_method ).to eq(true)
   end
   it 'given Japan, return "こんにちは\n"' do
-    allow(STDIN).to receive(:gets) { "Japan\n" }
-    expect { gree() }.to output("こんにちは\n").to_stdout
+    stdout, stderr, status = Open3.capture3("ruby #{filename}", :stdin_data=>"Japan\n")
+    expect { puts stdout }.to output("こんにちは\n").to_stdout
   end
   it 'given USA, return "Hello\n"' do
-    allow(STDIN).to receive(:gets) { "USA\n" }
-    expect { gree() }.to output("Hello\n").to_stdout
+    stdout, stderr, status = Open3.capture3("ruby #{filename}", :stdin_data=>"USA\n")
+    expect { puts stdout }.to output("Hello\n").to_stdout
   end
   it 'given Italy, return "else\n"' do
-    allow(STDIN).to receive(:gets) { "Italy\n" }
-    expect { gree() }.to output("else").to_stdout
+    stdout, stderr, status = Open3.capture3("ruby #{filename}", :stdin_data=>"Italy\n")
+    expect { print "#{stdout}" }.to output("else").to_stdout
   end
 end

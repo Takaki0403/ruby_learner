@@ -1,5 +1,7 @@
 # section_7/part_1/answer.rb
-# 7-1-to_sym.rb
-n = ARGV[0]
+# 7-1-def.rb
+def hello
+  puts 'Hello, Ruby.'
+end
 
-p n.to_sym
+hello

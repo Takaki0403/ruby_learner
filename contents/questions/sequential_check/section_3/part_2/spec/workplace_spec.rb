@@ -1,13 +1,14 @@
 require "open3"
-require "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
+
+workplace = "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
 
 RSpec.describe "STDIN-check" do
-  it 'given [3, 6, 9], return "3\n6\n9\n[3, 6, 9]\n"' do
-    allow(STDIN).to receive(:readlines) { [3, 6, 9] }
-    expect { standard_input() }.to output("3\n6\n9\n[3, 6, 9]\n").to_stdout
+  it 'given 3\n6\n9\n, return "3\n6\n9\n[3, 6, 9]\n"' do
+    stdout, stderr, status = Open3.capture3("ruby #{workplace}", :stdin_data=>"3\n6\n9\n")
+    expect { puts stdout }.to output("3\n6\n9\n[\"3\\n\", \"6\\n\", \"9\\n\"]\n").to_stdout
   end
-  it 'given ["fizz", "buzz"], return "fizz\nbuzz\n[\"fizz\\n\", \"buzz\\n\"]\n"' do
-    allow(STDIN).to receive(:readlines) { ["fizz\n", "buzz\n"] }
-    expect { standard_input() }.to output("fizz\nbuzz\n[\"fizz\\n\", \"buzz\\n\"]\n").to_stdout
+  it 'given fizz\nbuzz\n, return "fizz\nbuzz\n[\"fizz\\n\", \"buzz\\n\"]\n"' do
+    stdout, stderr, status = Open3.capture3("ruby #{workplace}", :stdin_data=>"fizz\nbuzz\n")
+    expect { puts stdout }.to output("fizz\nbuzz\n[\"fizz\\n\", \"buzz\\n\"]\n").to_stdout
   end
 end

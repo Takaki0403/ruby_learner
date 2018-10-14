@@ -55,13 +55,12 @@ class SequentialMain
     puts "section_3\t 1~3\t standard_I/O summary"
     puts "section_4\t 1~3\t comparisons & conditionals"
     puts "section_5\t 1~3\t loop_methods"
-    puts "section_6\t 1~4\t array & hash"
+    puts "section_6\t 1~3\t array & hash & symbol"
     puts "section_7\t 1~2\t function"
     puts "section_8\t 1~1\t class"
-    puts "section_9\t 1~3\t symbol"
-    puts "section_10\t 1~2\t regular_expression"
-    puts "section_11\t 1~2\t file_operation"
-    puts "section_12\t 1~2\t library"
+    puts "section_9\t 1~2\t regular_expression"
+    puts "section_10\t 1~2\t file_operation"
+    puts "section_11\t 1~2\t library"
   end
 
   def get_final_history()

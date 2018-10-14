@@ -1,9 +1,9 @@
 # section_7/part_2/answer.rb
-# 7-2-hash.rb
-address = { name: '高橋', furigana: 'タカハシ' }
+# 7-2-def.rb
+your_input = STDIN.gets.chomp
 
-puts address
+def hello(name)
+  puts "Hello, #{name}"
+end
 
-address[:tel] = '000-1234-5678'
-
-puts address
+hello(your_input)
