@@ -3,7 +3,7 @@
 your_input = STDIN.gets.chomp
 
 def hello(name)
-  puts "Hello, #{name}"
+  puts "Hello, #{name}."
 end
 
 hello(your_input)
