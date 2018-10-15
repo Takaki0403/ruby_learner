@@ -1,15 +1,27 @@
 # -*- coding: utf-8 -*-
 require "open3"
+require "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
+is_instance_method = false
+filename = "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
 
-RSpec.describe "match-check" do
-  it "given 'Hello, Ruby.', return \"match.\\n\"" do
-    workshop = "#{ENV['HOME']}/.ruby_learner/workshop"
-    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb 'Hello, Ruby.'")
-    expect { puts stdout }.to output("match.\n").to_stdout
+RSpec.describe "class-check" do
+  it 'chesk Hello class contents' do
+    hello = Hello.new('sasaki')
+    expect{ hello.stdout }.to output("Hello, sasaki.\n").to_stdout
   end
-  it 'given "hogehoge", return "表面積=784\n体積=1040\n"' do
-    workshop = "#{ENV['HOME']}/.ruby_learner/workshop"
-    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb 'hogehoge'")
-    expect { puts stdout }.to output("not match.\n").to_stdout
+
+  it 'check instance-method, return boolean' do
+    File.open(filename, "r") do |file|
+      file.each_line do |line|
+        is_instance_method = true if line.include?('Hello.new')
+      end
+    end
+    puts "ErrorMessage: you don't use instance-methods．" if !is_instance_method
+    expect( is_instance_method ).to eq(true)
+  end
+
+  it "given 'tanaka', return Hello, tanaka.\\n" do
+        stdout, stderr, status = Open3.capture3("ruby #{filename}")
+    expect { puts stdout }.to output("Hello, tanaka.\n").to_stdout
   end
 end
