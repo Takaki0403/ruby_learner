@@ -13,7 +13,7 @@ RSpec.describe "regular-exp-check" do
     expect { puts stdout }.to output("8\n").to_stdout
   end
   it 'return "not match\n"' do
-    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb", :stdin_data=>"Ruby, Hello\n")
+    stdout, stderr, status = Open3.capture3("ruby #{workshop}/lib/workplace.rb", :stdin_data=>"Ruby, tanaka\n")
     expect { puts stdout }.to output("not match.\n").to_stdout
   end
 end
