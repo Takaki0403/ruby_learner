@@ -56,9 +56,9 @@ class SequentialMain
     puts "section_4\t 1~3\t comparisons & conditionals"
     puts "section_5\t 1~3\t loop_methods"
     puts "section_6\t 1~3\t array & hash & symbol"
-    puts "section_7\t 1~2\t function"
-    puts "section_8\t 1~1\t class"
-    puts "section_9\t 1~2\t regular_expression"
+    puts "section_7\t 1~3\t function"
+    puts "section_8\t 1~3\t class"
+    puts "section_9\t 1~3\t regular_expression"
     puts "section_10\t 1~2\t file_operation"
     puts "section_11\t 1~2\t library"
   end
@@ -140,9 +140,6 @@ class SequentialMain
       elsif final_par == 2
         next_sec = 6
         next_par = 3
-      elsif final_par == 3
-        next_sec = 6
-        next_par = 4
       else
         next_sec = 7
         next_par = 1
@@ -151,13 +148,24 @@ class SequentialMain
       if final_par == 1
         next_sec = 7
         next_par = 2
+      elsif final_par == 2
+        next_sec = 7
+        next_par = 3
       else
         next_sec = 8
         next_par = 1
       end
     elsif final_sec == 8
-      next_sec = 9
-      next_par = 1
+      if final_par == 1
+        next_sec = 8
+        next_par = 2
+      elsif final_par == 2
+        next_sec = 8
+        next_par = 3
+      else
+        next_sec = 9
+        next_par = 1
+      end
     elsif final_sec == 9
       if final_par == 1
         next_sec = 9
@@ -173,6 +181,9 @@ class SequentialMain
       if final_par == 1
         next_sec = 10
         next_par = 2
+      elsif final_par == 2
+        next_sec = 10
+        next_par = 3
       else
         next_sec = 11
         next_par = 1
@@ -181,6 +192,9 @@ class SequentialMain
       if final_par == 1
         next_sec = 11
         next_par = 2
+      elsif final_par == 2
+        next_sec = 11
+        next_par = 3
       else
         next_sec = 1
         next_par = 1
