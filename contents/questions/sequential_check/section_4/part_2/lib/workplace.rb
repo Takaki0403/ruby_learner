@@ -1,2 +1,2 @@
-# section_4/part_1/workplace.rb
+# section_4/part_2/workplace.rb
 
