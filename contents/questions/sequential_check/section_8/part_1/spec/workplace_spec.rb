@@ -19,10 +19,13 @@ RSpec.describe "class-check" do
         is_stdout_method = true if line.include?('.stdout')
       end
     end
-    puts "ErrorMessage: you don't use instance-methods．" if !is_instance_method || !is_stdout_method
+
+    puts "ErrorMessage: you don't use class.new--methods．" if !is_instance_method
+    puts "ErrorMessage: you don't use class.stdout--methods．" if !is_stdout_method
+ 
     expect( is_instance_method ).to eq(true)
     expect( is_stdout_method ).to eq(true)
-  end
+   end
 
   it "given 'tanaka', return Hello, tanaka.\\n" do
         stdout, stderr, status = Open3.capture3("ruby #{filename}")
