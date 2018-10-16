@@ -1,8 +1,10 @@
-# section_10/part_2/answer.rb
-# 10-2-def.rb
-def hello(name)
-  print 'Hello, ', name, ".\n"
-end
+# section_9/part_2/answer.rb
+# 9-2-regular-exp.rb
+str = STDIN.gets.chomp
+regular_exp = /A*B/ =~ str
 
-hello(ARGV[0])
-hello(ARGV[1])
+if regular_exp
+  puts 'match A*B.'
+else
+  puts 'not match.'
+end
