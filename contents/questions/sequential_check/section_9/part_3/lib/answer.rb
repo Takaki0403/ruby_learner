@@ -1,10 +1,10 @@
-# section_9/part_1/answer.rb
-# 9-1-regular-exp.rb
+# section_9/part_3/answer.rb
+# 9-3-regular-exp.rb
 str = STDIN.gets.chomp
-regular_exp = /Hello/ =~ str
+regular_exp = /^[A-Z][0-9]/ =~ str
 
 if regular_exp
-  puts regular_exp
+  puts 'match.'
 else
   puts 'not match.'
 end
