@@ -1,6 +1,6 @@
 require 'fileutils'
 require 'ruby_learner/common.rb'
-require 'ruby_learner/pair_time.rb'
+require 'ruby_learner/pair_timer.rb'
 require 'rubocop'
 
 class TypingPractice
@@ -33,7 +33,7 @@ class TypingPractice
   def typing_discriminant
     p 'typing_discriminant'
     loop do
-      pair_thread = PairTime.new do
+      pair_thread = PairTimer.new do
         popup_per_time(10)
       end
 
