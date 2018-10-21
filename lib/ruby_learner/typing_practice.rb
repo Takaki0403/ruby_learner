@@ -33,10 +33,6 @@ class TypingPractice
   def typing_discriminant
     p 'typing_discriminant'
     loop do
-      pair_thread = PairTimer.new do
-        popup_per_time(10)
-      end
-
       flag_rspec, flag_rs_exit = rspec_check
       if flag_rs_exit == true
         break

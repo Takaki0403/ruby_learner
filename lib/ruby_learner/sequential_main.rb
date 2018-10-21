@@ -1,5 +1,6 @@
 require 'ruby_learner/typing_practice'
 require 'fileutils'
+
 class SequentialMain
 
   def initialize(gem_dir, local_dir)

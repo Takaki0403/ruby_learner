@@ -42,7 +42,16 @@ module RubyLearner
     def sequential_check(*args)
       begin
         sequential_main = SequentialMain.new(@gem_dir, @local_dir)
+        if args[0] == '-p'
+          pair_timer = PairTimer.new do
+            pair_timer.popup_per_time(10)
+          end
+          args[0] = args[1]
+          args[1] = args[2]
+        end
+
         if options[:drill]
+          Thread.kill(pair_timer) if pair_timer != nil
           sequential_main.drill_contents
         elsif options[:next]
           final_sec, final_par = sequential_main.get_final_history()
@@ -53,13 +62,15 @@ module RubyLearner
         else
           sequential_main.action(args[0], args[1])
         end
+        Thread.kill(pair_timer) if pair_timer != nil
       rescue => error
         puts "Error.message: #{error.message}"
-        puts 'sequential_check has 3-modes'
+        puts 'sequential_check has 5-modes'
         puts 'mode-1: $ sequential_check [section:1~11] [part:1~], ex) sequential_check 1 3'
         puts 'mode-2: $ sequential_check -d, check drill contents'
         puts 'mode-3: $ sequential_check -n, learn next to your last-question'
         puts 'mode-4: $ sequential_check -l, learn your last-question'
+        puts 'mode-5: $ sequential_check -p [1 2, -d, -n, -l], learn with partner'
       end
     end
 
