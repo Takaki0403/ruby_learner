@@ -1,0 +1,18 @@
+cd \etc\apatche2
+emacs httpd.conf
+apachectl restart
+tail \var\log\apache2\error_log
+date ... 日付の表示
+cd ... homeに移動
+cd Sites ... siteを入れれる
+
+<.htmlのファイルある場合>
+open AAA.html
+open http://localhost/AAA.html
+
+<google>
+apathe 起動 open high sierra
+
+作った後は，自分のやったことを記入していく
+
+木曜日の１時から進捗報告を行うことになる
