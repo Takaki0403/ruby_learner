@@ -83,7 +83,7 @@ module RubyLearner
         puts 'mode-2: $ sequential_check -d, check drill contents'
         puts 'mode-3: $ sequential_check -n, learn next to your last-question'
         puts 'mode-4: $ sequential_check -l, learn your last-question'
-        puts 'mode-5: $ sequential_check -p [1 2, -d, -n, -l], learn with partner'
+        puts 'mode-5: $ sequential_check -p [1 2, -d, -n, -l], learn with partner, change per 10 minutes.'
       end
     end
 
