@@ -8,7 +8,7 @@ RSpec.describe "ARGV-check" do
   it 'check requireRe-method, return boolean' do
     File.open(filename, "r") do |file|
       file.each_line do |line|
-        is_requireRe_method = true if line.include?("require_relative ")
+        is_requireRe_method = true if line.include?("require_relative")
       end
     end
     puts "ErrorMessage: you don't use requireRe-method．" if !is_requireRe_method

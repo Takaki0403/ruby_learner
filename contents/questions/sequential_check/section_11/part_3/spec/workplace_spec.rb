@@ -9,7 +9,7 @@ RSpec.describe "ARGV-check" do
   it 'check require-method, return boolean' do
     File.open(filename, "r") do |file|
       file.each_line do |line|
-        is_require_method = true if line.include?("require ")
+        is_require_method = true if line.include?("require\"") || line.include?("require ") || line.include?("require'")
       end
     end
     puts "ErrorMessage: you don't use require-method．" if !is_require_method
