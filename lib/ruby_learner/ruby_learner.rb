@@ -44,7 +44,7 @@ module RubyLearner
         sequential_main = SequentialMain.new(@gem_dir, @local_dir)
         if args[0] == '-p'
           pair_timer = PairTimer.new do
-            pair_timer.popup_per_time(10)
+            pair_timer.popup_per_time(600)
           end
           args[0] = args[1]
           args[1] = args[2]
