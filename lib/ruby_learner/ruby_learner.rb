@@ -4,6 +4,7 @@ require 'ruby_learner/version.rb'
 require 'open3'
 require 'ruby_learner/common.rb'
 require 'ruby_learner/sequential_main'
+require 'ruby_learner/pair_timer.rb'
 
 module RubyLearner
   # ruby_learner CLI main class
@@ -34,6 +35,15 @@ module RubyLearner
       end
     end
 
+    desc 'pair_popup [time]','popup_per_time'
+    map "-p" => "pair_popup"
+    def pair_popup(*args)
+      puts "your input is #{args[0]}. not exchange time." if args[0].to_i == nil
+      popup_file = File.expand_path("../popup_per_time_for_background.rb", __FILE__)
+      p popup_file
+      system("ruby #{popup_file} #{time} &")
+    end
+
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'
     map "-s" => "sequential_check"
     option :next, aliases: :n, type: :boolean
@@ -44,7 +54,7 @@ module RubyLearner
         sequential_main = SequentialMain.new(@gem_dir, @local_dir)
         if args[0] == '-p'
           pair_timer = PairTimer.new do
-            pair_timer.popup_per_time(600)
+            pair_timer.popup_per_time_for_exe(600)
           end
           args[0] = args[1]
           args[1] = args[2]
