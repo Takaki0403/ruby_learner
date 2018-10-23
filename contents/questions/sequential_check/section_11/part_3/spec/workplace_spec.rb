@@ -2,18 +2,19 @@
 require "open3"
 
 RSpec.describe "ARGV-check" do
-  is_requireRe_method = false
+
+  is_require_method = false
   workshop = "#{ENV['HOME']}/.ruby_learner/workshop"
   filename = "#{workshop}/lib/workplace.rb"
-  it 'check requireRe-method, return boolean' do
+  it 'check require-method, return boolean' do
     File.open(filename, "r") do |file|
       file.each_line do |line|
-        is_requireRe_method = true if line.include?("require_relative ")
+        is_require_method = true if line.include?("require ")
       end
     end
-    puts "ErrorMessage: you don't use requireRe-method．" if !is_requireRe_method
+    puts "ErrorMessage: you don't use require-method．" if !is_require_method
 
-    expect( is_requireRe_method ).to eq(true)
+    expect( is_require_method ).to eq(true)
   end
 
   it 'given "tanaka", return "Hello, tanaka.\n"' do

@@ -60,8 +60,8 @@ class SequentialMain
     puts "section_7\t 1~3\t function"
     puts "section_8\t 1~3\t class"
     puts "section_9\t 1~3\t regular_expression"
-    puts "section_10\t 1~2\t file_operation"
-    puts "section_11\t 1~2\t library"
+    puts "section_10\t 1~3\t file_operation"
+    puts "section_11\t 1~3\t library"
   end
 
   def get_final_history()
