@@ -39,9 +39,9 @@ module RubyLearner
     map "-p" => "pair_popup"
     def pair_popup(*args)
       puts "your input is #{args[0]}. not exchange time." if args[0].to_i == nil
+      time = args[0].to_i
       popup_file = File.expand_path("../popup_per_time_for_background.rb", __FILE__)
-      p popup_file
-      system("ruby #{popup_file} #{time} &")
+      Open3.capture3("ruby #{popup_file} #{time} &")
     end
 
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'
