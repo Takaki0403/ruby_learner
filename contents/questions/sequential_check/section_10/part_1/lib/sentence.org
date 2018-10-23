@@ -20,6 +20,10 @@
 
 *** open
     - 使用方法...変数 = File.open(file_path, mode, perm, opt)
+                 もしくは
+                 File.open(ファイル名,"w") do |text|
+                   ファイルに対する処理
+                 end
     - 機能...ファイルの内容を変数に格納します．modeとpermとoptは省略可能です．
              しかしmodeとpermに関してはmodeを省略するとpermは使用できません．
     - mode...どのような目的でファイルを開くかを決定します．ex) "r" は読み込み専用, "w"は書き込み専用．...
@@ -32,7 +36,21 @@
     - 機能...オブジェクトのファイルを閉じます．
     - File.openした変数が閉じているかどうかを確認する場合は，File.closed?でtrue/falseの結果を得ることができます．
 
-*** gets
+*** each_line
+    - 使用方法...file = File.open(ファイル名)
+                 file.each_line(引数) do |変数|
+                    ファイルの各行に対して繰り返したい処理
+                 end
+                 file.close
+    - 機能...ファイルの各行をそれぞれ処理するメソッド。
+             ファイルを１行ずつ読み込み、処理を繰り返す。
+             行の区切りは引数で指定した文字列になる．
+             引数が省略された場合は，\nで行が区切られる．
+*** puts
+    - 使用方法...File.open(ファイル名,"w") do |text|
+                   text.puts(書き加える文字)
+                 end
+    - 機能...文字を書き加える．ただし，文字は上書きされる．
 ** read
    - 使用方法...変数 = File.read(file_path)
    - 機能...File.openなしにファイルに書かれている内容を変数に格納する．
@@ -41,3 +59,4 @@
    - 使用方法...File.write(file_path, data, offset)
    - 機能...File.openなしにファイルをdataに書き換える．
             offsetは省略可能だが，指定した場合は書き換えるのではなく，指定したoffset番目の文字がdataに書き換わる．
+
