@@ -1,5 +1,7 @@
+require 'time'
+
 class Common
-  def save_restore(file: String, local_dir: String)
+  def save_restore(file: String, local_dir: String, elapsed_time: Time)
     restore_file = ""
     line = File.open("#{local_dir}/workshop/lib/answer.rb") do |f|
       1.times {
@@ -9,12 +11,18 @@ class Common
     end
     restore_file.gsub!(" ", "")
     restore_file.delete!("#")
+    restore_file_for_csv = restore_file.match(/\d-\d/)[0]
     Dir::chdir("#{local_dir}/restore"){
       file_count = Dir.glob("*.rb").count
       restore_file.insert(0, "[#{file_count}]")
     }
     system "touch #{local_dir}/restore/#{restore_file}"
     system "cp #{local_dir}/workshop/lib/workplace.rb #{local_dir}/restore/#{restore_file}"
+    now_time = Time.now
+    file = File.open("#{local_dir}/practice_datas.csv", "a") do |f|
+      f.puts "#{now_time.year}/#{now_time.month}/#{now_time.day},#{now_time.hour}:#{now_time.min}:#{now_time.sec},#{elapsed_time},#{restore_file_for_csv}"
+    end
+
   end
 
   def time_check(start_time: Time)

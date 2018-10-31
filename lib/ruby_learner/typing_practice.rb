@@ -19,18 +19,16 @@ class TypingPractice
     end
 
   def prac_sequence(mode_dir: String)
+    start_time = Time.now
     FileUtils.cp("#{mode_dir}/lib/workplace.rb", "#{@workshop_dir}/lib/workplace.rb")
     FileUtils.cp("#{mode_dir}/lib/sentence.org", "#{@workshop_dir}/lib/sentence.org")
     FileUtils.cp("#{mode_dir}/lib/answer.rb", "#{@workshop_dir}/lib/answer.rb")
     FileUtils.cp("#{mode_dir}/spec/workplace_spec.rb", "#{@workshop_dir}/spec/workplace_spec.rb")
     system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@emacs_dir}/init.el sentence.org workplace.rb"
-    start_time = Time.now
-    typing_discriminant
-    elapsed_time = Common.allocate.time_check(start_time: start_time)
-    p "#{elapsed_time} sec"
+    typing_discriminant(start_time: start_time)
   end
 
-  def typing_discriminant
+  def typing_discriminant(start_time: Time)
     p 'typing_discriminant'
     loop do
       flag_rspec, flag_rs_exit = rspec_check
@@ -56,7 +54,9 @@ class TypingPractice
         end
       end
     end
-    Common.allocate.save_restore(file: "#{@workshop_dir}/lib/workplace.rb", local_dir: @local_dir)
+    elapsed_time = Common.allocate.time_check(start_time: start_time)
+    p "#{elapsed_time} sec"
+    Common.allocate.save_restore(file: "#{@workshop_dir}/lib/workplace.rb", local_dir: @local_dir, elapsed_time: elapsed_time)
   end
 
   def rspec_check
