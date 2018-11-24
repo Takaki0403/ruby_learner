@@ -88,6 +88,7 @@ module RubyLearner
     end
 
     desc 'restore','check your restore'
+    map "-r" => "restore"
     option :refresh, aliases: :r, type: :boolean
     def restore(*args)
       restores = []

@@ -1,0 +1,7 @@
+* Introduction
+  - ctrl-Z -> fg cycle method
+* Method
+  - sequential_checkの
+* Result and Discussion
+  - RLは実際の開発環境に近い状態でのRubyの習得を目指しているので，webでの同様のサービス提供は目的が違っている．同時にテキスト提供や進捗管理をwebで行う場合は使用者に負担になるのではないか．
+  - すなわち，webでの提供はやめるべきではないか．
