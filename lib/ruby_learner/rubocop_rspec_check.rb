@@ -3,7 +3,7 @@ require 'ruby_learner/common.rb'
 require 'ruby_learner/pair_timer.rb'
 require 'rubocop'
 
-class TypingPractice
+class RubocopRspecCheck
 
   def initialize(local_dir, gem_dir)
     @local_dir = local_dir
@@ -16,20 +16,16 @@ class TypingPractice
       theme_color = f.gets.chomp
     end
     @emacs_dir = "#{@datas_dir}/.emacs.d/#{theme_color}"
-    end
+  end
 
-  def prac_sequence(mode_dir: String)
+  def action(mode_dir: String)
     start_time = Time.now
     FileUtils.cp("#{mode_dir}/lib/workplace.rb", "#{@workshop_dir}/lib/workplace.rb")
     FileUtils.cp("#{mode_dir}/lib/sentence.org", "#{@workshop_dir}/lib/sentence.org")
     FileUtils.cp("#{mode_dir}/lib/answer.rb", "#{@workshop_dir}/lib/answer.rb")
     FileUtils.cp("#{mode_dir}/spec/workplace_spec.rb", "#{@workshop_dir}/spec/workplace_spec.rb")
     system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@emacs_dir}/init.el sentence.org workplace.rb"
-    typing_discriminant(start_time: start_time)
-  end
 
-  def typing_discriminant(start_time: Time)
-    p 'typing_discriminant'
     loop do
       flag_rspec, flag_rs_exit = rspec_check
       if flag_rs_exit == true
@@ -59,12 +55,14 @@ class TypingPractice
     Common.allocate.save_restore(file: "#{@workshop_dir}/lib/workplace.rb", local_dir: @local_dir, elapsed_time: elapsed_time)
   end
 
+  private
+
   def rspec_check
     puts "**********************************"
     puts "RSpec Error Check"
     puts "**********************************"
     file = "#{@workshop_dir}/spec/workplace_spec.rb"
-    return loop_in_checks("rspec", file)
+    return loop_per_checks("rspec", file)
   end
 
   def rubocop_check
@@ -72,10 +70,10 @@ class TypingPractice
     puts "Rubocop Error Check"
     puts "**********************************"
     file = "#{@workshop_dir}/lib/workplace.rb"
-    return loop_in_checks("rubocop", file)
+    return loop_per_checks("rubocop", file)
   end
 
-  def loop_in_checks(check_mode, file)
+  def loop_per_checks(check_mode, file)
     count = 0
     flag_check = false
     flag_exit = false

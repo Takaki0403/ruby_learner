@@ -1,10 +1,10 @@
 require 'fileutils'
 require 'thor'
-require 'ruby_learner/version.rb'
 require 'open3'
-require 'ruby_learner/common.rb'
-require 'ruby_learner/sequential_main'
-require 'ruby_learner/pair_timer.rb'
+require 'ruby_learner/version'
+require 'ruby_learner/common'
+require 'ruby_learner/sequential_check'
+require 'ruby_learner/pair_timer'
 
 module RubyLearner
   # ruby_learner CLI main class
@@ -54,7 +54,7 @@ module RubyLearner
     option :last, aliases: :l, type: :boolean
     def sequential_check(*args)
       begin
-        sequential_main = SequentialMain.new(@gem_dir, @local_dir)
+        sequential_check = SequentialCheck.new(@gem_dir, @local_dir)
         if args[0] == '-p'
           pair_timer = PairTimer.new do
             pair_timer.popup_per_time_for_exe(600)
@@ -65,15 +65,15 @@ module RubyLearner
 
         if options[:drill]
           Thread.kill(pair_timer) if pair_timer != nil
-          sequential_main.drill_contents
+          sequential_check.drill_contents
         elsif options[:next]
-          final_sec, final_par = sequential_main.get_final_history()
-          next_sec, next_par = sequential_main.get_next_question(final_sec, final_par)
-          sequential_main.action(next_sec, next_par)
+          final_sec, final_par = sequential_check.get_final_history()
+          next_sec, next_par = sequential_check.get_next_question(final_sec, final_par)
+          sequential_check.action(next_sec, next_par)
         elsif options[:last]
-          sequential_main.last_re_action()
+          sequential_check.last_re_action()
         else
-          sequential_main.action(args[0], args[1])
+          sequential_check.action(args[0], args[1])
         end
         Thread.kill(pair_timer) if pair_timer != nil
       rescue => error
