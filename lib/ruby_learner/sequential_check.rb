@@ -16,7 +16,7 @@ class SequentialCheck
     puts "section_#{sec}/part_#{par}"
     seq_dir = "#{@gem_dir}/contents/questions/sequential_check/section_#{sec}/part_#{par}"
     rubocop_rspec_check = RubocopRspecCheck.new(@local_dir, @gem_dir)
-    rubocop_rspec_check.action(mode_dir: seq_dir)
+    rubocop_rspec_check.action(mode_dir: seq_dir, is_copy: true)
     write_final_history(sec, par)
   end
 
@@ -32,7 +32,7 @@ class SequentialCheck
     final_sec, final_par = get_final_history
     puts "section_#{final_sec}/part_#{final_par}"
     rubocop_rspec_check = RubocopRspecCheck.new(@local_dir, @gem_dir)
-    rubocop_rspec_check.action(mode_dir: @local_dir)
+    rubocop_rspec_check.action(mode_dir: "#{@local_dir}/workshop", is_copy: false)
   end
 
   # -drill
@@ -66,18 +66,14 @@ class SequentialCheck
       puts "you should input $sudo chmod go+w #{file_dir}"
     end
   end
-  
+
   def get_final_history
     final_history = ''
-    final_sec = 0
-    final_par = 0
-    Dir::chdir(@datas_dir){
-      File.open("final_history_sequential.txt") do |f|
-      final_histoory = f.gets
-      end
-      p final_sec = final_history.match(/(.*)\-/)[1].to_i
-      p final_par = final_history.match(/\-(.*)/)[1].to_i
-    }
+    File.open("#{@datas_dir}/final_history_sequential.txt") do |f|
+      final_history = f.gets
+    end
+    final_sec = final_history.match(/(.*)\-/)[1].to_i
+    final_par = final_history.match(/\-(.*)/)[1].to_i
     return final_sec, final_par
   end
 
@@ -85,11 +81,10 @@ class SequentialCheck
     if final_par == 3
       next_sec = final_sec + 1
       next_sec = 1 if next_sec >= 12
-      next_par = 1
+      return next_sec, 1
     else
-      next_par = final_par + 1
+      return final_sec, final_par+1
     end
-    return next_sec, next_par
   end
 
 end

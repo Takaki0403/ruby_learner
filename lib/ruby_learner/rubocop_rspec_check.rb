@@ -18,23 +18,20 @@ class RubocopRspecCheck
     @emacs_dir = "#{@datas_dir}/.emacs.d/#{theme_color}"
   end
 
-  def action(mode_dir: String)
+  def action(mode_dir: String, is_copy: Bool)
     start_time = Time.now
-    FileUtils.cp("#{mode_dir}/lib/workplace.rb", "#{@workshop_dir}/lib/workplace.rb")
-    FileUtils.cp("#{mode_dir}/lib/sentence.org", "#{@workshop_dir}/lib/sentence.org")
-    FileUtils.cp("#{mode_dir}/lib/answer.rb", "#{@workshop_dir}/lib/answer.rb")
-    FileUtils.cp("#{mode_dir}/spec/workplace_spec.rb", "#{@workshop_dir}/spec/workplace_spec.rb")
+    if is_copy
+      %w{lib/workplace.rb lib/sentence.org lib/answer.rb spec/workplace_spec.rb}.each do |path|
+        FileUtils.cp("#{mode_dir}/#{path}", "#{@workshop_dir}/#{path}")
+      end
+    end
     system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@emacs_dir}/init.el sentence.org workplace.rb"
 
     loop do
       flag_rspec, flag_rs_exit = rspec_check
-      if flag_rs_exit == true
-        break
-      end
+      break if flag_rs_exit == true
       flag_rubocop, flag_rub_exit = rubocop_check
-      if flag_rub_exit == true
-        break
-      end
+      break if flag_rub_exit == true
       if flag_rspec == true && flag_rubocop == true
         puts "**********************************"
         puts "Final Error Check"
