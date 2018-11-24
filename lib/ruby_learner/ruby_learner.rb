@@ -47,7 +47,7 @@ module RubyLearner
       system("ruby #{file} #{time} &")
     end
 
-    desc 'sequential_check [section:1~11] [part:1~]','learning drill'
+    desc 'sequential_check [section:1~11] [part:1~3]','learning drill'
     map "-s" => "sequential_check"
     option :next, aliases: :n, type: :boolean
     option :drill, aliases: :d, type: :boolean
