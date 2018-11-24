@@ -44,8 +44,7 @@ module RubyLearner
         return
       end
       time = args[0].to_i
-      popup_file = File.expand_path("../popup_per_time_for_background.rb", __FILE__)
-      system("ruby #{popup_file} #{time} &")
+      PairTimer.allocate.exe(time)
     end
 
     desc 'sequential_check [section:1~11] [part:1~]','learning drill'
