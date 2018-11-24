@@ -20,8 +20,15 @@ class SequentialCheck
     write_final_history(sec, par)
   end
 
+  # -next
+  def next_action
+    final_sec, final_par = get_final_history
+    next_sec, next_par = get_next_question(final_sec, final_par)
+    action(next_sec, next_par)
+  end
+
   # -last
-  def last_re_action()
+  def last_re_action
     final_sec, final_par = get_final_history
     puts "section_#{final_sec}/part_#{final_par}"
     rubocop_rspec_check = RubocopRspecCheck.new(@local_dir, @gem_dir)
@@ -66,10 +73,10 @@ class SequentialCheck
     final_par = 0
     Dir::chdir(@datas_dir){
       File.open("final_history_sequential.txt") do |f|
-      final_history = f.gets
+      final_histoory = f.gets
       end
-      final_sec = final_history.match(/(.*)\-/)[1].to_i
-      final_par = final_history.match(/\-(.*)/)[1].to_i
+      p final_sec = final_history.match(/(.*)\-/)[1].to_i
+      p final_par = final_history.match(/\-(.*)/)[1].to_i
     }
     return final_sec, final_par
   end

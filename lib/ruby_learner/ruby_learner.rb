@@ -67,11 +67,9 @@ module RubyLearner
           Thread.kill(pair_timer) if pair_timer != nil
           sequential_check.drill_contents
         elsif options[:next]
-          final_sec, final_par = sequential_check.get_final_history()
-          next_sec, next_par = sequential_check.get_next_question(final_sec, final_par)
-          sequential_check.action(next_sec, next_par)
+          sequential_check.next_action
         elsif options[:last]
-          sequential_check.last_re_action()
+          sequential_check.last_re_action
         else
           sequential_check.action(args[0], args[1])
         end
