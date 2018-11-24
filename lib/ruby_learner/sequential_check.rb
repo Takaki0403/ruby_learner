@@ -51,6 +51,15 @@ class SequentialCheck
     puts "section_11\t 1~3\t library"
   end
 
+  def instruct_modes
+    puts 'sequential_check has 5-modes'
+    puts 'mode-1: $ -s [section:1~11] [part:1~], ex) sequential_check 1 3'
+    puts 'mode-2: $ -s -d, check drill contents'
+    puts 'mode-3: $ -s -n, learn next to your last-question'
+    puts 'mode-4: $ -s -l, learn your last-question'
+    puts 'mode-5: $ -s -p [1 2, -d, -n, -l], learn with partner, change per 10 minutes.'
+  end
+
   private
 
   def write_final_history(sec, par)

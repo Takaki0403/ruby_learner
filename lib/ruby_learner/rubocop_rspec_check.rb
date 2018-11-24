@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'ruby_learner/common.rb'
 require 'ruby_learner/pair_timer.rb'
+require 'ruby_learner/restore'
 require 'rubocop'
 
 class RubocopRspecCheck
@@ -26,7 +27,6 @@ class RubocopRspecCheck
       end
     end
     system "cd #{@workshop_dir}/lib && emacs -nw -q -l #{@emacs_dir}/init.el sentence.org workplace.rb"
-
     loop do
       flag_rspec, flag_rs_exit = rspec_check
       break if flag_rs_exit == true
@@ -49,10 +49,17 @@ class RubocopRspecCheck
     end
     elapsed_time = Common.allocate.time_check(start_time: start_time)
     p "#{elapsed_time} sec"
-    Common.allocate.save_restore(file: "#{@workshop_dir}/lib/workplace.rb", local_dir: @local_dir, elapsed_time: elapsed_time)
+    restore = Restore.new
+    restore.save(file: "#{@workshop_dir}/lib/workplace.rb", local_dir: @local_dir, elapsed_time: elapsed_time)
   end
 
   private
+
+  def instruct_print
+    puts "continue >>> [RET]"
+    puts "stop >>> 'exit' + [RET]"
+    puts "check answer >>> 'answer' + [RET]"
+  end
 
   def rspec_check
     puts "**********************************"
@@ -84,7 +91,7 @@ class RubocopRspecCheck
         puts "#{check_mode} check is clear!"
         break
       else
-        Common.allocate.instruct_print
+        instruct_print
         select = STDIN.gets.chomp
         if select == 'exit'
           flag_exit = true
