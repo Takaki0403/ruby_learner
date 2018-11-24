@@ -50,7 +50,7 @@ class RubocopRspecCheck
     elapsed_time = Common.allocate.time_check(start_time: start_time)
     p "#{elapsed_time} sec"
     restore = Restore.new
-    restore.save(file: "#{@workshop_dir}/lib/workplace.rb", local_dir: @local_dir, elapsed_time: elapsed_time)
+    restore.save(file: "#{@workshop_dir}/lib/workplace.rb", elapsed_time: elapsed_time)
   end
 
   private

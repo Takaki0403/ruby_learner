@@ -50,9 +50,9 @@ class Restore
   private
 
   def instruct
-    puts "If you want to open a restore_file, you execute 'ruby_learner restore [number]'"
-    puts "ex) ruby_learner restore 3"
-    print "If you want to remove all restore_files, you execute 'ruby_learner restore -r'"
+    puts "If you want to open a restore_file, you execute 'ruby_learner -r [number]'"
+    puts "ex) ruby_learner -r 3"
+    print "If you want to remove all restore_files, you execute 'ruby_learner -r -f'"
   end
 
   def for_csv(restore_file, elapsed_time)
@@ -76,6 +76,6 @@ class Restore
     sorted_restores = restores.sort_by{|item| item.to_i}
     sorted_restores.each{|item| item.insert(0, "[")}
     dir.close
-    restores
+    sorted_restores
   end
 end
