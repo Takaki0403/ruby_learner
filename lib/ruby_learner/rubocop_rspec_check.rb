@@ -1,6 +1,5 @@
 require 'fileutils'
 require 'ruby_learner/common.rb'
-require 'ruby_learner/pair_timer.rb'
 require 'ruby_learner/restore'
 require 'rubocop'
 
