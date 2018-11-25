@@ -86,7 +86,7 @@ module RubyLearner
           sequential_check.next_action
         elsif options[:last]
           sequential_check.last_re_action
-        elsif options[:ch_mode]
+        elsif options[:real]
           sequential_check.change_mode
         else
           sequential_check.action(args[0], args[1])
