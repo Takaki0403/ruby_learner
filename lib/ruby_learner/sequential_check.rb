@@ -51,13 +51,24 @@ class SequentialCheck
     puts "section_11\t 1~3\t library"
   end
 
+  # -ch_mode
+  def change_mode
+    mode_txt = "#{@datas_dir}/sequential_mode.txt"
+    case File.read(mode_txt).chomp
+    when 'nomal'
+      File.write(mode_txt, 'real')
+    else
+      File.write(mode_txt, 'nomal')
+    end
+  end
+
   def instruct_modes
     puts 'sequential_check has 5-modes'
     puts 'mode-1: $ -s [section:1~11] [part:1~], ex) sequential_check 1 3'
     puts 'mode-2: $ -s -d, check drill contents'
     puts 'mode-3: $ -s -n, learn next to your last-question'
     puts 'mode-4: $ -s -l, learn your last-question'
-    puts 'mode-5: $ -s -p [1 2, -d, -n, -l], learn with partner, change per 10 minutes.'
+    puts 'mode-5: $ -s -r, change behavior'
   end
 
   private

@@ -5,6 +5,7 @@ require 'ruby_learner/version'
 require 'ruby_learner/common'
 require 'ruby_learner/sequential_check'
 require 'ruby_learner/restore'
+require 'ruby_learner/copspec'
 
 module RubyLearner
   # ruby_learner CLI main class
@@ -47,8 +48,24 @@ module RubyLearner
       system("ruby #{file} #{time} &")
     end
 
+    desc 'copspec [file_path]','check rspec and rubocop'
+    map "-c" => "copspec"
+    option :sequential_check, aliases: :s, type: :boolean
+    def copspec(*args)
+      if options[:sequentila_check]
+        mode_dir = "#{@gem_dir}/contents/questions/sequential_check/section_#{args[0]}/part_#{args[1]}"
+        %w{lib/workplace.rb lib/sentence.org lib/answer.rb spec/workplace_spec.rb}.each do |path|
+          FileUtils.cp("#{mode_dir}/#{path}", "#{@workshop_dir}/#{path}")
+        end
+        CopSpec.copspec("#{@workshop_dir}/lib/workplace.rb")
+      else
+        CopSpec.copspec(args[0])
+      end
+    end
+
     desc 'sequential_check [section:1~11] [part:1~3]','learning drill'
     map "-s" => "sequential_check"
+    option :ch_mode, aliases: :c, type: :boolean
     option :next, aliases: :n, type: :boolean
     option :drill, aliases: :d, type: :boolean
     option :last, aliases: :l, type: :boolean
@@ -61,6 +78,8 @@ module RubyLearner
           sequential_check.next_action
         elsif options[:last]
           sequential_check.last_re_action
+        elsif options[:real]
+          sequential_check.change_mode
         else
           sequential_check.action(args[0], args[1])
         end
