@@ -3,7 +3,7 @@ module CopSpec
   def copspec(file_path)
     @file = file_path
     root = @file.match(/.*\/lib/)[0]
-    @spec = "#{root[0..file.size-5]}/spec"
+    @spec = "#{root[0..root.size-5]}/spec"
     flag_rspec = rspec_check
     return if !flag_rspec
     flag_rubocop = rubocop_check
