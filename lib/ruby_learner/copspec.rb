@@ -1,15 +1,15 @@
 module CopSpec
 
-  def copspec(file_path, opt)
+  def copspec(file_path)
     @file = file_path
     flag_rspec = rspec_check
-    break if !flag_rspec
+    return if !flag_rspec
     flag_rubocop = rubocop_check
-    break if !flag_rubocop
+    return if !flag_rubocop
     puts "**********************************"
     puts "Final Error Check"
     puts "**********************************"
-    flag_final = check("rspec", @file)
+    flag_final = check("rspec")
     if flag_final
       puts "your code is perfect."
     else
@@ -42,7 +42,6 @@ module CopSpec
     flag_check = system "#{check_mode} #{@file}"
     if  flag_check
       puts "#{check_mode} check is clear!"
-      break
     end
     return flag_check
   end
