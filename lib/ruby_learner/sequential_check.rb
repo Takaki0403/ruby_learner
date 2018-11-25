@@ -68,7 +68,7 @@ class SequentialCheck
     puts 'mode-2: $ -s -d, check drill contents'
     puts 'mode-3: $ -s -n, learn next to your last-question'
     puts 'mode-4: $ -s -l, learn your last-question'
-    puts 'mode-5: $ -s -r, change behavior'
+    puts 'mode-5: $ -s -c, change behavior'
   end
 
   private

@@ -4,6 +4,7 @@ require 'open3'
 require 'ruby_learner/version'
 require 'ruby_learner/common'
 require 'ruby_learner/sequential_check'
+require 'ruby_learner/sequential_check_real'
 require 'ruby_learner/restore'
 require 'ruby_learner/copspec'
 
@@ -52,33 +53,40 @@ module RubyLearner
     map "-c" => "copspec"
     option :sequential_check, aliases: :s, type: :boolean
     def copspec(*args)
-      if options[:sequentila_check]
-        mode_dir = "#{@gem_dir}/contents/questions/sequential_check/section_#{args[0]}/part_#{args[1]}"
-        %w{lib/workplace.rb lib/sentence.org lib/answer.rb spec/workplace_spec.rb}.each do |path|
-          FileUtils.cp("#{mode_dir}/#{path}", "#{@workshop_dir}/#{path}")
+      begin
+        if options[:sequential_check]
+          CopSpec.copspec("#{@workshop_dir}/lib/workplace.rb")
+        else
+          CopSpec.copspec(args[0])
         end
-        CopSpec.copspec("#{@workshop_dir}/lib/workplace.rb")
-      else
-        CopSpec.copspec(args[0])
+      rescue => error
+        puts "Error.message: #{error.message}"
       end
     end
 
     desc 'sequential_check [section:1~11] [part:1~3]','learning drill'
     map "-s" => "sequential_check"
-    option :ch_mode, aliases: :c, type: :boolean
+    option :real, aliases: :r, type: :boolean
     option :next, aliases: :n, type: :boolean
     option :drill, aliases: :d, type: :boolean
     option :last, aliases: :l, type: :boolean
     def sequential_check(*args)
       begin
-        sequential_check = SequentialCheck.new(@gem_dir, @local_dir)
+        mode = File.read("#{@datas_dir}/sequential_mode.txt").chomp
+        puts "active mode: #{mode}"
+        sequential_check = nil
+        if mode == 'nomal'
+          sequential_check = SequentialCheck.new(@gem_dir, @local_dir)
+        else
+          sequential_check = SequentialCheckReal.new(@gem_dir, @local_dir)
+        end
         if options[:drill]
           sequential_check.drill_contents
         elsif options[:next]
           sequential_check.next_action
         elsif options[:last]
           sequential_check.last_re_action
-        elsif options[:real]
+        elsif options[:ch_mode]
           sequential_check.change_mode
         else
           sequential_check.action(args[0], args[1])
