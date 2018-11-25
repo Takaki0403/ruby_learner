@@ -8,7 +8,6 @@ class Common
     return elapsed_time
   end
 
-
   def init_mk_files(gem_dir: String, local_dir: String)
     gem_contents_dir = "#{gem_dir}/contents"
     if Dir.exist?(local_dir) != true then

@@ -2,3 +2,5 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Layout/EmptyLines:
   Enabled: false
+Layout/TrailingBlankLines:
+  Enabled: false
