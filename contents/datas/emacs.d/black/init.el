@@ -1,4 +1,3 @@
-
 (require 'package)
 (add-to-list 'package-archives '("org" . "http:/orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("org-plus-contrib" . "https:/orgmode.org/elpa/contrib") t)
@@ -55,11 +54,14 @@
 (which-function-mode 1)
 ;; 選択部分のインデント
 (global-set-key "\C-x\C-i" 'indent-region)
-(define-minor-mode overriding-minor-mode
-  "強制的にC-tを割り当てる"             ;説明文字列
-  t                                     ;デフォルトで有効にする
-  ""                                    ;モードラインに表示しない
-  `((,(kbd "C-x C-z") . save-buffers-kill-terminal)))
+
+(defun show-answer ()
+  (interactive)
+  (setq w (selected-window))
+  (setq w3 (split-window w nil 'left))
+  (find-file "~/.ruby_learner/workshop/lib/answer.rb"))
+
+(global-set-key (kbd "C-c C-a") 'show-answer) 
 
 ;; ======================================================================
 ;;  Ruby mode

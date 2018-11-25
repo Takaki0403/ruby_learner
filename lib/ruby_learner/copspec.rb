@@ -2,6 +2,8 @@ module CopSpec
 
   def copspec(file_path)
     @file = file_path
+    root = @file.match(/.*\/lib/)[0]
+    @spec = "#{root[0..file.size-5]}/spec"
     flag_rspec = rspec_check
     return if !flag_rspec
     flag_rubocop = rubocop_check
@@ -9,7 +11,7 @@ module CopSpec
     puts "**********************************"
     puts "Final Error Check"
     puts "**********************************"
-    flag_final = check("rspec")
+    flag_final = check("rspec", @spec)
     if flag_final
       puts "your code is perfect."
     else
@@ -22,9 +24,7 @@ module CopSpec
     puts "**********************************"
     puts "RSpec Error Check"
     puts "**********************************"
-    file = @file.match(/.*\/lib/)[0]
-    file = "#{file[0..file.size-5]}/spec"
-    return check("rspec", file)
+    return check("rspec", @spec)
   end
   private_class_method :rspec_check
 
