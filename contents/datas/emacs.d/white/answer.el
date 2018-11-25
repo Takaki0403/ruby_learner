@@ -66,7 +66,11 @@
 (which-function-mode 1)
 ;; 選択部分のインデント
 (global-set-key "\C-x\C-i" 'indent-region)
-
+(define-minor-mode overriding-minor-mode
+  "強制的にC-tを割り当てる"             ;説明文字列
+  t                                     ;デフォルトで有効にする
+  ""                                    ;モードラインに表示しない
+  `((,(kbd "C-x C-z") . save-buffers-kill-terminal)))
 ;; ======================================================================
 ;;  Ruby mode
 ;; ======================================================================
