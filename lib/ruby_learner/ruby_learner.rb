@@ -67,6 +67,7 @@ module RubyLearner
     desc 'sequential_check [section:1~11] [part:1~3]','learning drill'
     map "-s" => "sequential_check"
     option :real, aliases: :r, type: :boolean
+    option :copspec, aliases: :c, type: :boolean
     option :next, aliases: :n, type: :boolean
     option :drill, aliases: :d, type: :boolean
     option :last, aliases: :l, type: :boolean
@@ -88,6 +89,8 @@ module RubyLearner
           sequential_check.last_re_action
         elsif options[:real]
           sequential_check.change_mode
+        elsif options[:copspec]
+          CopSpec.copspec("#{@workshop_dir}/lib/workplace.rb")
         else
           sequential_check.action(args[0], args[1])
         end
@@ -100,6 +103,7 @@ module RubyLearner
     desc 'restore','check your restore'
     map "-r" => "restore"
     option :refresh, aliases: :r, type: :boolean
+    option :copspec, aliases: :c, type: :boolean
     def restore(*args)
       restore = Restore.new
       if options[:refresh]
