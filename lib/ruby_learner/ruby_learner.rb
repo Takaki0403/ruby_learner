@@ -80,7 +80,7 @@ module RubyLearner
         if mode == 'nomal'
           sequential_check = SequentialCheck.new(@gem_dir, @local_dir)
         else
-          sequential_check = SequentialCheckReal.new(@gem_dir, @local_dir)
+          sequential_check = SequentialCheckManual.new(@gem_dir, @local_dir)
         end
         if options[:drill]
           sequential_check.drill_contents
@@ -90,6 +90,8 @@ module RubyLearner
           sequential_check.last_re_action
         elsif options[:manual]
           sequential_check.change_mode
+          mode = File.read("#{@data_dir}/sequential_mode.txt").chomp
+          puts "active mode changed: #{mode}"
         elsif options[:copspec]
           CopSpec.copspec("#{@workshop_dir}/lib/workplace.rb")
         elsif options[:workshop]

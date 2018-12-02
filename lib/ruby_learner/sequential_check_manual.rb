@@ -5,7 +5,7 @@ require 'ruby_learner/rubocop_rspec_check'
 class SequentialCheckManual < SequentialCheck
   def initialize(x, y)
     super
-    @theme_color = File.read("#{@datas_dir}/theme_color.txt").chomp
+    @theme_color = File.read("#{@data_dir}/theme_color.txt").chomp
   end
 
   def action(sec, par)
@@ -27,8 +27,7 @@ class SequentialCheckManual < SequentialCheck
   def intro_next_command
     puts 'Practice setting ok.'
     puts 'Put under commands.'
-    puts '$ cd ~/.ruby_learner/workshop'
-    puts '$ emacs lib/workplace.rb'
+    puts '$ emacs lib/sentence.org lib/workplace.rb'
     puts '- rspec check'
     puts '$ rspec spec'
     puts '- rubocop check'

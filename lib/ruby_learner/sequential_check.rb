@@ -56,7 +56,7 @@ class SequentialCheck
     mode_txt = "#{@data_dir}/sequential_mode.txt"
     case File.read(mode_txt).chomp
     when 'nomal'
-      File.write(mode_txt, 'real')
+      File.write(mode_txt, 'manual')
     else
       File.write(mode_txt, 'nomal')
     end
