@@ -8,7 +8,7 @@ class SequentialCheck
     @local_dir = local_dir
     @workshop_dir = "#{local_dir}/workshop"
     @restore_dir = "#{local_dir}/restore"
-    @datas_dir = "#{local_dir}/.datas"
+    @data_dir = "#{local_dir}/.data"
   end
 
   # non opt, -next
@@ -53,7 +53,7 @@ class SequentialCheck
 
   # -ch_mode
   def change_mode
-    mode_txt = "#{@datas_dir}/sequential_mode.txt"
+    mode_txt = "#{@data_dir}/sequential_mode.txt"
     case File.read(mode_txt).chomp
     when 'nomal'
       File.write(mode_txt, 'real')
@@ -75,7 +75,7 @@ class SequentialCheck
 
   def write_final_history(sec, par)
     chmoded = 0
-    file_dir = "#{@datas_dir}/final_history_sequential.txt"
+    file_dir = "#{@data_dir}/final_history_sequential.txt"
     begin
       File.write(file_dir, "#{sec}-#{par}")
     rescue => error
@@ -89,7 +89,7 @@ class SequentialCheck
 
   def get_final_history
     final_history = ''
-    File.open("#{@datas_dir}/final_history_sequential.txt") do |f|
+    File.open("#{@data_dir}/final_history_sequential.txt") do |f|
       final_history = f.gets
     end
     final_sec = final_history.match(/(.*)\-/)[1].to_i

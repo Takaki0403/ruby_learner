@@ -9,13 +9,13 @@ class RubocopRspecCheck
     @local_dir = local_dir
     @workshop_dir = "#{local_dir}/workshop"
     @restore_dir = "#{local_dir}/restore"
-    @datas_dir = "#{local_dir}/.datas"
+    @data_dir = "#{local_dir}/.data"
     @gem_dir = gem_dir
     theme_color = ""
-    File.open("#{@datas_dir}/theme_color.txt") do |f|
+    File.open("#{@data_dir}/theme_color.txt") do |f|
       theme_color = f.gets.chomp
     end
-    @emacs_dir = "#{@datas_dir}/.emacs.d/#{theme_color}"
+    @emacs_dir = "#{@data_dir}/.emacs.d/#{theme_color}"
   end
 
   def action(mode_dir: String, is_copy: Bool)
