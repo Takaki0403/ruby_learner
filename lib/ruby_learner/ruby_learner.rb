@@ -93,7 +93,9 @@ module RubyLearner
         elsif options[:copspec]
           CopSpec.copspec("#{@workshop_dir}/lib/workplace.rb")
         elsif options[:workshop]
-          system("source #{@data_dir}/chdir_workshop.sh")
+          puts "#{@data_dir}/chdir_workshop.sh"
+          Dir.chdir "#{@workshop_dir}"
+          exec 'fish'
         else
           sequential_check.action(args[0], args[1])
         end
