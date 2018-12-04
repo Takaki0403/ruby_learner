@@ -2,7 +2,7 @@
 # 7-3-def.rb
 nums = [20, 40, 80, 100]
 
-def average(array)
+def sum(array)
   result = 0
   array.each do |item|
     result += item
@@ -10,4 +10,4 @@ def average(array)
   result
 end
 
-puts average(nums)
+puts sum(nums)

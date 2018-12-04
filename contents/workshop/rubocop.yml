@@ -4,3 +4,5 @@ Layout/EmptyLines:
   Enabled: false
 Layout/TrailingBlankLines:
   Enabled: false
+Style/Documentation:
+  Enabled: false

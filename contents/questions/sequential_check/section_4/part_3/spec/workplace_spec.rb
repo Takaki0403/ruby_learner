@@ -23,6 +23,6 @@ RSpec.describe "STDIN-check" do
   end
   it 'given Italy, return "else\n"' do
     stdout, stderr, status = Open3.capture3("ruby #{filename}", :stdin_data=>"Italy\n")
-    expect { print "#{stdout}" }.to output("else").to_stdout
+    expect { puts stdout }.to output("else\n").to_stdout
   end
 end

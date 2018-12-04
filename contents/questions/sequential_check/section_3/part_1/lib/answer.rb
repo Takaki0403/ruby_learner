@@ -7,5 +7,5 @@ z = ARGV[2].to_i
 area = (x * y + y * z + z * x) * 2
 volume = x * y * z
 
-print '表面積=', area, "\n"
-print '体積=', volume, "\n"
+print 'surface_area=', area, "\n"
+print 'volume=', volume, "\n"

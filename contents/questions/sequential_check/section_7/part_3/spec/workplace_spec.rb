@@ -6,7 +6,7 @@ filename = "#{ENV['HOME']}/.ruby_learner/workshop/lib/workplace.rb"
 
 RSpec.describe "def-check" do
   it 'given [1, 2, 3], return 6' do
-    expect( average([1, 2, 3]) ).to eq(6)
+    expect( sum([1, 2, 3]) ).to eq(6)
   end
   it 'return "240\n"' do
     stdout, stderr, status = Open3.capture3("ruby #{filename}")

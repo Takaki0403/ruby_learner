@@ -1,4 +1,4 @@
-# section_8/part_1/workplace.rb
+# section_8/part_3/workplace.rb
 class Hello
   def initialize(name)
     @name = name
