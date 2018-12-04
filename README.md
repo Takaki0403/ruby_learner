@@ -89,8 +89,11 @@ First, you execute
     $ ruby_learner -s 1 1
 
 In workshop/lib,
+
 workplace.rb: you answer in the file.
+
 sentence.org: question and text.
+
 answer.rb: answer.
 
 When you want to open 2 files, execute
