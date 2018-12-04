@@ -11,7 +11,7 @@ class SequentialCheck
     @data_dir = "#{local_dir}/.data"
   end
 
-  # non opt, -next
+  # non opt
   def action(sec, par)
     puts "section_#{sec}/part_#{par}"
     seq_dir = "#{@gem_dir}/contents/questions/sequential_check/section_#{sec}/part_#{par}"

@@ -16,6 +16,8 @@ class SequentialCheckManual < SequentialCheck
     end
     write_final_history(sec, par)
     intro_next_command
+    restore = Restore.new
+    restore.save(file: "#{@workshop_dir}/lib/workplace.rb", elapsed_time: 0.0)
   end
 
   def last_re_action
