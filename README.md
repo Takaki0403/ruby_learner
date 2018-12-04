@@ -49,7 +49,10 @@ Options:
 Main content of this app is sequential_check.
 
 ## Sequential_check: nomal
-First, you execute '$ ruby_learner -s 1 1'.
+First, you execute
+
+     $ ruby_learner -s 1 1
+       
 In learning in this app, you can choice 3 mode.  
 Mode 1: you can continue to answer the question:
 
