@@ -27,7 +27,7 @@ module RubyLearner
       puts RubyLearner::VERSION
     end
 
-    desc 'emacs_key', 'check emacs key-bindings'
+    desc "emacs_key", 'check emacs key-bindings'
     option :image, aliases: :i, type: :boolean
     def emacs_key(*args)
       if options[:image]
