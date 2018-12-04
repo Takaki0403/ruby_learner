@@ -68,20 +68,41 @@ When you want to learn next question, execute '$ ruby_learner -s -n'
 
 ## Sequential_check: manual
 ** this mode need emacs. Please install emacs.
-For this mode is active, execute '$ ruby_learner -s -m'.
-If your current directory is not workshop, execute '$ ruby_learner -s -w'
-First, you execute '$ ruby_learner -s 1 1'.
+
+    $ ruby_learner -i
+    
+For this mode is active, execute
+
+    $ ruby_learner -s -m
+
+If your current directory is not workshop, execute
+
+    $ ruby_learner -s -w
+   
+First, you execute
+
+    $ ruby_learner -s 1 1
 
 In workshop/lib,
 workplace.rb: you answer in the file.
 sentence.org: question and text.
 answer.rb: answer.
 
-When you want to open 2 files, execute '$ emacs sentence.org workplace.rb'
+When you want to open 2 files, execute
 
-ruby_learner's check(rspec and rubocop): '$ ruby_learner -s -c'
-rspec: '$ rspec spec'
-rubocop: '$ rubocop lib/workplace.rb'
+    $ emacs sentence.org workplace.rb
+
+ruby_learner's check(rspec and rubocop):
+
+    $ ruby_learner -s -c
+
+rspec:
+
+    $ rspec spec
+    
+rubocop:
+
+    $ rubocop lib/workplace.rb
 
 ## Workshop
 
