@@ -67,7 +67,9 @@ Mode 3: you can stop answer the question.
      $ exit + [RET]
 
 Try the question!
-When you want to learn next question, execute '$ ruby_learner -s -n'
+When you want to learn next question, execute
+
+     $ ruby_learner -s -n
 
 ## Sequential_check: manual
 ** this mode need emacs. Please install emacs.
