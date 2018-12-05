@@ -1,0 +1,15 @@
+* Introduction
+  - fg cycle method(auto) -> (manual)
+    realモードでは，ボタン操作が多い．これはこの機能の着床である現実の開発の流れに則していない．
+* Method
+  - よってさらに現実の開発の流れを体験できるモードが必要(manual)
+  - 方法
+    1. $ ruby_learner -s -mでモード切り替え
+    2. $ ruby_learner -s 1 2で作業ディレクトリにテキスト反映．
+    3. $ ruby_learner -s -wでカレントディレクトリからワークショップディレクトリに移動
+    4. その場で手動でemacsで回答してもらう
+    5. $ ruby_learner -s -c で作業用emacs内のコードをrspecとrubocopでチェックする．
+
+* Result and Discussion
+  - 本モードはrealモードの代わりに実装した．このモードではほぼ作業に対しての自動化を行なっていない．
+  - このモードでは基礎的なディレクトリ構造やemacsの使い方等の知識が必須なのでドキュメントで説明した方が良さそう．
