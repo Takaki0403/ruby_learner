@@ -1,0 +1,14 @@
+* Introduction
+  - gitに連携するのはどうか
+* Method
+  - 具体的に
+    asuraに各々のリポジトリを作る？ -> 設定モードで任意で行う方が良さそう
+    ローカルにgitでリポジトリ作る？ -> この場合はgitは完全に個人用になりそう
+    
+  - ruby_learnerのgit利用により得られる効果
+    タイムリーな進捗確認(asuraリポの場合のみ)
+    manual-modeでの作業時間を取りやすい
+    
+* Result and Discussion
+  - 優先度は低く感じられる
+  - そもそも個人の経過観察のみなら現状のrestoreや.csvファイルで事足りるのではないか？

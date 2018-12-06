@@ -1,0 +1,16 @@
+* Introduction
+  - ruby_learnerの与えるスキルについて
+* Method
+  - ruby_learnerの機能によって与えられるスキルはnormal-modeとmanual-modeで異なっている．
+
+* Result and Discussion
+  - normal-mode
+    Rubyの基礎知識
+    emacsのキーバインド 
+    rspecの読み方
+    TDD(テスト駆動開発)の流れ
+    Rubyのコード規約
+
+  - manual-mode
+    基本的なディレクトリ構造
+    CLIでの開発工程
