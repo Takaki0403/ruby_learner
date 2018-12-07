@@ -6,7 +6,7 @@
   - 方法
     1. $ ruby_learner -s -r でモード切り替え
     2. $ ruby_learner -s 1 2で作業用emacsを展開
-       この時に一時保存と再開をしてもらう．
+       この時に一時保存ctrl+zと再開fgをしてもらう．
     3. $ ruby_learner -s -c で作業用emacs内のコードをrspecとrubocopでチェックする．
 
 * Result and Discussion
