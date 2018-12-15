@@ -1,0 +1,201 @@
+This is e-pTeX, Version 3.14159265-p3.7.1-161114-2.6 (utf8.euc) (TeX Live 2017) (preloaded format=platex 2018.3.14)  15 DEC 2018 21:21
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**../../thesis/thesis.tex
+(../../thesis/thesis.tex
+pLaTeX2e <2017/10/28>+4 (based on LaTeX2e <2017-04-15>)
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/local/texlive/2017/texmf-dist/tex/platex/base/jreport.cls
+Document Class: jreport 2017/09/19 v1.7g Standard pLaTeX class
+\c@@paper=\count82
+(/usr/local/texlive/2017/texmf-dist/tex/platex/base/jsize12.clo
+File: jsize12.clo 2017/09/19 v1.7g Standard pLaTeX file (size option)
+)
+\c@part=\count83
+\c@chapter=\count84
+\c@section=\count85
+\c@subsection=\count86
+\c@subsubsection=\count87
+\c@paragraph=\count88
+\c@subparagraph=\count89
+\c@figure=\count90
+\c@table=\count91
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\symmincho=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
+(Font)                  JY1/mc/m/n --> JY1/gt/m/n on input line 702.
+\toclineskip=\dimen118
+\@lnumwidth=\dimen119
+\bibindent=\dimen120
+\heisei=\count92
+)
+
+! LaTeX Error: File `../thesis_pieces/usepackage.tex' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: tex)
+
+Enter file name: 
+
+! LaTeX Error: File `../thesis_pieces/form00_style.tex' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: tex)
+
+Enter file name: 
+
+! LaTeX Error: File `../thesis_pieces/tightlist_setting.tex' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: tex)
+
+Enter file name: 
+
+! LaTeX Error: File `../split_files/informations/informations.tex' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: tex)
+
+Enter file name: 
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <24.88> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 14.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <24.88> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 14.
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 \tableofcontents
+                     
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 \tableofcontents
+                     
+? 
+No file thesis.toc.
+\tf@toc=\write3
+\openout3 = `thesis.toc'.
+
+[1
+
+
+]
+No file thesis.lot.
+\tf@lot=\write4
+\openout4 = `thesis.lot'.
+
+[2
+
+]
+No file thesis.lof.
+\tf@lof=\write5
+\openout5 = `thesis.lof'.
+
+
+! LaTeX Error: File `./.splits_location.tex' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: splits_location.tex)
+
+Enter file name: 
+[3
+
+]
+! I can't find file `thesis.aux'.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name: 
+! I can't find file `thesis.aux'.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name: 
+! I can't find file `thesis.aux'.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name: 
+! I can't find file `thesis.aux'.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name: 
+! I can't find file `thesis.aux'.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name: 
+! I can't find file `thesis.aux'.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name: 
+! I can't find file `thesis.aux'.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name: 
+! I can't find file `thesis.aux'.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name: 
+! I can't find file `thesis.aux'.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name: 
+! I can't find file `thesis.aux'.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name: 
+! Emergency stop.
+\enddocument ...keatletter \@@input \jobname .aux 
+                                                  \fi \@dofilelist \ifdim \f...
+l.30 \end{document}
+                   
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 298 strings out of 493640
+ 3145 string characters out of 6148698
+ 59339 words of memory out of 5000000
+ 3975 multiletter control sequences out of 15000+600000
+ 9341 words of font info for 38 fonts, out of 8000000 for 9000
+ 929 hyphenation exceptions out of 8191
+ 22i,4n,19p,128b,170s stack positions out of 5000i,500n,10000p,200000b,80000s
+Output written on thesis.dvi (3 pages, 488 bytes).
