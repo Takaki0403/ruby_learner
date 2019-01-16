@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.7.1-161114-2.6 (utf8.euc) (TeX Live 2017) (preloaded format=platex 2018.3.14)  23 DEC 2018 18:05
+This is e-pTeX, Version 3.14159265-p3.7.1-161114-2.6 (utf8.euc) (TeX Live 2017) (preloaded format=platex 2018.3.14)  16 JAN 2019 11:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -489,7 +489,21 @@ Package: booktabs 2016/04/27 v1.618033 publication quality tables
 LaTeX Warning: Unused global option(s):
     [a4].
 
-(./thesis.aux)
+(./thesis.aux
+
+LaTeX Warning: Label `commands' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `ux4ed6ux306eux30bdux30d5ux30c8ux3068ux306eux6bd4ux8f03' m
+ultiply defined.
+
+
+LaTeX Warning: Label `ux8003ux5bdf' multiply defined.
+
+)
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -514,8 +528,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/caption/ltcaption.sty
+ (/usr/local/texlive/2017/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
@@ -580,58 +593,68 @@ LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <17.28> not available
 (Font)              Font shape `JT1/gt/m/n' tried instead on input line 3.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <17.28> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 3.
+
+Overfull \hbox (11.19077pt too wide) in paragraph at lines 11--12
+[]\JY1/mc/m/n/12 本研究室に在籍していた和田によ っ て開発されたタイピングアプリ
+ケ ーシ ョ ン \OT1/cmr/m/n/12 ed-i-tor[]learner
+ []
+
 ) (../split_files/chapter2/chapter2.tex [5
 
 ]
 第 2 章
-LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 24.
-LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 24.
 [6
 
-]) (../split_files/chapter3/chapter3.tex [7]
+]
+File: ../../picture/seq_contents.png Graphic file (type bmp)
+<../../picture/seq_contents.png>
+ [7]
+File: ../../picture/seq_flow.png Graphic file (type bmp)
+<../../picture/seq_flow.png>
+ [8]
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 70.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 70.
+File: ../../picture/cli_compare.pdf Graphic file (type pdf)
+<../../picture/cli_compare.pdf>
+ [9]) (../split_files/chapter3/chapter3.tex [10]
 第 3 章
-[8
+File: ../../picture/commands.png Graphic file (type bmp)
+<../../picture/commands.png>
+File: ../../picture/seq.png Graphic file (type bmp)
+<../../picture/seq.png>
+[11
 
-] [9]) (../split_files/chapter4/chapter4.tex [10]
+] [12] [13] [14]
+File: ../../picture/keybind_string.png Graphic file (type bmp)
+<../../picture/keybind_string.png>
+ [15]
+File: ../../picture/keybind_image.png Graphic file (type bmp)
+<../../picture/keybind_image.png>
+ [16]) (../split_files/chapter4/chapter4.tex [17]
 第 4 章
-) (../split_files/chapter5/chapter5.tex [11
+File: ../../picture/service_compare.pdf Graphic file (type pdf)
+<../../picture/service_compare.pdf>
+) (../split_files/chapter5/chapter5.tex [18
 
 ]
 第 5 章
-
-LaTeX Warning: File `../../picture/compare.jpeg' not found on input line 8.
-
-
-! LaTeX Error: Cannot determine size of graphic in ../../picture/compare.xbb (n
-o BoundingBox).
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.8 ...cs[width=150mm]{../../picture/compare.jpeg}
-                                                  
-? 
-File: ../../picture/compare.jpeg Graphic file (type bmp)
-<../../picture/compare.jpeg>
-[12
-
-]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 31.
- (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 20.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
 )
-(../split_files/chapter6/chapter6.tex [13]
+(../split_files/chapter6/chapter6.tex [19
+
+]
 第 6 章
-) (../split_files/chapter7/chapter7.tex [14
+) (../split_files/chapter7/chapter7.tex [20
 
 ])
-(../split_files/chapter8/chapter8.tex [15
+(../split_files/chapter8/chapter8.tex [21
 
 ]
 Overfull \hbox (54.67007pt too wide) in paragraph at lines 4--5
@@ -658,7 +681,7 @@ Overfull \hbox (21.35431pt too wide) in paragraph at lines 10--11
 
 ) (../split_files/chapter9/chapter9.tex))
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 30.
- [16
+ [22
 
 ]
 Package atveryend Info: Executing hook `AfterLastShipout' on input line 30.
@@ -668,15 +691,19 @@ Package atveryend Info: Executing hook `AfterLastShipout' on input line 30.
  (./thesis.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 30.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 30.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 30.
  ) 
 Here is how much of TeX's memory you used:
- 8700 strings out of 493640
- 131454 string characters out of 6148698
+ 8724 strings out of 493640
+ 132077 string characters out of 6148698
  230800 words of memory out of 5000000
- 12091 multiletter control sequences out of 15000+600000
+ 12107 multiletter control sequences out of 15000+600000
  20707 words of font info for 84 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 44i,7n,40p,847b,421s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,7n,40p,1087b,421s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on thesis.dvi (17 pages, 57064 bytes).
+Output written on thesis.dvi (23 pages, 83104 bytes).
