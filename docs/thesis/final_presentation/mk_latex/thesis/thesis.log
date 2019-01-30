@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.7.1-161114-2.6 (utf8.euc) (TeX Live 2017) (preloaded format=platex 2018.3.14)  16 JAN 2019 11:11
+This is e-pTeX, Version 3.14159265-p3.7.1-161114-2.6 (utf8.euc) (TeX Live 2017) (preloaded format=platex 2018.3.14)  30 JAN 2019 12:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -497,11 +497,13 @@ LaTeX Warning: Label `commands' multiply defined.
 LaTeX Warning: Label `fig:' multiply defined.
 
 
-LaTeX Warning: Label `ux4ed6ux306eux30bdux30d5ux30c8ux3068ux306eux6bd4ux8f03' m
-ultiply defined.
+LaTeX Warning: Label `evaluation' multiply defined.
 
 
-LaTeX Warning: Label `ux8003ux5bdf' multiply defined.
+LaTeX Warning: Label `list' multiply defined.
+
+
+LaTeX Warning: Label `list' multiply defined.
 
 )
 \openout1 = `thesis.aux'.
@@ -593,13 +595,13 @@ LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <17.28> not available
 (Font)              Font shape `JT1/gt/m/n' tried instead on input line 3.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <17.28> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 3.
-
-Overfull \hbox (11.19077pt too wide) in paragraph at lines 11--12
+) (../split_files/chapter2/chapter2.tex
+Overfull \hbox (23.59341pt too wide) in paragraph at lines 11--1
 []\JY1/mc/m/n/12 本研究室に在籍していた和田によ っ て開発されたタイピングアプリ
-ケ ーシ ョ ン \OT1/cmr/m/n/12 ed-i-tor[]learner
+ケ ーシ ョ ン \OT1/cmr/m/n/12 ed-i-tor[]learner[[]]
  []
 
-) (../split_files/chapter2/chapter2.tex [5
+[5
 
 ]
 第 2 章
@@ -613,77 +615,61 @@ File: ../../picture/seq_flow.png Graphic file (type bmp)
 <../../picture/seq_flow.png>
  [8]
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 70.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 70.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 75.
+ [9]
 File: ../../picture/cli_compare.pdf Graphic file (type pdf)
 <../../picture/cli_compare.pdf>
- [9]) (../split_files/chapter3/chapter3.tex [10]
+) (../split_files/chapter3/chapter3.tex [10] [11]
 第 3 章
 File: ../../picture/commands.png Graphic file (type bmp)
 <../../picture/commands.png>
+
+Overfull \hbox (28.45274pt too wide) in paragraph at lines 19--20
+ [] 
+ []
+
 File: ../../picture/seq.png Graphic file (type bmp)
 <../../picture/seq.png>
-[11
+[12
 
-] [12] [13] [14]
+] [13] [14] [15] [16]
 File: ../../picture/keybind_string.png Graphic file (type bmp)
 <../../picture/keybind_string.png>
- [15]
 File: ../../picture/keybind_image.png Graphic file (type bmp)
 <../../picture/keybind_image.png>
- [16]) (../split_files/chapter4/chapter4.tex [17]
+ [17]) (../split_files/chapter4/chapter4.tex [18]
 第 4 章
 File: ../../picture/service_compare.pdf Graphic file (type pdf)
 <../../picture/service_compare.pdf>
-) (../split_files/chapter5/chapter5.tex [18
+) (../split_files/chapter5/chapter5.tex [19
 
 ]
 第 5 章
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 20.
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
-)
-(../split_files/chapter6/chapter6.tex [19
+) (../split_files/chapter6/chapter6.tex [20
 
-]
+] [21]
 第 6 章
-) (../split_files/chapter7/chapter7.tex [20
-
-])
-(../split_files/chapter8/chapter8.tex [21
+) (../split_files/chapter7/chapter7.tex) (../split_files/chapter8/chapter8.tex
+[22
 
 ]
-Overfull \hbox (54.67007pt too wide) in paragraph at lines 4--5
-[]\OT1/cmr/m/n/12 S. Koichiro, Rubygems \JY1/mc/m/n/12 のススメ\OT1/cmr/m/n/12 
-, [][][][],
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
+[]\OT1/cmr/m/n/12 Optparse. [][][][],
  []
 
+[23
 
-Underfull \hbox (badness 2277) in paragraph at lines 5--6
+]
+Underfull \hbox (badness 1028) in paragraph at lines 21--22
 []\OT1/cmr/m/n/12 Weblio, \JY1/mc/m/n/12 キ ーバイド\OT1/cmr/m/n/12 , [][][][],
  ac-cessed
  []
 
-
-Overfull \hbox (45.90501pt too wide) in paragraph at lines 7--8
-[]\OT1/cmr/m/n/12 S. Kouichiro, Thor \JY1/mc/m/n/12 の使い方\OT1/cmr/m/n/12 , [
-][][][],
- []
-
-
-Overfull \hbox (21.35431pt too wide) in paragraph at lines 10--11
-[]\OT1/cmr/m/n/12 Ruby, \JY1/mc/m/n/12 相対パス\OT1/cmr/m/n/12 , [][][][],
- []
-
 ) (../split_files/chapter9/chapter9.tex))
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 30.
- [22
-
-]
+ [24]
 Package atveryend Info: Executing hook `AfterLastShipout' on input line 30.
 \BKM@file=\write7
 \openout7 = `thesis.out.ps'.
@@ -698,12 +684,12 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 30.
  ) 
 Here is how much of TeX's memory you used:
- 8724 strings out of 493640
- 132077 string characters out of 6148698
- 230800 words of memory out of 5000000
- 12107 multiletter control sequences out of 15000+600000
+ 8720 strings out of 493640
+ 131859 string characters out of 6148698
+ 231800 words of memory out of 5000000
+ 12106 multiletter control sequences out of 15000+600000
  20707 words of font info for 84 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 44i,7n,40p,1087b,421s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,7n,40p,1087b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on thesis.dvi (23 pages, 83104 bytes).
+Output written on thesis.dvi (25 pages, 97112 bytes).
