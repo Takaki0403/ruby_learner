@@ -1,0 +1,28 @@
+#!/bin/sh
+
+#get nowDate
+today=$(date "+%Y%m%d")
+#place where file is saved
+filePath="/Users/takakiotsu/NishitaniLab/grad_research_2018/members/takaki/daily_report/DR_${today}.org"
+if [ ! -e $filePath ]; then
+  #when no file
+  #make blank file  
+  touch $filePath
+  {
+      echo "#+STARTUP: indent nolineimages"
+      echo "日報 (${today})"
+      echo
+      echo "* 行ったこと"
+  }> $filePath
+  emacs $filePath
+else
+  #when the file  exists
+  emacs $filePath
+fi
+
+if [ -e $filePath~ ]; then
+  rm $filePath~
+  echo "delete_backup_and_complete_make_file"
+else
+  echo "complete_make_file"  
+fi

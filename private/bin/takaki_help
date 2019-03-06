@@ -1,0 +1,82 @@
+#!/bin/sh
+
+usage() {
+  echo "usage"
+  echo "-terminal"
+  echo "-emacs"
+  echo "-swift"
+  echo "-ruby"
+  echo "-shell"
+  echo "-setup"
+  echo "-VScode"
+  exit 1
+}
+
+open_help_file(){
+    filePath="/Users/takakiotsu/takaki_help/$1_help.org"
+    if [ ! -e $filePath ]; then
+	#when no file                                                         
+	#make blank file                                                     
+	touch $filePath
+	{
+	    echo "#+STARTUP: indent nolineimages"
+	    echo
+	    echo "* ここにメモりたいこと記載"
+	}> $filePath
+	emacs $filePath
+    else
+	#when the file  exists
+	emacs $filePath
+    fi
+
+    if [ -e $filePath~ ]; then
+        rm $filePath~
+        echo "delete_backup_and_complete_make_file"
+    else
+        echo "complete_make_file"
+    fi
+}
+
+for OPT in "$@"
+do
+    case "$OPT" in
+        '-h'|'-help' )
+            usage
+            exit 1
+            ;;
+	'-terminal' )
+            echo 'terminal help'
+            open_help_file terminal
+            exit 1
+            ;;
+        '-emacs' )
+            echo 'emacs help'
+	    open_help_file emacs
+            exit 1
+            ;;
+        '-swift' )
+            echo 'swift help'
+	    open_help_file swift
+            exit 1
+            ;;
+        '-ruby' )
+            echo 'ruby help'
+	    open_help_file ruby
+            exit 1
+            ;;
+        '-shell' )
+            echo 'shell help'
+	    open_help_file shellscript
+            exit 1
+            ;;
+	'-setup' )
+            echo 'setup help'
+            open_help_file setup
+            exit 1
+            ;;
+	'-VScode' )
+            echo 'VScode help'
+            open_help_file setup
+            exit 1
+    esac
+done

@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+require 'thor'
+require '~/MethodsResource/Ruby/FileOP'
+class CLI < Thor
+  def initialize(*args)
+    super
+    @memo_dir = "#{ENV['HOME']}/.Memo"
+    FileOP.allocate.is_exist_and_mk_dir(dir_path: @memo_dir)
+  end
+
+  desc 'new', 'mk your new file'
+  def new(*args)
+    if args.empty?
+      puts "WARNING: filename is nothing."
+    else
+      file_path = "#{@memo_dir}/#{args[0]}.org"
+      FileOP.allocate.is_exist_and_mk_file(file_path: "#{file_path}")
+      system("emacs #{file_path}")
+    end
+  end
+
+  desc 'rm', 'rm your file'
+  def rm(*args)
+    FileOP.allocate.is_exist_and_rm_file(file_path: "#{@memo_dir}/#{args[0]}.org")
+  end
+
+  desc 'check', 'check #{memo_dir}'
+  def check
+    system("ls #{@memo_dir}")
+  end
+
+  desc 'open', 'open file'
+  def open(*args)
+    file_path = "#{@memo_dir}/#{args[0]}.org"
+    if File.exists?(file_path)
+      puts "open #{file_path}"
+      system("emacs #{file_path}")
+    else
+      puts "#{file_path} is not existed"
+    end
+  end
+
+end
+
+CLI.start
